@@ -1,0 +1,53 @@
+=== FastDev ===
+Donate link: http://paypal.me/zerowp
+Tags: dev, developers, debug, analyze, inspect, test, security, options
+Requires at least: 4.4
+Tested up to: 4.7.3
+Stable tag: 1.2
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+Helpful information for developers and regular users.
+
+
+== Description ==
+
+You, as a developer often need to get different information from DB. This plugin will become a real time saver for you when creating the next plugin or theme. If you are not a developer, you may need to get general info about the WP installation, server info, php or mysql info, all this is included.
+
+* Get information about current WordPress installation.
+* Get information about current server.
+* Inspect all WordPress Options and expand any of them for futher information.
+* Get a list of all available hooks and info about each.
+* View all available PHP classes and expand the source.
+* View all available PHP functions, expand the source and follow the direct link to WP Codex.
+* Get the users meta for a particular user by login.
+* Get detailed PHP info.
+* A list of all registered PHP constats.
+* MySQL configuration info.
+* A list of all registered widgets.
+
+
+== Installation ==
+
+* Upload `plugin-name.php` to the `/wp-content/plugins/` directory
+* Activate the plugin through the 'Plugins' menu in WordPress
+* Place `<?php do_action('plugin_name_hook'); ?>` in your templates
+
+
+== Changelog ==
+
+= 1.2 =
+* User meta details page improvements.
+* Included an autoloader for PHP classes.
+* Code cleaning of trash.
+* Added localization template .pot and support for translation.
+* The license explicitly set to GPL-2.0+
+
+
+= 1.1 =
+* Possibility to refresh an option via AJAX(manually or automatically when the page is active).
+* Possibility to delete an option. For advanced users.
+* Added mime type list. Show what mime types can be used for file uploading and if they are enabled.
+* Added function reference to https://developer.wordpress.org
+* Use `htmlspecialchars` to properly display the source code in `fd_code` function.
+* Added `autofocus` to search field.

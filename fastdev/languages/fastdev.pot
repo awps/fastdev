@@ -1,0 +1,322 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: FastDev\n"
+"POT-Creation-Date: 2017-03-12 17:03+0200\n"
+"PO-Revision-Date: 2017-03-12 16:57+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.12\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: plugin-base.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: plugin-base.php:104
+msgid "Search..."
+msgstr ""
+
+#: src/MainPage.class.php:20
+msgid "Fastdev"
+msgstr ""
+
+#: src/MainPage.class.php:79
+msgid "Active theme"
+msgstr ""
+
+#: src/MainPage.class.php:80
+msgid "Site URL"
+msgstr ""
+
+#: src/MainPage.class.php:81
+msgid "Home URL"
+msgstr ""
+
+#: src/MainPage.class.php:82
+msgid "Multisite"
+msgstr ""
+
+#: src/MainPage.class.php:86
+msgid "WordPress Version"
+msgstr ""
+
+#: src/MainPage.class.php:88
+msgid "WordPress Language"
+msgstr ""
+
+#: src/MainPage.class.php:89
+msgid "Permalink Structure"
+msgstr ""
+
+#: src/MainPage.class.php:90
+msgid "Show On Front"
+msgstr ""
+
+#: src/MainPage.class.php:104
+msgid "Active plugins"
+msgstr ""
+
+#: src/MainPage.class.php:109
+msgid "System:"
+msgstr ""
+
+#: src/MainPage.class.php:110
+msgid "Operating system"
+msgstr ""
+
+#: src/MainPage.class.php:111
+msgid "Server Software"
+msgstr ""
+
+#: src/MainPage.class.php:112
+msgid "PHP Version"
+msgstr ""
+
+#: src/MainPage.class.php:112
+msgid "PHP 5.4+ is recommended."
+msgstr ""
+
+#: src/MainPage.class.php:113
+msgid "MySQL Version"
+msgstr ""
+
+#: src/MainPage.class.php:114
+msgid "GD Version"
+msgstr ""
+
+#: src/MainPage.class.php:115
+msgid "Hostname"
+msgstr ""
+
+#: src/MainPage.class.php:116
+msgid "Server IP"
+msgstr ""
+
+#: src/MainPage.class.php:117
+msgid "Server Port"
+msgstr ""
+
+#: src/MainPage.class.php:118
+msgid "Server Document Root"
+msgstr ""
+
+#: src/MainPage.class.php:119
+msgid "Server Admin"
+msgstr ""
+
+#: src/MainPage.class.php:120
+msgid "Server Time"
+msgstr ""
+
+#: src/MainPage.class.php:120
+#, php-format
+msgid "%s - %s"
+msgstr ""
+
+#: src/MainPage.class.php:141
+msgid "Unknown"
+msgstr ""
+
+#: src/MySQLInfoPage.class.php:9
+msgid "MySQL"
+msgstr ""
+
+#: src/MySQLInfoPage.class.php:19
+msgid "Variable"
+msgstr ""
+
+#: src/MySQLInfoPage.class.php:20 src/WpConstantsPage.class.php:20
+#: src/WpOptionsPage.class.php:20
+msgid "Value"
+msgstr ""
+
+#: src/Page.class.php:71
+msgid "Congrats! you've created a new page."
+msgstr ""
+
+#: src/Page.class.php:256
+msgctxt "Default tab name."
+msgid "General"
+msgstr ""
+
+#: src/PhpInfoPage.class.php:9
+msgid "PHP"
+msgstr ""
+
+#: src/Tab.class.php:40
+msgid "Congrats! you've created a new page tab."
+msgstr ""
+
+#: src/WPMimesPage.class.php:9
+msgid "Mimes"
+msgstr ""
+
+#: src/WPMimesPage.class.php:20
+msgid "Extension"
+msgstr ""
+
+#: src/WPMimesPage.class.php:21
+msgid "Mime type"
+msgstr ""
+
+#: src/WPMimesPage.class.php:22
+msgid "Allowed"
+msgstr ""
+
+#: src/WPMimesPage.class.php:42
+msgid "Yes"
+msgstr ""
+
+#: src/WPRegisteredWidgetsList.class.php:9
+msgid "Widgets"
+msgstr ""
+
+#: src/WPRegisteredWidgetsList.class.php:19 src/WpClassesPage.class.php:19
+msgid "Class name"
+msgstr ""
+
+#: src/WPRegisteredWidgetsList.class.php:20
+msgid "Name"
+msgstr ""
+
+#: src/WPRegisteredWidgetsList.class.php:21
+msgid "ID Base"
+msgstr ""
+
+#: src/WPRegisteredWidgetsList.class.php:53
+msgid "A list of all registered widgets"
+msgstr ""
+
+#: src/WpClassesPage.class.php:9
+msgid "Classes"
+msgstr ""
+
+#: src/WpClassesPage.class.php:20 src/WpFunctionsPage.class.php:21
+msgid "Defined in:"
+msgstr ""
+
+#: src/WpClassesPage.class.php:54
+msgid "Properties"
+msgstr ""
+
+#: src/WpClassesPage.class.php:57
+msgid "Methods"
+msgstr ""
+
+#: src/WpClassesPage.class.php:66
+msgid "Source"
+msgstr ""
+
+#: src/WpConstantsPage.class.php:9
+msgid "Constants"
+msgstr ""
+
+#: src/WpConstantsPage.class.php:19
+msgid "Constant name"
+msgstr ""
+
+#: src/WpFunctionsPage.class.php:9
+msgid "Functions"
+msgstr ""
+
+#: src/WpFunctionsPage.class.php:20
+msgid "Function"
+msgstr ""
+
+#: src/WpFunctionsPage.class.php:22
+msgid "Codex"
+msgstr ""
+
+#: src/WpFunctionsPage.class.php:23
+msgid "Developer"
+msgstr ""
+
+#: src/WpFunctionsPage.class.php:37 src/WpFunctionsPage.class.php:41
+msgid "View &rarr;"
+msgstr ""
+
+#: src/WpHooksPage.class.php:9
+msgid "Hooks"
+msgstr ""
+
+#: src/WpOptionsPage.class.php:9
+msgid "WP Options"
+msgstr ""
+
+#: src/WpOptionsPage.class.php:19
+msgid "Option ID"
+msgstr ""
+
+#: src/WpOptionsPage.class.php:44
+msgid "Refresh"
+msgstr ""
+
+#: src/WpOptionsPage.class.php:45
+msgid "Auto refresh"
+msgstr ""
+
+#: src/WpOptionsPage.class.php:46
+msgid "Delete option"
+msgstr ""
+
+#: src/WpOptionsPage.class.php:80 src/WpOptionsPage.class.php:94
+msgid "Error. Please refresh the page."
+msgstr ""
+
+#: src/WpOptionsPage.class.php:86
+msgid "Option does not exists."
+msgstr ""
+
+#: src/WpOptionsPage.class.php:97
+msgid "Option deleted."
+msgstr ""
+
+#: src/WpOptionsPage.class.php:100
+msgid "Can't delete this option."
+msgstr ""
+
+#: src/WpUserMetaPage.class.php:9
+msgid "User Meta"
+msgstr ""
+
+#: src/WpUserMetaPage.class.php:37
+msgid "Username"
+msgstr ""
+
+#: src/WpUserMetaPage.class.php:40
+msgid "Get user details"
+msgstr ""
+
+#: src/WpUserMetaPage.class.php:53
+msgid "User not found!"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "FastDev"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://zerowp.com/fastdev"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Provides helpful information and functions for WordPress developers to make "
+"the development even faster."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Smartik"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://zerowp.com/"
+msgstr ""
