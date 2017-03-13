@@ -60,6 +60,18 @@ class Page{
 	//------------------------------------//--------------------------------------//
 	
 	/**
+	 * Get a single page setting
+	 *
+	 * @return mixed|null on failure
+	 */
+	public function getSetting( $key ){
+		$s = $this->settings();
+		return isset($s[ $key ]) ? $s[ $key ] : null;
+	}
+
+	//------------------------------------//--------------------------------------//
+	
+	/**
 	 * Admin page
 	 *
 	 * The admin page HTML.
@@ -82,7 +94,9 @@ class Page{
 	 */
 	public function displayPage(){
 		echo '<div class="wrap">';
-		
+			
+			echo '<h2>'. $this->getSetting('menu_title') .'</h2>';
+
 			$this->showTabs();
 			do_action( $this->action('after_tabs') );
 
