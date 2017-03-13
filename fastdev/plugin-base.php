@@ -134,17 +134,17 @@ if ( is_admin() ) {
 	$fastdev_page->init();
 
 
-	$wpo = new Fastdev\Options( 'fd-wpoptions', 'fd-main' );
+	$wpo = new Fastdev\Options( 'options', 'fd-main' );
 	$wpo->registerAjax();
 
 
-	new Fastdev\WpHooksPage( 'fd-wp-hooks', 'fd-main' );
+	new Fastdev\Hooks( 'hooks', 'fd-main' );
 
 
-	new Fastdev\WpClassesPage( 'fd-wp-classes', 'fd-main' );
+	new Fastdev\Classes( 'classes', 'fd-main' );
 
 
-	new Fastdev\WpFunctionsPage( 'fd-wp-functions', 'fd-main' );
+	new Fastdev\Functions( 'functions', 'fd-main' );
 
 
 	new Fastdev\WpUserMetaPage( 'fd-user-meta', 'fd-main' );
