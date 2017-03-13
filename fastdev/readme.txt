@@ -1,5 +1,6 @@
 === FastDev ===
 Donate link: http://paypal.me/zerowp
+Contributors: _smartik_
 Tags: dev, developers, debug, analyze, inspect, test, security, options
 Requires at least: 4.4
 Tested up to: 4.7.3
