@@ -5,7 +5,7 @@
  * Description: Provides helpful information and functions for WordPress developers to make the development even faster.
  * Author:      ZeroWP Team
  * Author URI:  http://zerowp.com/
- * Version:     1.2
+ * Version:     1.2.1
  * License:     GPL-2.0+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain: fastdev
