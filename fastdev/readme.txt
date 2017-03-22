@@ -30,12 +30,15 @@ You, as a developer often need to get different information from DB. This plugin
 
 == Installation ==
 
-* Upload `plugin-name.php` to the `/wp-content/plugins/` directory
-* Activate the plugin through the 'Plugins' menu in WordPress
-* Place `<?php do_action('plugin_name_hook'); ?>` in your templates
+* Like any other WordPress plugin. 
+* Drop `fasdev` to wp-content/plugins/.
+* More info here: http://codex.wordpress.org/Managing_Plugins#Installing_Plugins
 
 
 == Changelog ==
+
+= 1.2.1 =
+* Wrong installation instructions
 
 = 1.2 =
 * User meta details page improvements.
