@@ -32,7 +32,7 @@ Icon attribution: http://www.flaticon.com/free-icon/robot_189740
 
 == Installation ==
 
-* Like any other WordPress plugin. 
+* Like any other WordPress plugin.
 * Drop `fastdev` to wp-content/plugins/.
 * More info here: http://codex.wordpress.org/Managing_Plugins#Installing_Plugins
 
