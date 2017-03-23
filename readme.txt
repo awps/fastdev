@@ -4,7 +4,7 @@ Contributors: _smartik_
 Tags: dev, developers, debug, analyze, inspect, test, security, options
 Requires at least: 4.4
 Tested up to: 4.7.3
-Stable tag: 1.2.2
+Stable tag: 1.2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -54,6 +54,7 @@ Icon attribution: http://www.flaticon.com/free-icon/robot_189740
 == Changelog ==
 
 = 1.2.3 =
+* Fix: Fatal error because file names are case sensitive in Linux but not in Windows.
 * Readme update.
 
 = 1.2.2 =

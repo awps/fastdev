@@ -2,7 +2,7 @@
 
 namespace Fastdev;
 
-class WpMimesPage extends Tab{
+class Mimes extends Tab{
 
 	public function settings(){
 		return array(

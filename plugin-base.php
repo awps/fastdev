@@ -5,7 +5,7 @@
  * Description: Provides helpful information and functions for WordPress developers to make the development even faster.
  * Author:      ZeroWP Team
  * Author URI:  http://zerowp.com/
- * Version:     1.2.2
+ * Version:     1.2.3
  * License:     GPL-2.0+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain: fastdev
@@ -147,21 +147,21 @@ if ( is_admin() ) {
 	new Fastdev\Functions( 'functions', 'fd-main' );
 
 
-	new Fastdev\WpUserMetaPage( 'fd-user-meta', 'fd-main' );
+	new Fastdev\UserMeta( 'fd-user-meta', 'fd-main' );
 
 
-	new Fastdev\PhpInfoPage( 'fd-phpinfo', 'fd-main' );
+	new Fastdev\PhpInfo( 'fd-phpinfo', 'fd-main' );
 
 
-	new Fastdev\WpConstantsPage( 'fd-wp-constants', 'fd-main' );
+	new Fastdev\Constants( 'fd-wp-constants', 'fd-main' );
 
 
-	new Fastdev\MySQLInfoPage( 'fd-mysqlinfo', 'fd-main' );
+	new Fastdev\MySQLInfo( 'fd-mysqlinfo', 'fd-main' );
 
 
-	new Fastdev\WPRegisteredWidgetsList( 'fd-wpregisteredwidgetslist', 'fd-main' );
+	new Fastdev\RegisteredWidgetsList( 'fd-wpregisteredwidgetslist', 'fd-main' );
 
 
-	new Fastdev\WpMimesPage( 'fd-wp-mimes', 'fd-main' );
+	new Fastdev\Mimes( 'fd-wp-mimes', 'fd-main' );
 
 }

@@ -2,7 +2,7 @@
 
 namespace Fastdev;
 
-class WPRegisteredWidgetsList extends Tab{
+class RegisteredWidgetsList extends Tab{
 
 	public function settings(){
 		return array(

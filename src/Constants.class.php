@@ -2,7 +2,7 @@
 
 namespace Fastdev;
 
-class WpConstantsPage extends Tab{
+class Constants extends Tab{
 
 	public function settings(){
 		return array(

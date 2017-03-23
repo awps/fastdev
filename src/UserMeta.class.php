@@ -2,7 +2,7 @@
 
 namespace Fastdev;
 
-class WpUserMetaPage extends Tab{
+class UserMeta extends Tab{
 
 	public function settings(){
 		return array(

@@ -2,7 +2,7 @@
 
 namespace Fastdev;
 
-class PhpInfoPage extends Tab{
+class PhpInfo extends Tab{
 
 	public function settings(){
 		return array(

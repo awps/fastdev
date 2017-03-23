@@ -2,7 +2,7 @@
 
 namespace Fastdev;
 
-class MySQLInfoPage extends Tab{
+class MySQLInfo extends Tab{
 
 	public function settings(){
 		return array(
