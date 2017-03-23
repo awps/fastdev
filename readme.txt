@@ -4,7 +4,7 @@ Contributors: _smartik_
 Tags: dev, developers, debug, analyze, inspect, test, security, options
 Requires at least: 4.4
 Tested up to: 4.7.3
-Stable tag: 1.2
+Stable tag: 1.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -27,15 +27,38 @@ You, as a developer often need to get different information from DB. This plugin
 * MySQL configuration info.
 * A list of all registered widgets.
 
+Icon attribution: http://www.flaticon.com/free-icon/robot_189740
+
 
 == Installation ==
 
-* Upload `plugin-name.php` to the `/wp-content/plugins/` directory
-* Activate the plugin through the 'Plugins' menu in WordPress
-* Place `<?php do_action('plugin_name_hook'); ?>` in your templates
+* Like any other WordPress plugin. 
+* Drop `fastdev` to wp-content/plugins/.
+* More info here: http://codex.wordpress.org/Managing_Plugins#Installing_Plugins
 
+
+== Screenshots ==
+
+1. General info tab
+2. WP Options info
+3. A single option unserialized with the controls that have been introduced in version 1.1
+4. A list of all hooks
+5. A list of all loaded PHP classes
+6. A class source extended with separated info
+7. All available user functions
+8. Everything in searchable.
+9. Details about a function
+10. Get meta details by username
+11. Enabled mime types
 
 == Changelog ==
+
+= 1.2.3 =
+* Readme update.
+
+= 1.2.2 =
+* Wrong installation instructions.
+* Readme update.
 
 = 1.2 =
 * User meta details page improvements.
