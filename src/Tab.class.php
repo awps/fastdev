@@ -15,15 +15,36 @@ class Tab{
 	public $tab_id;
 
 	public function __construct($tab_id, $parent_page_id = false){
+		$this->parent_page_id = $parent_page_id;
+
 		if( isset($parent_page_id) ){
 			$this->parent_page = new Page( $parent_page_id );
 			$this->parent_page->add_tabs( array( $this, 'tab' ) ); 
 		}
+
 		$this->tab_id = $tab_id;
+
+		add_action( 'admin_bar_menu', array($this, 'adminBar'), 99 );
+	}
+
+	public function adminBar(){
+		global $wp_admin_bar;
+
+		$wp_admin_bar->add_node(array(
+			'id' => $this->tab_id,
+			'parent' => $this->parent_page_id,
+			'title' => $this->getSetting( 'label' ),
+			'href' => admin_url( add_query_arg( 'tab', $this->tab_id, 'admin.php?page=' . $this->parent_page_id ) )
+		));
 	}
 
 	public function settings(){
 		return array();
+	}
+	
+	public function getSetting( $key ){
+		$s = $this->getSettings();
+		return isset($s[ $key ]) ? $s[ $key ] : null;
 	}
 
 	public function getSettings(){

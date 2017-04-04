@@ -5,7 +5,7 @@
  * Description: Provides helpful information and functions for WordPress developers to make the development even faster.
  * Author:      ZeroWP Team
  * Author URI:  http://zerowp.com/
- * Version:     1.2.3
+ * Version:     1.2.4
  * License:     GPL-2.0+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain: fastdev
@@ -16,28 +16,18 @@
 if( ! function_exists('add_action') )
 	die();
 
+function fastdev_version(){
+
+	return '1.2.4';
+	
+}
+
 // Constants
 if( ! defined('FASTDEV_PATH') )
 	define( 'FASTDEV_PATH', plugin_dir_path(__FILE__) );
 if( ! defined('FASTDEV_URI') )
 	define( 'FASTDEV_URI', plugin_dir_url(__FILE__) );
 
-/**
- * Plugin version
- *
- * Get the current plugin version.
- *
- * @return string
- */
-function fastdev_version(){
-	if( is_admin() ){
-		$data = get_file_data( __FILE__, array( 'Version' ) );
-		return empty( $data ) ? '' : $data[0];
-	}
-	else{
-		return false;
-	}
-}
 
 /**
  * Load translations
@@ -107,10 +97,10 @@ function fd_search(){
 function fd_code( $code, $escape = false, $language = 'php' ){
 	echo '<pre class="language-'. $language .'"><code class="language-'. $language .'">';
 	if( is_array($code) && $escape ){
-		print_r( array_map( '_fd_code_filter_callback', $code ) );
+		print_r( esc_html( var_export( $code, true ) ) );
 	}
 	elseif( is_string($code) && $escape ){
-		print_r( htmlspecialchars( $code ) );
+		print_r( esc_html( $code ) );
 	}
 	else{
 		print_r( $code );
@@ -118,50 +108,53 @@ function fd_code( $code, $escape = false, $language = 'php' ){
 	echo '</code></pre>';
 }
 
-function _fd_code_filter_callback( $code_to_escape ){
-	if( !empty($code_to_escape) && ! is_array($code_to_escape) ){
-		return htmlspecialchars( $code_to_escape );
-	}
-	else{
-		return $code_to_escape;
-	}
-}
 
-if ( is_admin() ) {
-	include fastdev_path() . 'autoloader.php';
+include fastdev_path() . 'autoloader.php';
 
-	$fastdev_page = new Fastdev\MainPage('fd-main');
-	$fastdev_page->init();
+$fastdev_page = new Fastdev\MainPage('fd-main');
+$fastdev_page->init();
 
 
-	$wpo = new Fastdev\Options( 'options', 'fd-main' );
-	$wpo->registerAjax();
+$wpo = new Fastdev\Options( 'options', 'fd-main' );
+$wpo->registerAjax();
 
 
-	new Fastdev\Hooks( 'hooks', 'fd-main' );
+new Fastdev\Hooks( 'hooks', 'fd-main' );
 
 
-	new Fastdev\Classes( 'classes', 'fd-main' );
+new Fastdev\Classes( 'classes', 'fd-main' );
 
 
-	new Fastdev\Functions( 'functions', 'fd-main' );
+new Fastdev\Functions( 'functions', 'fd-main' );
 
 
-	new Fastdev\UserMeta( 'fd-user-meta', 'fd-main' );
+new Fastdev\UserMeta( 'fd-user-meta', 'fd-main' );
 
 
-	new Fastdev\PhpInfo( 'fd-phpinfo', 'fd-main' );
+new Fastdev\PhpInfo( 'fd-phpinfo', 'fd-main' );
 
 
-	new Fastdev\Constants( 'fd-wp-constants', 'fd-main' );
+new Fastdev\Constants( 'fd-wp-constants', 'fd-main' );
 
 
-	new Fastdev\MySQLInfo( 'fd-mysqlinfo', 'fd-main' );
+new Fastdev\MySQLInfo( 'fd-mysqlinfo', 'fd-main' );
 
 
-	new Fastdev\RegisteredWidgetsList( 'fd-wpregisteredwidgetslist', 'fd-main' );
+new Fastdev\RegisteredWidgetsList( 'fd-wpregisteredwidgetslist', 'fd-main' );
 
 
-	new Fastdev\Mimes( 'fd-wp-mimes', 'fd-main' );
+new Fastdev\Mimes( 'fd-wp-mimes', 'fd-main' );
 
-}
+new Fastdev\AdminBarInfo;
+
+/*
+-------------------------------------------------------------------------------
+Benchmark
+-------------------------------------------------------------------------------
+*/
+$fd_bench_start = microtime(true);
+add_filter( 'fastdev_admin_bar_top_menu_title', function( $title, $id ){
+	global $fd_bench_start;
+
+	return $title .' ('. number_format( microtime(true) - $fd_bench_start, 2 ) .'s)';
+}, 10, 2 );

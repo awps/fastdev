@@ -12,7 +12,7 @@ class Hooks extends Tab{
 
 	public function makeTable( $options ){
 		if( is_array($options) ){
-			ksort($options);
+			// ksort($options);
 			$output = '<div class="fd-key-val-table">';
 				foreach ($options as $key => $value) {
 					$output .= '<div class="fd-kv-row cols-100">';

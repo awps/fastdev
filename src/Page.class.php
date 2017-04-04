@@ -41,6 +41,22 @@ class Page{
 	public function init(){
 		add_action( 'admin_menu', array($this, 'menu'), 30 );
 		add_action( 'admin_enqueue_scripts', array($this, 'adminEnqueue'), 30 );
+		add_action( 'admin_bar_menu', array($this, 'adminBar'), 99 );
+	}
+
+	/*
+	-------------------------------------------------------------------------------
+	Admin bar
+	-------------------------------------------------------------------------------
+	*/
+	public function adminBar(){
+		global $wp_admin_bar;
+
+		$wp_admin_bar->add_menu(array(
+			'id' => $this->id,
+			'title' => apply_filters( 'fastdev_admin_bar_top_menu_title', $this->getSetting( 'menu_title' ), $this->id ),
+			'href' => admin_url( 'admin.php?page=' . $this->id )
+		));
 	}
 
 	//------------------------------------//--------------------------------------//
