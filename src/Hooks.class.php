@@ -32,7 +32,7 @@ class Hooks extends Tab{
 		global $wp_filter;
 
 		if( !empty($_GET['fd-get-hook']) ){
-			$hook = sanitize_title( $_GET['fd-get-hook'] );
+			$hook = esc_html( stripcslashes( urldecode( $_GET['fd-get-hook'] ) ) );
 
 			if( empty( $hook ) || !isset( $wp_filter[$hook] ) )
 				return;

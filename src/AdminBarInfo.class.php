@@ -4,10 +4,16 @@ namespace Fastdev;
 class AdminBarInfo{
 	
 	public function __construct(){
-		add_action( 'admin_bar_menu', array($this, 'adminBar'), 199 );
+		add_action( 'admin_bar_menu', array( $this, 'conditionalTags' ), 199 );
+		add_action( 'admin_bar_menu', array( $this, 'currentObjectId' ), 249 );
+		add_action( 'admin_bar_menu', array( $this, 'currentSiteId' ), 299 );
+		add_action( 'admin_bar_menu', array( $this, 'quickMenus' ), 999 );
 	}
 
-	public function adminBar(){
+	public function conditionalTags(){
+		if ( ! current_user_can('manage_options') )
+			return;
+
 		global $wp_admin_bar;
 
 		$cond = $this->conditionals();
@@ -25,6 +31,50 @@ class AdminBarInfo{
 					'title' => $t,
 				));
 			}
+		}
+	}
+
+	public function currentObjectId(){
+		if ( ! current_user_can('manage_options') )
+			return;
+		
+		global $wp_admin_bar;
+
+		$id = get_queried_object_id();
+		$title = __( 'Current ID:', 'fastdev' );
+
+		if( is_page() ){
+			$title = __( 'Page ID:', 'fastdev' );
+		}
+		elseif( is_single() ){
+			$title = __( 'Post ID:', 'fastdev' );
+		}
+		elseif( is_author() ){
+			$title = __( 'User ID:', 'fastdev' );
+		}
+
+		if( !empty( $id ) ){
+			$wp_admin_bar->add_node(array(
+				'id' => 'fastdev-ab-current-id',
+				'parent' => 'fd-main',
+				'title' =>'<em style="display: block; color: #90cdf7;">'. $title . ' ' . esc_attr( $id ) .'</em>',
+			));
+		}
+	}
+
+	public function currentSiteId(){
+		if ( ! current_user_can('manage_options') )
+			return;
+		
+		global $wp_admin_bar;
+
+		if( is_multisite() ){
+			$title = __( 'Current Site ID:', 'fastdev' );
+			$wp_admin_bar->add_node(array(
+				'id' => 'fastdev-ab-current-id',
+				'parent' => 'fd-main',
+				'title' =>'<em style="display: block; color: #90cdf7;">'. $title . ' ' . esc_attr( get_current_blog_id() ) .'</em>',
+			));
 		}
 	}
 
@@ -86,4 +136,59 @@ class AdminBarInfo{
 
 		return $math;
 	}
+
+	public function quickMenus(){
+		if ( ! current_user_can('manage_options') )
+			return;
+		
+		global $wp_admin_bar;
+
+		$menus = array();
+
+		$post_types = get_post_types( array(
+			'public' => true
+		), 'objects' );
+
+		if( !empty($post_types) ){
+			foreach ($post_types as $key => $value) {
+				$menus[] =array(
+					'title' =>  $value->label,
+					'href' => 'edit.php?post_type='. $key
+				);
+			}
+		}
+
+		$menus[] = array(
+			'title' => __( 'Plugins', 'fastdev' ),
+			'href' => 'plugins.php',
+		);
+
+		$menus[] = array(
+			'title' => __( 'Users', 'fastdev' ),
+			'href' => 'users.php',
+		);
+
+		$menus[] = array(
+			'title' => __( 'Settings', 'fastdev' ),
+			'href' => 'options-general.php',
+		);
+
+		// Create menus
+		if( is_array( $menus ) ){
+			foreach ($menus as $key => $m) {
+				if( empty($m['title']) )
+					continue; // This menu item does not have a title
+
+
+				$wp_admin_bar->add_node(array(
+					'id' => 'fd-quick-menu-' . sanitize_title( $m['title'] ),
+					'parent' => 'site-name',
+					'title' => $m['title'],
+					'href' => admin_url( $m['href'] )
+				));
+			}	
+		}
+		
+	}
+
 }

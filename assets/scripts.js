@@ -8,6 +8,12 @@
 
 $(document).ready(function(){
 
+	function fastdev_url_param( param, value ) {
+		var reg_exp = new RegExp(param + "(.+?)(&|$)", "g");
+		var new_url = window.location.href.replace(reg_exp, param + "=" + value + "$2");
+		window.history.pushState("", "", new_url);
+	}
+
 	function fastdev_filter(elem) {
 		if( $(elem).length < 1 ) return;
 		var value    = $(elem).val().toLowerCase();
@@ -60,7 +66,8 @@ $(document).ready(function(){
 		}
 	});
 
-	//Actions
+	/* Delete and Refresh an option
+	------------------------------------*/
 	$( '#fd-refresh-option, #fd-delete-option' ).on('fastdev:option', function(){
 		var _t  = $(this),
 		_action = ( _t.hasClass('fd-button-delete') ) ? 'fastdev_delete_option' : 'fastdev_refresh_option';
@@ -82,11 +89,14 @@ $(document).ready(function(){
 			},
 
 			success: function(response){
-				console.log(response);
+				// console.log(response);
 				if( response ){
 					$('#fd-wpo-code-block').html(response);
 					if( _action == 'fastdev_refresh_option' && $('#fd-wpo-code-block pre').length > 0 ){
-						Prism.highlightElement($('#fd-wpo-code-block pre')[0]);
+						var pre_block = $('#fd-wpo-code-block pre:not(.disable-highlight)');
+						if( pre_block.length > 0 ){
+							Prism.highlightElement( pre_block[0] );
+						}
 					}
 				}
 			},
@@ -99,6 +109,67 @@ $(document).ready(function(){
 		});
 
 	});
+
+	$( '#wp-option-edit-key' ).on('change', function(){
+		var _t  = $(this),
+		_origin = _t.data('original-option-key'),
+		_to = _t.val();
+		if( ! confirm( 'Warning: Are you sure that you want to change the key of this option? ' ) ){
+			return;
+		}
+
+		_t.attr( 'disabled', 'disabled' ).css( 'opacity', 0.4 );
+
+		$.ajax({
+			type: "POST",
+			url: ajaxurl,
+			data: {
+				"action": 'fastdev_edit_option_key',
+				"option_from": _origin,
+				"option_to": _to,
+			},
+
+			success: function(response){
+				console.log(response);
+
+				_t.removeAttr( 'disabled' ).css( 'opacity', '' );
+
+				if( response && response === 'success' ){
+					fastdev_url_param( 'fd-get-option', _to );
+
+					$( '#fd-refresh-option' ).data( 'option', _to );
+					$( '#fd-delete-option' ).data( 'option', _to );
+					_t.data( 'original-option-key', _to );
+				}
+			},
+			complete: function( jqXHR, textStatus ){
+				// _t.removeClass('active').children( '.fastdev-loader' ).remove();
+			},
+
+			timeOut: 1000*60 //1 minute
+
+		});
+
+	});
+
+	$('.toggle-string span').on( 'click', function(){
+		var _this = $(this),
+		_main_container = _this.parents( '.fastdev-trimmed-string' );
+
+		if( _this.hasClass('open') ){
+			_this.text( _this.data('expand') );
+			_this.removeClass('open');
+			_main_container.children('.original-string').slideUp( 150 );
+			_main_container.children('.trimmed-string').slideDown( 150 );
+		}
+		else{
+			_this.text( _this.data('collapse') );
+			_this.addClass('open');
+			_main_container.children('.original-string').slideDown( 150 );
+			_main_container.children('.trimmed-string').slideUp( 150 );
+		}
+
+	} );
 
 });
 

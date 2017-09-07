@@ -3,8 +3,8 @@ Donate link: http://paypal.me/zerowp
 Contributors: _smartik_
 Tags: dev, developers, debug, analyze, inspect, test, security, options
 Requires at least: 4.4
-Tested up to: 4.7.3
-Stable tag: 1.2.4
+Tested up to: 4.8
+Stable tag: 1.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,6 +17,7 @@ You, as a developer often need to get different information from DB. This plugin
 
 * Get information about current WordPress installation.
 * Get information about current server.
+* Access to top level admin pages directly from front-end admin bar.
 * Inspect all WordPress Options and expand any of them for futher information.
 * Get a list of all available hooks and info about each.
 * View all available PHP classes and expand the source.
@@ -52,6 +53,22 @@ Icon attribution: http://www.flaticon.com/free-icon/robot_189740
 11. Enabled mime types
 
 == Changelog ==
+
+= 1.3.1 =
+* Bug fix: When accessing a single hook under Fastdev->Hook, it does not return it's contents if the hookname contains uppercase letters, and or characters other than `[a-z_-]`. This is because the hook name is accessed from page url, and is not decoded.
+
+= 1.3 =
+* Disable syntax highlighting if the string length exceeds 50k characters. Highlighting large block of data may crash the browser.
+* Allow to edit the key name of an option directly from admin.
+* Trim large block of data from "WP Options" page, and add a button that expands the code.
+* Added top level admin menus to admin bar on frontend: Plugins, Users, Settings and all public CPT.
+
+= 1.2.6 =
+* New: Display the current site id in admin bar.
+* New: Display the current object id in admin bar.
+
+= 1.2.5 =
+* Bug fix: Some files missing because they were not transfered in last update(v1.2.4).
 
 = 1.2.4 =
 * Improvement: Code renderer performance.

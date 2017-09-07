@@ -89,6 +89,22 @@ pre > code {
   padding: 5px;
   overflow: hidden;
 }
+/* Trimmed option string
+-----------------------------*/
+.fastdev-trimmed-string .toggle-string > span {
+  font-size: 14px;
+  margin: 10px 0;
+  padding: 3px 8px;
+  color: #8870FF;
+  background: #F6F7F2;
+  border-radius: 2px;
+  display: inline-block;
+  cursor: pointer;
+}
+.fastdev-trimmed-string .toggle-string > span:hover {
+  background: #8870FF;
+  color: #fff;
+}
 /*Within columns styles*/
 .fd-key-val-table .fd-kv-row .good,
 .fd-key-val-table .fd-kv-row .notsogood,

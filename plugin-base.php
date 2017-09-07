@@ -5,7 +5,7 @@
  * Description: Provides helpful information and functions for WordPress developers to make the development even faster.
  * Author:      ZeroWP Team
  * Author URI:  http://zerowp.com/
- * Version:     1.2.4
+ * Version:     1.3.1
  * License:     GPL-2.0+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain: fastdev
@@ -18,7 +18,7 @@ if( ! function_exists('add_action') )
 
 function fastdev_version(){
 
-	return '1.2.4';
+	return '1.3.1';
 	
 }
 
@@ -95,7 +95,12 @@ function fd_search(){
 }
 
 function fd_code( $code, $escape = false, $language = 'php' ){
-	echo '<pre class="language-'. $language .'"><code class="language-'. $language .'">';
+	$serialized = maybe_serialize( $code );
+	$size = strlen( $serialized );
+
+	$class = ( 50000 > $size ) ? ' class="language-'. $language .'"' : ' class="disable-highlight"';
+
+	echo '<pre'. $class .' data-size="'. esc_attr( $size ) .'"><code'. $class .'>';
 	if( is_array($code) && $escape ){
 		print_r( esc_html( var_export( $code, true ) ) );
 	}
