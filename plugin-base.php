@@ -18,9 +18,7 @@ if ( ! function_exists( 'add_action' ) ) {
 }
 
 function fastdev_version() {
-
 	return '1.5.1';
-
 }
 
 // Constants
@@ -33,7 +31,6 @@ if ( ! defined( 'FASTDEV_PATH' ) ) {
 if ( ! defined( 'FASTDEV_URI' ) ) {
 	define( 'FASTDEV_URI', plugin_dir_url( __FILE__ ) );
 }
-
 
 /**
  * Load translations
@@ -127,7 +124,7 @@ function fd_create_temp_link( $id ) {
 	echo '<div class="fd-access-url">';
 	$link = fd_get_temp_url( $id );
 	echo __( 'Temporary public link to this table', 'fastdev' ) . ': <a href="' . $link . '" target="_blank">' . $link . '</a>';
-	echo '<em>'. __( 'This link is available for approx. 12 hours', 'fastdev' ) . '</em>';
+	echo '<em>' . __( 'This link is available for approx. 12 hours', 'fastdev' ) . '</em>';
 	echo '</div>';
 }
 
@@ -184,7 +181,6 @@ function smk_get_classes_from_project( $project_path ) {
 
 		// Only user defined classes, exclude internal or classes added by PHP extensions.
 		if ( ! $reflect->isInternal() ) {
-
 			// Replace backslash with forward slash.
 			$filename     = str_replace( array( '\\' ), array( '/' ), $filename );
 			$project_path = str_replace( array( '\\' ), array( '/' ), $project_path );
@@ -209,7 +205,6 @@ include fastdev_path() . 'autoloader.php';
 $fastdev_page = new Fastdev\MainPage( 'fd-main' );
 $fastdev_page->init();
 
-
 $wpo = new Fastdev\Options( 'options', 'fd-main' );
 $wpo->registerAjax();
 
@@ -232,6 +227,9 @@ new Fastdev\RegisteredWidgetsList( 'fd-wpregisteredwidgetslist', 'fd-main' );
 new Fastdev\Sidebars( 'fd-sidebars', 'fd-main' );
 
 new Fastdev\Mimes( 'fd-wp-mimes', 'fd-main' );
+
+$testing = new Fastdev\Testing( 'fd-testing', 'fd-main' );
+$testing->registerAjaxHook();
 
 new Fastdev\AdminBarInfo();
 
