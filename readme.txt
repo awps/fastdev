@@ -4,7 +4,7 @@ Contributors: _smartik_
 Tags: dev, developers, debug, analyze, inspect, test, security, options
 Requires at least: 4.4
 Tested up to: 4.8
-Stable tag: 1.3.1
+Stable tag: 1.5.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -54,8 +54,16 @@ Icon attribution: http://www.flaticon.com/free-icon/robot_189740
 
 == Changelog ==
 
+= 1.5.0 =
+* Bug fix: Get site language from WPLANG options not from WPLANG constant.
+* Improvement: Better and more info on "Site info" page.
+* New: Now it's possible to allow the view of "Site Info" and "PHP Info" pages by sharing a temporary generated link.
+
+= 1.4.0 =
+* Added sidebars debug. Get all sidebars and active widgets with their options.
+
 = 1.3.1 =
-* Bug fix: When accessing a single hook under Fastdev->Hook, it does not return it's contents if the hookname contains uppercase letters, and or characters other than `[a-z_-]`. This is because the hook name is accessed from page url, and is not decoded.
+* Bug fix: When accessing a single hook under Fastdev->Hook, it does not return its contents if the hookname contains uppercase letters, and or characters other than `[a-z_-]`. This is because the hook name is accessed from page url, and is not decoded.
 
 = 1.3 =
 * Disable syntax highlighting if the string length exceeds 50k characters. Highlighting large block of data may crash the browser.

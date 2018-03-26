@@ -8,6 +8,8 @@
 
 $(document).ready(function(){
 
+	$('.fdtip').zTip();
+
 	function fastdev_url_param( param, value ) {
 		var reg_exp = new RegExp(param + "(.+?)(&|$)", "g");
 		var new_url = window.location.href.replace(reg_exp, param + "=" + value + "$2");

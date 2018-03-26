@@ -9,7 +9,10 @@ class Functions extends Tab{
 		);
 	}
 
-	public function makeTable( $options ){
+    /**
+     * @param $options
+     */
+    public function makeTable($options ){
 
 		if( is_array($options) ){
 			sort($options);

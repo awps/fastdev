@@ -14,17 +14,15 @@ class Tab{
 	public $parent_page;
 	public $tab_id;
 
-	public function __construct($tab_id, $parent_page_id = false){
+	public function __construct($tab_id = false, $parent_page_id = false){
 		$this->parent_page_id = $parent_page_id;
-
-		if( isset($parent_page_id) ){
-			$this->parent_page = new Page( $parent_page_id );
-			$this->parent_page->add_tabs( array( $this, 'tab' ) ); 
-		}
-
 		$this->tab_id = $tab_id;
 
-		add_action( 'admin_bar_menu', array($this, 'adminBar'), 99 );
+		if( !empty($parent_page_id) ){
+			$this->parent_page = new Page( $parent_page_id );
+			$this->parent_page->add_tabs( array( $this, 'tab' ) );
+			add_action( 'admin_bar_menu', array($this, 'adminBar'), 99 );
+		}
 	}
 
 	public function adminBar(){
@@ -60,6 +58,8 @@ class Tab{
 	public function page(){
 		_e('Congrats! you\'ve created a new page tab.', 'fastdev');
 	}
+
+	public function pageContent(){}
 
 	public function tab($tabs){
 		$tabs[] = $this->getSettings();

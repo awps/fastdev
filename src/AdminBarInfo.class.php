@@ -1,18 +1,26 @@
 <?php
 namespace Fastdev;
 
-class AdminBarInfo{
-	
-	public function __construct(){
+/**
+ * Class AdminBarInfo
+ * @package Fastdev
+ */
+class AdminBarInfo {
+
+	/**
+	 * AdminBarInfo constructor.
+	 */
+	public function __construct() {
 		add_action( 'admin_bar_menu', array( $this, 'conditionalTags' ), 199 );
 		add_action( 'admin_bar_menu', array( $this, 'currentObjectId' ), 249 );
 		add_action( 'admin_bar_menu', array( $this, 'currentSiteId' ), 299 );
 		add_action( 'admin_bar_menu', array( $this, 'quickMenus' ), 999 );
 	}
 
-	public function conditionalTags(){
-		if ( ! current_user_can('manage_options') )
+	public function conditionalTags() {
+		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
+		}
 
 		global $wp_admin_bar;
 
@@ -125,35 +133,36 @@ class AdminBarInfo{
 			if ( function_exists( $cond ) ) {
 
 				if ( call_user_func( $cond ) ) {
-					if( ! is_multisite() && in_array( $cond, array( 'is_main_network', 'is_main_site' ) ) )
+					if ( ! is_multisite() && in_array( $cond, array( 'is_main_network', 'is_main_site' ) ) ) {
 						continue;
-					
-					$math[$cond] = $cond;
-				}
+					}
 
+					$math[ $cond ] = $cond;
+				}
 			}
 		}
 
 		return $math;
 	}
 
-	public function quickMenus(){
-		if ( ! current_user_can('manage_options') )
+	public function quickMenus() {
+		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
-		
+		}
+
 		global $wp_admin_bar;
 
 		$menus = array();
 
 		$post_types = get_post_types( array(
-			'public' => true
+			'public' => true,
 		), 'objects' );
 
-		if( !empty($post_types) ){
-			foreach ($post_types as $key => $value) {
-				$menus[] =array(
-					'title' =>  $value->label,
-					'href' => 'edit.php?post_type='. $key
+		if ( ! empty( $post_types ) ) {
+			foreach ( $post_types as $key => $value ) {
+				$menus[] = array(
+					'title' => $value->label,
+					'href' => 'edit.php?post_type=' . $key,
 				);
 			}
 		}

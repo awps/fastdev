@@ -72,6 +72,7 @@ class Classes extends Tab{
 			fd_search();
 			$this->makeTable( get_declared_classes() );
 		}
+
 	}
 
 }

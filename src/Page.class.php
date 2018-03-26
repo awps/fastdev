@@ -28,7 +28,7 @@ class Page{
 	 * Construct object
 	 *
 	 */
-	public function __construct($id){
+	public function __construct($id = false){
 		$this->id = $id;
 	}
 
