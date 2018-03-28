@@ -8,7 +8,15 @@
 
 	$( document ).ready( function () {
 
+		// General tooltips
 		$( '.fdtip' ).zTip();
+
+		// Tooltips for tabs
+		$( '.fastdev-tab' ).zTip( {
+			source: function ( elem ) {
+				return elem.next( 'div.fastdev-tab-tip' ).html();
+			},
+		} );
 
 		function fastdev_url_param( param, value ) {
 			var reg_exp = new RegExp( param + "(.+?)(&|$)", "g" );
@@ -120,7 +128,7 @@
 			var _t      = $( this ),
 			    _origin = _t.data( 'original-option-key' ),
 			    _to     = _t.val();
-			if ( !confirm( 'Warning: Are you sure that you want to change the key of this option? ' ) ) {
+			if ( !window.confirm( 'Warning: Are you sure that you want to change the key of this option? ' ) ) {
 				return;
 			}
 

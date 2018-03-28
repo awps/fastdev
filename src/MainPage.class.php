@@ -104,7 +104,6 @@ class MainPage extends Page {
 			'tip'    => __( 'You can change this from Customize -> Homepage Settings', 'fastdev' ),
 		);
 
-
 // System Info
 		$sys[] = array(
 			'label' => __( 'System info', 'fastdev' ),
@@ -221,7 +220,6 @@ class MainPage extends Page {
 			'value' => $wpdb->prefix,
 		);
 
-
 		$sys[] = array(
 			'label' => __( 'WordPress memory limit', 'fastdev' ),
 			'value' => $this->getConstant( 'WP_MEMORY_LIMIT' ),
@@ -267,7 +265,6 @@ class MainPage extends Page {
 			'label' => __( 'Suhosin', 'fastdev' ),
 			'value' => extension_loaded( 'suhosin' ) ? __( 'Loaded', 'fastdev' ) : __( 'Not loaded', 'fastdev' ),
 		);
-
 
 		// Themes
 		$sys[] = array(
@@ -332,7 +329,6 @@ class MainPage extends Page {
 	}
 
 	public function getPhpStatus( $active_date_end = false, $security_date_end = false ) {
-
 		if ( ! $active_date_end ) {
 			return array(
 				'status' => 'unknown',
@@ -396,13 +392,11 @@ class MainPage extends Page {
 		return $result;
 	}
 
-
 	public function makeTable( $options ) {
 		if ( is_array( $options ) ) {
 			ksort( $options );
 			$output = '<div class="fd-key-val-table">';
 			foreach ( $options as $key => $value ) {
-
 				//Value
 				$val = isset( $value['value'] ) ? $value['value'] : '';
 
@@ -440,7 +434,6 @@ class MainPage extends Page {
 					</div>
 				</div>';
 				$output .= '</div>';
-
 			}
 			$output .= '</div>';
 
@@ -449,7 +442,6 @@ class MainPage extends Page {
 		else {
 			fd_code( $options );
 		}
-
 	}
 
 	public function getConstant( $const ) {

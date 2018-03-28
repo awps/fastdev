@@ -1,8 +1,10 @@
 <?php
+
 namespace Fastdev;
 
 /**
  * Class AdminBarInfo
+ *
  * @package Fastdev
  */
 class AdminBarInfo {
@@ -26,68 +28,68 @@ class AdminBarInfo {
 
 		$cond = $this->conditionals();
 
-		if( !empty($cond) ){
-
-			$cond = array_map( function($v){
-				return '<em style="display: block; color: #90cdf7;">'. $v .'</em>';
+		if ( ! empty( $cond ) ) {
+			$cond = array_map( function ( $v ) {
+				return '<em style="display: block; color: #90cdf7;">' . $v . '</em>';
 			}, $cond );
 
-			foreach ($cond as $c => $t) {
-				$wp_admin_bar->add_node(array(
-					'id' => 'fastdev-conditionals-'. $c,
+			foreach ( $cond as $c => $t ) {
+				$wp_admin_bar->add_node( array(
+					'id'     => 'fastdev-conditionals-' . $c,
 					'parent' => 'fd-main',
-					'title' => $t,
-				));
+					'title'  => $t,
+				) );
 			}
 		}
 	}
 
-	public function currentObjectId(){
-		if ( ! current_user_can('manage_options') )
+	public function currentObjectId() {
+		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
-		
+		}
+
 		global $wp_admin_bar;
 
-		$id = get_queried_object_id();
+		$id    = get_queried_object_id();
 		$title = __( 'Current ID:', 'fastdev' );
 
-		if( is_page() ){
+		if ( is_page() ) {
 			$title = __( 'Page ID:', 'fastdev' );
 		}
-		elseif( is_single() ){
+		elseif ( is_single() ) {
 			$title = __( 'Post ID:', 'fastdev' );
 		}
-		elseif( is_author() ){
+		elseif ( is_author() ) {
 			$title = __( 'User ID:', 'fastdev' );
 		}
 
-		if( !empty( $id ) ){
-			$wp_admin_bar->add_node(array(
-				'id' => 'fastdev-ab-current-id',
+		if ( ! empty( $id ) ) {
+			$wp_admin_bar->add_node( array(
+				'id'     => 'fastdev-ab-current-id',
 				'parent' => 'fd-main',
-				'title' =>'<em style="display: block; color: #90cdf7;">'. $title . ' ' . esc_attr( $id ) .'</em>',
-			));
+				'title'  => '<em style="display: block; color: #90cdf7;">' . $title . ' ' . esc_attr( $id ) . '</em>',
+			) );
 		}
 	}
 
-	public function currentSiteId(){
-		if ( ! current_user_can('manage_options') )
+	public function currentSiteId() {
+		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
-		
+		}
+
 		global $wp_admin_bar;
 
-		if( is_multisite() ){
+		if ( is_multisite() ) {
 			$title = __( 'Current Site ID:', 'fastdev' );
-			$wp_admin_bar->add_node(array(
-				'id' => 'fastdev-ab-current-id',
+			$wp_admin_bar->add_node( array(
+				'id'     => 'fastdev-ab-current-id',
 				'parent' => 'fd-main',
-				'title' =>'<em style="display: block; color: #90cdf7;">'. $title . ' ' . esc_attr( get_current_blog_id() ) .'</em>',
-			));
+				'title'  => '<em style="display: block; color: #90cdf7;">' . $title . ' ' . esc_attr( get_current_blog_id() ) . '</em>',
+			) );
 		}
 	}
 
-	public function conditionals(){
-
+	public function conditionals() {
 		$conds = array(
 			'is_404',
 			'is_admin',
@@ -131,7 +133,6 @@ class AdminBarInfo {
 
 		foreach ( $conds as $cond ) {
 			if ( function_exists( $cond ) ) {
-
 				if ( call_user_func( $cond ) ) {
 					if ( ! is_multisite() && in_array( $cond, array( 'is_main_network', 'is_main_site' ) ) ) {
 						continue;
@@ -162,42 +163,41 @@ class AdminBarInfo {
 			foreach ( $post_types as $key => $value ) {
 				$menus[] = array(
 					'title' => $value->label,
-					'href' => 'edit.php?post_type=' . $key,
+					'href'  => 'edit.php?post_type=' . $key,
 				);
 			}
 		}
 
 		$menus[] = array(
 			'title' => __( 'Plugins', 'fastdev' ),
-			'href' => 'plugins.php',
+			'href'  => 'plugins.php',
 		);
 
 		$menus[] = array(
 			'title' => __( 'Users', 'fastdev' ),
-			'href' => 'users.php',
+			'href'  => 'users.php',
 		);
 
 		$menus[] = array(
 			'title' => __( 'Settings', 'fastdev' ),
-			'href' => 'options-general.php',
+			'href'  => 'options-general.php',
 		);
 
 		// Create menus
-		if( is_array( $menus ) ){
-			foreach ($menus as $key => $m) {
-				if( empty($m['title']) )
-					continue; // This menu item does not have a title
+		if ( is_array( $menus ) ) {
+			foreach ( $menus as $key => $m ) {
+				if ( empty( $m['title'] ) ) {
+					continue;
+				} // This menu item does not have a title
 
-
-				$wp_admin_bar->add_node(array(
-					'id' => 'fd-quick-menu-' . sanitize_title( $m['title'] ),
+				$wp_admin_bar->add_node( array(
+					'id'     => 'fd-quick-menu-' . sanitize_title( $m['title'] ),
 					'parent' => 'site-name',
-					'title' => $m['title'],
-					'href' => admin_url( $m['href'] )
-				));
-			}	
+					'title'  => $m['title'],
+					'href'   => admin_url( $m['href'] ),
+				) );
+			}
 		}
-		
 	}
 
 }

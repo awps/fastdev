@@ -45,7 +45,6 @@ class Options extends Tab {
 		else {
 			fd_code( $options );
 		}
-
 	}
 
 	public function page() {
@@ -69,7 +68,6 @@ class Options extends Tab {
 			$all_wpo = wp_load_alloptions();
 			$this->makeTable( $all_wpo );
 		}
-
 	}
 
 	public function registerAjax() {

@@ -19,7 +19,12 @@ class Testing extends Tab {
 			self::stopAjax( 'Invalid function name.' );
 		}
 
-		$function_name = 'test_fd_' . preg_replace( '/[^a-zA-Z0-9_]/', '', $_POST['function_name'] );
+		$function_name = preg_replace( '/[^a-zA-Z0-9_]/', '', $_POST['function_name'] );
+
+		if ( substr( $function_name, 0, 4 ) !== "test" ) {
+			$function_name = 'test' . $function_name;
+		}
+
 		if ( ! function_exists( $function_name ) ) {
 			self::stopAjax( "Function '{$function_name}' does not exists." );
 		}
@@ -44,7 +49,7 @@ class Testing extends Tab {
 	}
 
 	protected static function stopAjax( $message ) {
-		echo $message;
+		echo '<div class="notice inline notice-error notice-alt"><p>' . $message . '</p></div>';
 		die();
 	}
 
@@ -54,28 +59,31 @@ class Testing extends Tab {
 		);
 	}
 
-	public function page() {
-		?>
-        <div class="notice inline notice-warning notice-alt">
-            <p>
-				<?php _e( 'This page allows to run testing functions.', 'fastdev' ); ?>
-				<?php printf(
-					__( 'The function must have the %s prefix and must not have required parameters.', 'fastdev' ),
-					'<code>test_fd_</code>' ); ?>
-				<?php _e( 'The function may return or print(echo) the data.', 'fastdev' ); ?>
-				<?php _e( 'It\'s usefull to debug(dump) some data without reloading the page.', 'fastdev' ); ?>
-            </p>
-        </div>
-		<?php
+	public function tip() {
+		$content = '<h4>' . __( 'Run testing functions.', 'fastdev' ) . '</h4>';
 
+		$content .= sprintf(
+			__( 'The function name must start with the prefix "%s" and must not have any required parameters.',
+				'fastdev' ),
+			'<code>test</code>'
+		);
+
+		return $content;
+	}
+
+	public function page() {
 		$form = '<form method="post" class="fd-form js-fastdev-testing-form">';
 
-		$form .= '<div class="field"><label>' . __( 'Function name(without prefix)', 'fastdev' ) . '
-				</label> 
-				<input type="text" value="" name="function_name" class="regular-text">
+		$form .= '<div class="field">
+				<input type="text" 
+						value="" 
+						name="function_name" 
+						class="regular-text" 
+						placeholder="' . __( 'function name', 'fastdev' ) . '">
+				
 				<input type="hidden" value="' . wp_create_nonce( 'fastdev_testing' ) . '" name="nonce">
 				' . get_submit_button( 'Test', 'primary', 'submit', false ) . '
-				&nbsp;&nbsp;&nbsp;<label>
+				&nbsp;&nbsp;&nbsp;<label class="inline-label">
 				    <input type="checkbox" value="1" name="autorefresh" id="testing-autorefresh">
 				    Auto refresh
 				</label>

@@ -2,62 +2,60 @@
 
 namespace Fastdev;
 
-class MySQLInfo extends Tab{
+class MySQLInfo extends Tab {
 
-	public function settings(){
+	public function settings() {
 		return array(
-			'label' => __('MySQL', 'fastdev')
+			'label' => __( 'MySQL', 'fastdev' ),
 		);
 	}
 
-	public function makeTable( $options ){
-		if( is_array($options) ){
-			ksort($options);
+	public function makeTable( $options ) {
+		if ( is_array( $options ) ) {
+			ksort( $options );
 			$output = '<div class="fd-key-val-table">';
 
-				$output .= '<div class="fd-kv-row fd-kv-head">';
-					$output .= '<div><div class="fd-kv-code">'. __('Variable', 'fastdev') .'</div></div>';
-					$output .= '<div><div class="fd-kv-code">'. __('Value', 'fastdev') .'</div></div>';
-				$output .= '</div>';
+			$output .= '<div class="fd-kv-row fd-kv-head">';
+			$output .= '<div><div class="fd-kv-code">' . __( 'Variable', 'fastdev' ) . '</div></div>';
+			$output .= '<div><div class="fd-kv-code">' . __( 'Value', 'fastdev' ) . '</div></div>';
+			$output .= '</div>';
 
-				foreach ($options as $key => $value) {
-					$output .= '<div class="fd-kv-row">';
-						$output .= '<div class="filter-this"><div class="fd-kv-code"><a href="'. add_query_arg( 'fd-get-option', $key ) .'">'. $key .'</a></div></div>';
-						$output .= '<div class="filter-this"><div class="fd-kv-code">'. esc_html( $value ) .'</div></div>';
-					$output .= '</div>';
-				}
+			foreach ( $options as $key => $value ) {
+				$output .= '<div class="fd-kv-row">';
+				$output .= '<div class="filter-this"><div class="fd-kv-code"><a href="' . add_query_arg( 'fd-get-option', $key ) . '">' . $key . '</a></div></div>';
+				$output .= '<div class="filter-this"><div class="fd-kv-code">' . esc_html( $value ) . '</div></div>';
+				$output .= '</div>';
+			}
 			$output .= '</div>';
 			echo $output;
 		}
-		else{
+		else {
 			fd_code( $options );
 		}
-
 	}
 
-	public function page(){
+	public function page() {
 		global $wpdb;
-		$mysql = $wpdb->get_results("SHOW VARIABLES");
+		$mysql   = $wpdb->get_results( "SHOW VARIABLES" );
 		$options = array();
-		if( $mysql ){
-			foreach ($mysql as $sql) {
+		if ( $mysql ) {
+			foreach ( $mysql as $sql ) {
 				$options[ $sql->Variable_name ] = $sql->Value;
 			}
 
-			if( ! empty($options) ) :
-				if( !empty($_GET['fd-get-option']) ){
+			if ( ! empty( $options ) ) :
+				if ( ! empty( $_GET['fd-get-option'] ) ) {
 					$option = sanitize_title( $_GET['fd-get-option'] );
 
-					echo '<h3>'. $option .'</h3>';
-					fd_code( $options[$option] );
+					echo '<h3>' . $option . '</h3>';
+					fd_code( $options[ $option ] );
 				}
-				else{
+				else {
 					fd_search();
-					$this->makeTable($options);
+					$this->makeTable( $options );
 				}
 			endif;
 		}
-
 	}
 
 }

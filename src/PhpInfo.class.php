@@ -26,7 +26,6 @@ class PhpInfo extends Tab {
 		$pinfo = preg_replace( '%^.*<body>(.*)</body>.*$%ms', '$1', $pinfo );
 
 		echo '<div id="phpinfo">' . $pinfo . '</div>';
-
 	}
 
 }

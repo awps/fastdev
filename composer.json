@@ -1,13 +1,13 @@
 {
-    "name": "awps/fastdev",
-    "description": "Helpful information and tools for WordPress developers to make the development easy.",
-    "type": "dev, tool, info, wordpress, plugin",
-    "license": "GPL-3.0+",
-    "authors": [
-        {
-            "name": "Andrei Surdu",
-            "email": "smartik89@gmail.com"
-        }
-    ],
-    "require": {}
+  "name": "awps/fastdev",
+  "description": "Helpful information and tools for WordPress developers to make the development easy.",
+  "type": "dev, tool, info, wordpress, plugin",
+  "license": "GPL-3.0+",
+  "authors": [
+    {
+      "name": "Andrei Surdu",
+      "email": "smartik89@gmail.com"
+    }
+  ],
+  "require": {}
 }
