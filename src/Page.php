@@ -12,8 +12,6 @@ namespace Fastdev;
 
 class Page {
 
-	//------------------------------------//--------------------------------------//
-
 	/**
 	 * The id of this admin page
 	 *
@@ -23,8 +21,6 @@ class Page {
 	 */
 	protected $id;
 
-	//------------------------------------//--------------------------------------//
-
 	/**
 	 * Construct object
 	 *
@@ -32,8 +28,6 @@ class Page {
 	public function __construct( $id = false ) {
 		$this->id = $id;
 	}
-
-	//------------------------------------//--------------------------------------//
 
 	/**
 	 * Init object
@@ -60,8 +54,6 @@ class Page {
 		) );
 	}
 
-	//------------------------------------//--------------------------------------//
-
 	/**
 	 * Page Settings
 	 *
@@ -74,8 +66,6 @@ class Page {
 		return array();
 	}
 
-	//------------------------------------//--------------------------------------//
-
 	/**
 	 * Get a single page setting
 	 *
@@ -86,8 +76,6 @@ class Page {
 
 		return isset( $s[ $key ] ) ? $s[ $key ] : null;
 	}
-
-	//------------------------------------//--------------------------------------//
 
 	/**
 	 * Admin page
@@ -100,8 +88,6 @@ class Page {
 	public function page() {
 		_e( 'Congrats! you\'ve created a new page.', 'fastdev' );
 	}
-
-	//------------------------------------//--------------------------------------//
 
 	/**
 	 * Display page
@@ -124,8 +110,6 @@ class Page {
 		echo '</div>';
 	}
 
-	//------------------------------------//--------------------------------------//
-
 	/**
 	 * Admin enqueue
 	 *
@@ -136,8 +120,6 @@ class Page {
 	 */
 	public function enqueue() {
 	}
-
-	//------------------------------------//--------------------------------------//
 
 	/**
 	 * Admin enqueue only on this page
@@ -151,8 +133,6 @@ class Page {
 			$this->enqueue();
 		}
 	}
-
-	//------------------------------------//--------------------------------------//
 
 	/**
 	 * Get a list of all possible query args
@@ -183,8 +163,6 @@ class Page {
 
 		return $new_query_args;
 	}
-
-	//------------------------------------//--------------------------------------//
 
 	/**
 	 * Show Tabs
@@ -217,8 +195,6 @@ class Page {
 		$this->showSections();
 	}
 
-	//------------------------------------//--------------------------------------//
-
 	/**
 	 * Get base tab url
 	 *
@@ -232,8 +208,6 @@ class Page {
 
 		return esc_url( $url[0] . '?page=' . $page );
 	}
-
-	//------------------------------------//--------------------------------------//
 
 	/**
 	 * Show Pages
@@ -278,8 +252,6 @@ class Page {
 			}
 		}
 	}
-
-	//------------------------------------//--------------------------------------//
 
 	/**
 	 * All tabs
@@ -364,8 +336,6 @@ class Page {
 		return $final_tabs;
 	}
 
-	//------------------------------------//--------------------------------------//
-
 	/**
 	 * All possible tabs
 	 *
@@ -376,8 +346,6 @@ class Page {
 	protected function possibleTabs() {
 		return wp_list_pluck( $this->tabs(), 'id' );
 	}
-
-	//------------------------------------//--------------------------------------//
 
 	/**
 	 * Get current tab ID
@@ -390,8 +358,6 @@ class Page {
 		return isset( $_GET['tab'] ) && in_array( $_GET['tab'], $this->possibleTabs() ) ? $_GET['tab'] : 'general';
 	}
 
-	//------------------------------------//--------------------------------------//
-
 	/**
 	 * Add tabs
 	 *
@@ -400,8 +366,6 @@ class Page {
 	public function add_tabs( $function_to_add, $priority = 10, $accepted_args = 1 ) {
 		return $this->add_filter( 'add_tabs', $function_to_add, $priority, $accepted_args );
 	}
-
-	//------------------------------------//--------------------------------------//
 
 	/**
 	 * Show Sections
@@ -450,8 +414,6 @@ class Page {
 		}
 	}
 
-	//------------------------------------//--------------------------------------//
-
 	/**
 	 * Get current section ID
 	 *
@@ -463,8 +425,6 @@ class Page {
 		return isset( $_GET['section'] )
 		       && in_array( $_GET['section'], $this->possibleSections( $this->currentTab() ) ) ? $_GET['section'] : $this->currentTab();
 	}
-
-	//------------------------------------//--------------------------------------//
 
 	/**
 	 * All section from a tab
@@ -486,8 +446,6 @@ class Page {
 		}
 	}
 
-	//------------------------------------//--------------------------------------//
-
 	/**
 	 * All possible sections
 	 *
@@ -499,8 +457,6 @@ class Page {
 		return wp_list_pluck( $this->sections( $tab_id ), 'id' );
 	}
 
-	//------------------------------------//--------------------------------------//
-
 	/**
 	 * Add sections
 	 *
@@ -511,9 +467,6 @@ class Page {
 	public function add_sections( $function_to_add, $priority = 10, $accepted_args = 1 ) {
 		return $this->add_filter( 'add_tab_sections', $function_to_add, $priority, $accepted_args );
 	}
-
-
-	//------------------------------------//--------------------------------------//
 
 	/**
 	 * Add menu
@@ -549,8 +502,6 @@ class Page {
 			}
 		}
 	}
-
-	//------------------------------------//--------------------------------------//
 
 	/**
 	 * Page settings
@@ -625,8 +576,6 @@ class Page {
 		return $menu_settings;
 	}
 
-	//------------------------------------//--------------------------------------//
-
 	/**
 	 * Check if a parent menu exists
 	 *
@@ -644,8 +593,6 @@ class Page {
 			return false;
 		}
 	}
-
-	//------------------------------------//--------------------------------------//
 
 	/**
 	 * All admin pages slugs
@@ -668,8 +615,6 @@ class Page {
 
 		return $exact_pages;
 	}
-
-	//------------------------------------//--------------------------------------//
 
 	/**
 	 * Get all possible capabilities
@@ -695,8 +640,6 @@ class Page {
 		return $capabilities;
 	}
 
-	//------------------------------------//--------------------------------------//
-
 	/**
 	 * Action
 	 *
@@ -709,8 +652,6 @@ class Page {
 	public function action( $action ) {
 		return $this->id . '_' . $action;
 	}
-
-	//------------------------------------//--------------------------------------//
 
 	/**
 	 * Filter
@@ -725,8 +666,6 @@ class Page {
 		return $this->id . '_' . $filter;
 	}
 
-	//------------------------------------//--------------------------------------//
-
 	/**
 	 * Add Action
 	 *
@@ -739,8 +678,6 @@ class Page {
 		return add_action( $this->id . '_' . $action, $function_to_add, $priority, $accepted_args );
 	}
 
-	//------------------------------------//--------------------------------------//
-
 	/**
 	 * Add Action Alias
 	 *
@@ -751,8 +688,6 @@ class Page {
 	public function addAction( $action, $function_to_add, $priority = 10, $accepted_args = 1 ) {
 		return $this->add_action( $action, $function_to_add, $priority, $accepted_args );
 	}
-
-	//------------------------------------//--------------------------------------//
 
 	/**
 	 * Add Filter
@@ -765,8 +700,6 @@ class Page {
 	public function add_filter( $filter, $function_to_add, $priority = 10, $accepted_args = 1 ) {
 		return add_filter( $this->id . '_' . $filter, $function_to_add, $priority, $accepted_args );
 	}
-
-	//------------------------------------//--------------------------------------//
 
 	/**
 	 * Add Filter Alias

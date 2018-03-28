@@ -1,6 +1,6 @@
 {
   "name": "fastdev",
-  "version": "1.5.1",
+  "version": "2.0.0",
   "description": "Helpful information and tools for WordPress developers to make the development easy.",
   "main": "plugin-base.php",
   "scripts": {
