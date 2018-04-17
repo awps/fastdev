@@ -34,8 +34,7 @@ class Sidebars extends Tab {
 			}
 			$output .= '</div>';
 			echo $output;
-		}
-		else {
+		} else {
 			fd_code( $sidebars );
 		}
 	}
@@ -60,8 +59,7 @@ class Sidebars extends Tab {
 			$widget_options = ! empty( $widgets_family[ $widget_number ] ) ? $widgets_family[ $widget_number ] : false;
 
 			fd_code( $widget_options );
-		}
-		else {
+		} else {
 			echo '<h3>' . __( 'A list of all widgets and their sidebars', 'fastdev' ) . '</h3>';
 			fd_search();
 

@@ -25,8 +25,7 @@ class UserMeta extends Tab {
 			}
 			$output .= '</div>';
 			echo $output;
-		}
-		else {
+		} else {
 			fd_code( $options );
 		}
 	}
@@ -55,12 +54,10 @@ class UserMeta extends Tab {
 				echo '<h3>' . sprintf( __( 'Meta data for %s(ID: %d)', 'fastdev' ), $username, $user->ID ) . '</h3>';
 				$meta = get_user_meta( $user->ID );
 				$this->makeTable( $meta, $user->ID );
-			}
-			else {
+			} else {
 				_e( 'User not found!', 'fastdev' );
 			}
-		}
-		elseif ( ! empty( $_GET['fd-get-user-meta'] ) && ! empty( $_GET['fd-get-user-id'] ) ) {
+		} elseif ( ! empty( $_GET['fd-get-user-meta'] ) && ! empty( $_GET['fd-get-user-id'] ) ) {
 			$meta = get_user_meta( absint( $_GET['fd-get-user-id'] ), esc_html( $_GET['fd-get-user-meta'] ) );
 
 			echo '<h3>' . $_GET['fd-get-user-meta'] . '</h3>';

@@ -21,8 +21,7 @@ class Hooks extends Tab {
 			}
 			$output .= '</div>';
 			echo $output;
-		}
-		else {
+		} else {
 			fd_code( $options );
 		}
 	}
@@ -39,8 +38,7 @@ class Hooks extends Tab {
 
 			echo '<h3>' . $hook . '</h3>';
 			fd_code( $wp_filter[ $hook ] );
-		}
-		else {
+		} else {
 			fd_search();
 			$this->makeTable( $wp_filter );
 		}

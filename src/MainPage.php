@@ -21,9 +21,21 @@ class MainPage extends Page {
 		wp_enqueue_style( 'fastdev_ztip' );
 		wp_enqueue_style( 'fastdev' );
 
-		wp_register_script( 'fastdev_prism', fastdev_uri( 'assets' ) . 'prism.js' );
-		wp_register_script( 'fastdev_ztip', fastdev_uri( 'node_modules/ztip' ) . 'ztip.js' );
-		wp_register_script( 'fastdev', fastdev_uri( 'assets' ) . 'scripts.js' );
+		wp_register_script( 'fastdev_prism', fastdev_uri( 'assets' ) . 'prism.js',
+			array(),
+			false,
+			true
+		);
+		wp_register_script( 'fastdev_ztip', fastdev_uri( 'node_modules/ztip' ) . 'ztip.js',
+			array(),
+			false,
+			true
+		);
+		wp_register_script( 'fastdev', fastdev_uri( 'assets' ) . 'scripts.js',
+			array(),
+			false,
+			true
+		);
 
 		wp_enqueue_script( 'fastdev_prism' );
 		wp_enqueue_script( 'fastdev_ztip' );
@@ -144,8 +156,7 @@ class MainPage extends Page {
 		} // 7.2.x
 		elseif ( ( version_compare( $php_version, '7.3' ) < 0 ) ) {
 			$php_status = $this->getPhpStatus( '30 November 2019', '30 November 2020' );
-		}
-		elseif ( ( version_compare( $php_version, '7.3' ) >= 0 ) ) {
+		} elseif ( ( version_compare( $php_version, '7.3' ) >= 0 ) ) {
 			$php_status = $this->getPhpStatus();
 		}
 
@@ -368,20 +379,17 @@ class MainPage extends Page {
 			$result['notice'] = sprintf( $supported, $active_date_end );
 			$result['tip']    = $supported_tip;
 			$human_time       = esc_html( human_time_diff( strtotime( $active_date_end ), $time ) );
-		}
-		elseif ( strtotime( $security_date_end ) < $time ) {
+		} elseif ( strtotime( $security_date_end ) < $time ) {
 			$result['status'] = 'bad';
 			$result['notice'] = sprintf( $not_supported, $security_date_end );
 			$human_time       = esc_html( human_time_diff( strtotime( $security_date_end ), $time ) );
 			$time_direction   = _x( '%s ago', 'Time direction: past', 'fastdev' );
-		}
-		elseif ( strtotime( $active_date_end ) < $time ) {
+		} elseif ( strtotime( $active_date_end ) < $time ) {
 			$result['status'] = 'notsogood';
 			$result['notice'] = sprintf( $security_supported, $security_date_end );
 			$result['tip']    = $security_supported_tip;
 			$human_time       = esc_html( human_time_diff( strtotime( $security_date_end ), $time ) );
-		}
-		else {
+		} else {
 			$result['status'] = 'unknown';
 		}
 
@@ -438,8 +446,7 @@ class MainPage extends Page {
 			$output .= '</div>';
 
 			echo $output;
-		}
-		else {
+		} else {
 			fd_code( $options );
 		}
 	}
@@ -454,8 +461,7 @@ class MainPage extends Page {
 
 		if ( empty( $val ) ) {
 			return '<span class="fd-info-notice">' . __( '(empty)', 'fastdev' ) . '</span>';
-		}
-		elseif ( true === $val ) {
+		} elseif ( true === $val ) {
 			return __( 'TRUE', 'fastdev' );
 		}
 
@@ -479,8 +485,7 @@ class MainPage extends Page {
 
 		if ( empty( $val ) ) {
 			return '<span class="fd-info-notice">' . __( '(Not set)', 'fastdev' ) . '</span>';
-		}
-		elseif ( true === $val ) {
+		} elseif ( true === $val ) {
 			return __( 'TRUE', 'fastdev' );
 		}
 
@@ -491,8 +496,7 @@ class MainPage extends Page {
 		if ( get_bloginfo( 'version' ) < '3.4' ) {
 			$theme_data = get_theme_data( get_stylesheet_directory() . '/style.css' );
 			$theme      = $theme_data['Name'] . ' v' . $theme_data['Version'];
-		}
-		else {
+		} else {
 			$theme_data = wp_get_theme();
 			$theme      = $theme_data->Name . ' v' . $theme_data->Version;
 		}

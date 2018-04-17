@@ -31,8 +31,7 @@ class Mimes extends Tab {
 			}
 			$output .= '</div>';
 			echo $output;
-		}
-		else {
+		} else {
 			fd_code( $options );
 		}
 	}

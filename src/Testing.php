@@ -5,11 +5,11 @@ namespace Fastdev;
 class Testing extends Tab {
 
 	public function registerAjaxHook() {
-		add_action( 'wp_ajax_fastdev_testing', array( $this, 'ajax' ) );
+		add_action( 'wp_ajax_fastdev_testing', [ $this, 'ajax' ] );
 	}
 
 	public function ajax() {
-		$result = array();
+		$result = [];
 
 		if ( empty( $_POST['nonce'] ) ) {
 			self::stopAjax( 'Invalid nonce.' );
@@ -43,6 +43,8 @@ class Testing extends Tab {
 		// The function returned a value?
 		if ( isset( $result ) ) {
 			fd_code( $result );
+		} else {
+			self::stopAjax( "Nothing to show..." ); // Clear the previous result.
 		}
 
 		die();
@@ -54,9 +56,9 @@ class Testing extends Tab {
 	}
 
 	public function settings() {
-		return array(
+		return [
 			'label' => __( 'Testing', 'fastdev' ),
-		);
+		];
 	}
 
 	public function tip() {
@@ -82,7 +84,7 @@ class Testing extends Tab {
 						placeholder="' . __( 'function name', 'fastdev' ) . '">
 				
 				<input type="hidden" value="' . wp_create_nonce( 'fastdev_testing' ) . '" name="nonce">
-				' . get_submit_button( 'Test', 'primary', 'submit', false ) . '
+				' . get_submit_button( __( 'Execute', 'fastdev' ), 'primary', 'submit', false ) . '
 				&nbsp;&nbsp;&nbsp;<label class="inline-label">
 				    <input type="checkbox" value="1" name="autorefresh" id="testing-autorefresh">
 				    Auto refresh

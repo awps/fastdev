@@ -28,8 +28,7 @@ class MySQLInfo extends Tab {
 			}
 			$output .= '</div>';
 			echo $output;
-		}
-		else {
+		} else {
 			fd_code( $options );
 		}
 	}
@@ -49,8 +48,7 @@ class MySQLInfo extends Tab {
 
 					echo '<h3>' . $option . '</h3>';
 					fd_code( $options[ $option ] );
-				}
-				else {
+				} else {
 					fd_search();
 					$this->makeTable( $options );
 				}

@@ -51,12 +51,10 @@ class Endpoint {
 			if ( fd_temp_url_is_valid( 'fd-main' ) ) {
 				$main_info = new MainPage();
 				$main_info->makeTable( $main_info->sysArray() );
-			}
-            elseif ( fd_temp_url_is_valid( 'fd-phpinfo' ) ) {
+			} elseif ( fd_temp_url_is_valid( 'fd-phpinfo' ) ) {
 				$main_info = new PhpInfo();
 				$main_info->pageContent();
-			}
-			else {
+			} else {
 				?>
                 <div class="fd-fail">
                     <h3>The info is not available</h3>

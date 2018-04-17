@@ -46,8 +46,7 @@ class Functions extends Tab {
 			}
 			$output .= '</div>';
 			echo $output;
-		}
-		else {
+		} else {
 			fd_code( $options );
 		}
 	}
@@ -72,8 +71,7 @@ class Functions extends Tab {
 
 			fd_code( $func->getParameters() );
 			fd_code( htmlspecialchars( $body ) );
-		}
-		else {
+		} else {
 			fd_search();
 			$all_functions = get_defined_functions();
 			$this->makeTable( $all_functions['user'] );

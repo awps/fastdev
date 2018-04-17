@@ -53,9 +53,9 @@ function fastdev_load_translations() {
  *
  * Main function to get the path to a directory from plugin root
  *
- * @param string $name       Directory name ex: 'mod'
- * @param bool   $return     Return or echo(boolean). Default return.
- * @param bool   $return_uri Return the uri(not path) if is `true`.
+ * @param string $name Directory name ex: 'mod'
+ * @param bool $return Return or echo(boolean). Default return.
+ * @param bool $return_uri Return the uri(not path) if is `true`.
  *
  * @return string The path or URI
  */
@@ -83,8 +83,8 @@ if ( ! function_exists( 'fastdev_path' ) ) {
  *
  * Main function to get the uri to a directory from plugin root
  *
- * @param string $name   Directory name ex: 'mod'
- * @param bool   $return Return or echo(boolean). Default return.
+ * @param string $name Directory name ex: 'mod'
+ * @param bool $return Return or echo(boolean). Default return.
  *
  * @return string The URI
  */
@@ -132,7 +132,7 @@ function fd_create_temp_link( $id ) {
  * Code debug
  *
  * @param        $code
- * @param bool   $escape
+ * @param bool $escape
  * @param string $language
  */
 function fd_code( $code, $escape = false, $language = 'php' ) {
@@ -144,11 +144,9 @@ function fd_code( $code, $escape = false, $language = 'php' ) {
 	echo '<pre' . $class . ' data-size="' . esc_attr( $size ) . '""><code' . $class . '>';
 	if ( is_array( $code ) && $escape ) {
 		print_r( esc_html( var_export( $code, true ) ) );
-	}
-	elseif ( is_string( $code ) && $escape ) {
+	} elseif ( is_string( $code ) && $escape ) {
 		print_r( esc_html( $code ) );
-	}
-	else {
+	} else {
 		print_r( $code );
 	}
 	echo '</code></pre>';

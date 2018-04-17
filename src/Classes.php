@@ -33,8 +33,7 @@ class Classes extends Tab {
 			}
 			$output .= '</div>';
 			echo $output;
-		}
-		else {
+		} else {
 			fd_code( $options );
 		}
 	}
@@ -65,8 +64,7 @@ class Classes extends Tab {
 			$body = implode( "", array_slice( $source, $start_line, $length ) );
 
 			fd_code( htmlspecialchars( $body ) );
-		}
-		else {
+		} else {
 			fd_search();
 			$this->makeTable( get_declared_classes() );
 		}

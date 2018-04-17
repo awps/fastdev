@@ -41,8 +41,7 @@ class Options extends Tab {
 			}
 			$output .= '</div>';
 			echo $output;
-		}
-		else {
+		} else {
 			fd_code( $options );
 		}
 	}
@@ -62,8 +61,7 @@ class Options extends Tab {
 			echo '<div id="fd-wpo-code-block">';
 			fd_code( get_option( $option ), true );
 			echo '</div>';
-		}
-		else {
+		} else {
 			fd_search();
 			$all_wpo = wp_load_alloptions();
 			$this->makeTable( $all_wpo );
@@ -97,8 +95,7 @@ class Options extends Tab {
 
 		if ( ( $opt = get_option( $option ) ) !== false ) {
 			fd_code( $opt, true );
-		}
-		else {
+		} else {
 			$this->ajaxMessage( __( 'Option does not exists.', 'fastdev' ) );
 		}
 
@@ -112,8 +109,7 @@ class Options extends Tab {
 
 		if ( $opt = delete_option( $option ) ) {
 			$this->ajaxMessage( __( 'Option deleted.', 'fastdev' ) );
-		}
-		else {
+		} else {
 			$this->ajaxMessage( __( 'Can\'t delete this option.', 'fastdev' ) );
 		}
 
@@ -128,8 +124,7 @@ class Options extends Tab {
 		if ( add_option( $key_to, $option_data ) ) {
 			delete_option( $key_from );
 			echo 'success';
-		}
-		else {
+		} else {
 			echo 'fail';
 		}
 

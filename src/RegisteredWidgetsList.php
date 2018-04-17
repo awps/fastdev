@@ -30,8 +30,7 @@ class RegisteredWidgetsList extends Tab {
 			}
 			$output .= '</div>';
 			echo $output;
-		}
-		else {
+		} else {
 			fd_code( $options );
 		}
 	}
@@ -48,8 +47,7 @@ class RegisteredWidgetsList extends Tab {
 
 			echo '<h3>' . $option . '</h3>';
 			fd_code( $widgets[ $option ] );
-		}
-		else {
+		} else {
 			echo '<h3>' . __( 'A list of all registered widgets', 'fastdev' ) . '</h3>';
 			fd_search();
 

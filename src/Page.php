@@ -235,8 +235,7 @@ class Page {
 						call_user_func( $callback );
 					}
 					do_action( $this->action( 'tab_' . $id ) );
-				}
-				elseif ( ! empty( $sections ) ) {
+				} elseif ( ! empty( $sections ) ) {
 					foreach ( $sections as $sect_key => $sect_value ) {
 						if ( $this->currentSection() == $sect_value['id'] ) {
 							if ( isset( $sect_value['callback'] ) ) {
@@ -284,8 +283,7 @@ class Page {
 			if ( empty( $tab['id'] ) ) {
 				unset( $tab_key );
 				continue;
-			}
-			else {
+			} else {
 				$final_tabs[ $tab_count ]['id'] = sanitize_html_class( $tab['id'] );
 			}
 
@@ -310,8 +308,7 @@ class Page {
 			//Tab sections
 			if ( isset( $tab['sections'] ) && is_array( $tab['sections'] ) ) {
 				$tab_sections = $tab['sections'];
-			}
-			else {
+			} else {
 				$tab_sections = array();
 			}
 
@@ -322,8 +319,7 @@ class Page {
 				foreach ( $all_tab_sections as $skey => $svalue ) {
 					if ( ! empty( $svalue['tab'] ) && $tab['id'] == $svalue['tab'] ) {
 						$final_sections[] = $all_tab_sections[ $skey ];
-					}
-					else {
+					} else {
 						continue;
 					}
 				}
@@ -438,8 +434,7 @@ class Page {
 			if ( $tab_value['id'] == $tab_id ) {
 				if ( isset( $tab_value['sections'] ) && is_array( $tab_value['sections'] ) ) {
 					return $tab_value['sections'];
-				}
-				else {
+				} else {
 					return array();
 				}
 			}
@@ -488,8 +483,7 @@ class Page {
 					$this->id,                     // Menu slug
 					array( $this, 'displayPage' )    // Calback function to display the page contents
 				);
-			}
-			elseif ( $settings['menu_type'] == 'menu' ) {
+			} elseif ( $settings['menu_type'] == 'menu' ) {
 				add_menu_page(
 					$settings['page_title'],       // Page title
 					$settings['menu_title'],       // Menu title
@@ -518,8 +512,7 @@ class Page {
 		     in_array( $settings['menu_type'], array( 'menu', 'submenu' ) )
 		) {
 			$menu_type = trim( $settings['menu_type'] );
-		}
-		else {
+		} else {
 			$menu_type = 'submenu';
 		}
 
@@ -560,8 +553,7 @@ class Page {
 		// Menu Position
 		if ( ! empty( $settings['menu_position'] ) && is_numeric( $settings['menu_position'] ) ) {
 			$menu_position = trim( $settings['menu_position'] );
-		}
-		else {
+		} else {
 			$menu_position = null;
 		}
 
@@ -588,8 +580,7 @@ class Page {
 	protected function _menuExists( $menu_slug ) {
 		if ( in_array( $menu_slug, $this->_allAdminPageSlugs() ) ) {
 			return true;
-		}
-		else {
+		} else {
 			return false;
 		}
 	}

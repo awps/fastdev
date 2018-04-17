@@ -55,11 +55,9 @@ class AdminBarInfo {
 
 		if ( is_page() ) {
 			$title = __( 'Page ID:', 'fastdev' );
-		}
-		elseif ( is_single() ) {
+		} elseif ( is_single() ) {
 			$title = __( 'Post ID:', 'fastdev' );
-		}
-		elseif ( is_author() ) {
+		} elseif ( is_author() ) {
 			$title = __( 'User ID:', 'fastdev' );
 		}
 
