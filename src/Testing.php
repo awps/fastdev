@@ -37,12 +37,16 @@ class Testing extends Tab {
 		if ( ! current_user_can( 'activate_plugins' ) ) {
 			self::stopAjax( 'You do not have enough permissions.' );
 		}
-
+		$start  = microtime(true);
 		$result = $function_name();
 
 		// The function returned a value?
 		if ( isset( $result ) ) {
 			fd_code( $result );
+			$end = microtime(true);
+			echo '<p><strong>Completed in: </strong>'.
+			     number_format( $end - $start, 8 ) .
+			     ' seconds</p>';
 		} else {
 			self::stopAjax( "Nothing to show..." ); // Clear the previous result.
 		}
@@ -50,8 +54,10 @@ class Testing extends Tab {
 		die();
 	}
 
-	protected static function stopAjax( $message ) {
-		echo '<div class="notice inline notice-error notice-alt"><p>' . $message . '</p></div>';
+	protected static function stopAjax( $message = false ) {
+		if ( $message ) {
+			echo '<div class="notice inline notice-error notice-alt"><p>' . $message . '</p></div>';
+		}
 		die();
 	}
 
