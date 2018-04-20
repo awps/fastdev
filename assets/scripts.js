@@ -213,6 +213,12 @@
                 },
                 complete: function (jqXHR, textStatus) {
                     button.attr('disabled', false);
+
+                    if('error' === textStatus){
+                        $('#js-fastdev-testing-result').html('<div class="notice inline notice-error notice-alt">' +
+                            '<h3>Oops! Looks like it\'s a server error there...</h3>' +
+                            '</div>');
+                    }
                 },
 
                 timeOut: 1000 * 60 //1 minute
