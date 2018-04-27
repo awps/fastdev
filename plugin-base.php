@@ -229,6 +229,8 @@ new Fastdev\Mimes( 'fd-wp-mimes', 'fd-main' );
 $testing = new Fastdev\Testing( 'fd-testing', 'fd-main' );
 $testing->registerAjaxHook();
 
+new Fastdev\JsonParse( 'fd-json-parser', 'fd-main' );
+
 new Fastdev\AdminBarInfo();
 
 new Fastdev\Endpoint();

@@ -13,15 +13,19 @@ class MainPage extends Page {
 	}
 
 	public function enqueue() {
+		// Register styles
 		wp_register_style( 'fastdev_prism', fastdev_uri( 'assets' ) . 'prism.css' );
+		wp_register_style( 'fastdev_json_tree', fastdev_uri( 'assets' ) . 'jsonTree.css' );
 		wp_register_style( 'fastdev_ztip', fastdev_uri( 'node_modules/ztip' ) . 'ztip.css' );
 		wp_register_style( 'fastdev', fastdev_uri( 'assets' ) . 'style.css' );
 
-		wp_enqueue_style( 'fastdev_prism' );
-		wp_enqueue_style( 'fastdev_ztip' );
-		wp_enqueue_style( 'fastdev' );
-
+		// Register scripts
 		wp_register_script( 'fastdev_prism', fastdev_uri( 'assets' ) . 'prism.js',
+			array(),
+			false,
+			true
+		);
+		wp_register_script( 'fastdev_json_tree', fastdev_uri( 'assets' ) . 'jsonTree.js',
 			array(),
 			false,
 			true
@@ -37,7 +41,14 @@ class MainPage extends Page {
 			true
 		);
 
+		// Enqueue
+		wp_enqueue_style( 'fastdev_prism' );
+		wp_enqueue_style( 'fastdev_json_tree' );
+		wp_enqueue_style( 'fastdev_ztip' );
+		wp_enqueue_style( 'fastdev' );
+
 		wp_enqueue_script( 'fastdev_prism' );
+		wp_enqueue_script( 'fastdev_json_tree' );
 		wp_enqueue_script( 'fastdev_ztip' );
 		wp_enqueue_script( 'fastdev' );
 	}

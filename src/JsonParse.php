@@ -2,7 +2,7 @@
 
 namespace Fastdev;
 
-class Testing extends Tab {
+class JsonParse extends Tab {
 
 	public function registerAjaxHook() {
 		add_action( 'wp_ajax_fastdev_testing', [ $this, 'ajax' ] );
@@ -37,14 +37,14 @@ class Testing extends Tab {
 		if ( ! current_user_can( 'activate_plugins' ) ) {
 			self::stopAjax( 'You do not have enough permissions.' );
 		}
-		$start  = microtime(true);
+		$start  = microtime( true );
 		$result = $function_name();
 
 		// The function returned a value?
 		if ( isset( $result ) ) {
 			fd_code( $result );
-			$end = microtime(true);
-			echo '<p><strong>Completed in: </strong>'.
+			$end = microtime( true );
+			echo '<p><strong>Completed in: </strong>' .
 			     number_format( $end - $start, 8 ) .
 			     ' seconds</p>';
 		} else {
@@ -63,34 +63,27 @@ class Testing extends Tab {
 
 	public function settings() {
 		return [
-			'label' => __( 'Testing', 'fastdev' ),
+			'label' => __( 'JSON Parser', 'fastdev' ),
 		];
 	}
 
 	public function tip() {
-		return sprintf(
-			__( 'Execute testing functions. The function name must contain the keyword "%s".',
-				'fastdev' ),
-			'<code>test</code>'
-		);
+		return __( 'Parse plain JSON in an human readable tree.', 'fastdev' );
 	}
 
 	public function page() {
-		$form = '<form method="post" class="fd-form js-fastdev-testing-form">';
+		$form = '<form method="post" class="fd-form js-fastdev-json-parser-form">';
 
 		$form .= '<div class="field">
-				<input type="text" 
-						value="" 
-						name="function_name" 
-						class="regular-text" 
-						placeholder="' . __( 'function name', 'fastdev' ) . '">
+				<textarea id="js-json-string" 
+				class="js-json-string full-textarea" 
+				placeholder="' . esc_html__( 'Enter the JSON string here and press "Parse"', 'fastdev' ) . '"
+				data-gramm_editor="false"></textarea>
 				
-				<input type="hidden" value="' . wp_create_nonce( 'fastdev_testing' ) . '" name="nonce">
-				' . get_submit_button( __( 'Execute', 'fastdev' ), 'primary', 'submit', false ) . '
-				&nbsp;&nbsp;&nbsp;<label class="inline-label">
-				    <input type="checkbox" value="1" name="autorefresh" id="testing-autorefresh">
-				    Auto refresh
-				</label>
+				<div class="cursor-position-reveal">
+					' . __( 'Cursor postion', 'fastdev' ) . ': <span id="js-cursor-position-reveal">-</span>
+				</div>
+				' . get_submit_button( __( 'Parse', 'fastdev' ), 'primary', 'submit', false ) . '
 			</div>';
 
 		$form .= '</form>';
@@ -98,7 +91,7 @@ class Testing extends Tab {
 		echo $form;
 
 		echo '<h3>Result:</h3>';
-		echo '<div id="js-fastdev-testing-result" class="fastdev-testing-result"></div>';
+		echo '<div id="js-fastdev-json-parser-result" class="fastdev-json-parser-result"></div>';
 	}
 
 }

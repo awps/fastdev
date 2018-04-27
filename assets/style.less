@@ -4,14 +4,6 @@
 @info: #2C82C9;
 @gray: #bbb;
 
-.fastdev-tab {
-	.dashicons,
-	.dashicons-before:before {
-		vertical-align: middle;
-		color: #3E4651;
-	}
-}
-
 pre {
 	padding: 10px;
 	border: 1px solid #ccc;
@@ -20,6 +12,22 @@ pre {
 
 pre > code {
 	background: transparent;
+}
+
+textarea {
+	box-sizing: border-box;
+	&.full-textarea {
+		width: 100%;
+		min-height: 150px;
+	}
+}
+
+.fastdev-tab {
+	.dashicons,
+	.dashicons-before:before {
+		vertical-align: middle;
+		color: #3E4651;
+	}
 }
 
 .fd-filter-field {
@@ -36,26 +44,99 @@ pre > code {
 .fd-key-val-table {
 	margin: 20px 0;
 	border: 0;
+
+	.fd-kv-row {
+		border: 1px solid #ccc;
+		margin-bottom: -1px;
+		background: #fff;
+
+		a {
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+
+		&:nth-child(even) {
+			background: #E8E8E8;
+		}
+
+		.fd-kv-code,
+		.fd-kv-code {
+			padding: 5px;
+			overflow: hidden;
+		}
+
+		// Columns
+		> div {
+			display: inline-block;
+			word-wrap: break-word;
+			vertical-align: top;
+		}
+
+		// Default. Two columns 30% / 70%
+		> div:nth-child(1) {
+			width: 30%;
+		}
+
+		> div:nth-child(2) {
+			width: 70%;
+		}
+
+		// One columns 100%
+		&.col-100 > div,
+		&.cols-100 > div {
+			width: 100%;
+		}
+
+		// Two columns 50% / 50%
+		&.cols-50x50 > div {
+			width: 50%;
+		}
+
+		// Two columns 70% / 30%
+		&.cols-70x30 > div:nth-child(1) {
+			width: 70%;
+		}
+
+		&.cols-70x30 > div:nth-child(2) {
+			width: 30%;
+		}
+
+		// Three columns 30% / 40% / 30%
+		&.cols-30x40x30 > div:nth-child(1) {
+			width: 30%;
+		}
+
+		&.cols-30x40x30 > div:nth-child(2) {
+			width: 40%;
+		}
+
+		&.cols-30x40x30 > div:nth-child(3) {
+			width: 30%;
+		}
+
+		// Three columns 30% / 50% / 20%
+		&.cols-30x50x20 > div:nth-child(1) {
+			width: 30%;
+		}
+
+		&.cols-30x50x20 > div:nth-child(2) {
+			width: 50%;
+		}
+
+		&.cols-30x50x20 > div:nth-child(3) {
+			width: 20%;
+		}
+	}
 }
 
-.fd-key-val-table .fd-kv-row {
-	border: 1px solid #ccc;
-	margin-bottom: -1px;
-	background: #fff;
-}
-
-.fd-key-val-table .fd-kv-row a {
-	text-decoration: none;
-}
-
-.fd-key-val-table .fd-kv-row a:hover {
-	text-decoration: underline;
-}
-
-.fd-key-val-table .fd-kv-row:nth-child(even) {
-	background: #E8E8E8;
-}
-
+/*
+-------------------------------------------------------------------------------
+Inner styles
+-------------------------------------------------------------------------------
+*/
 .fd-label-col {
 	position: relative;
 	.fdtip {
@@ -97,75 +178,6 @@ pre > code {
 	}
 }
 
-/*Columns*/
-.fd-key-val-table .fd-kv-row > div {
-	display: inline-block;
-	word-wrap: break-word;
-	vertical-align: top;
-}
-
-/*Default. Two columns 30% / 70%*/
-.fd-key-val-table .fd-kv-row > div:nth-child(1) {
-	width: 30%;
-}
-
-.fd-key-val-table .fd-kv-row > div:nth-child(2) {
-	width: 70%;
-}
-
-/*One columns 100%*/
-.fd-key-val-table .fd-kv-row.col-100 > div,
-.fd-key-val-table .fd-kv-row.cols-100 > div {
-	width: 100%;
-}
-
-/*Two columns 50% / 50%*/
-.fd-key-val-table .fd-kv-row.cols-50x50 > div {
-	width: 50%;
-}
-
-/*Two columns 70% / 30%*/
-.fd-key-val-table .fd-kv-row.cols-70x30 > div:nth-child(1) {
-	width: 70%;
-}
-
-.fd-key-val-table .fd-kv-row.cols-70x30 > div:nth-child(2) {
-	width: 30%;
-}
-
-/*Three columns 30% / 40% / 30%*/
-.fd-key-val-table .fd-kv-row.cols-30x40x30 > div:nth-child(1) {
-	width: 30%;
-}
-
-.fd-key-val-table .fd-kv-row.cols-30x40x30 > div:nth-child(2) {
-	width: 40%;
-}
-
-.fd-key-val-table .fd-kv-row.cols-30x40x30 > div:nth-child(3) {
-	width: 30%;
-}
-
-/*Three columns 30% / 50% / 20%*/
-.fd-key-val-table .fd-kv-row.cols-30x50x20 > div:nth-child(1) {
-	width: 30%;
-}
-
-.fd-key-val-table .fd-kv-row.cols-30x50x20 > div:nth-child(2) {
-	width: 50%;
-}
-
-.fd-key-val-table .fd-kv-row.cols-30x50x20 > div:nth-child(3) {
-	width: 20%;
-}
-
-/*Columns code styles*/
-.fd-key-val-table .fd-kv-row .fd-kv-code,
-.fd-key-val-table .fd-kv-row .fd-kv-code {
-	padding: 5px;
-	overflow: hidden;
-}
-
 /* Trimmed option string
 -----------------------------*/
 .fastdev-trimmed-string {
@@ -191,31 +203,36 @@ pre > code {
 	}
 }
 
-/*Within columns styles*/
-.fd-key-val-table .fd-kv-row .good,
-.fd-key-val-table .fd-kv-row .notsogood,
-.fd-key-val-table .fd-kv-row .unknown,
-.fd-key-val-table .fd-kv-row .bad {
-	display: inline-block;
-	padding: 2px 5px;
-	border-radius: 2px;
-	color: #fff;
-}
+/*
+-------------------------------------------------------------------------------
+Column styles
+-------------------------------------------------------------------------------
+*/
+.fd-key-val-table {
+	.fd-kv-row {
+		.good,
+		.notsogood,
+		.unknown,
+		.bad {
+			display: inline-block;
+			padding: 2px 5px;
+			border-radius: 2px;
+			color: #fff;
+		}
 
-.fd-key-val-table .fd-kv-row .good {
-	background: @good;
-}
-
-.fd-key-val-table .fd-kv-row .bad {
-	background: @bad;
-}
-
-.fd-key-val-table .fd-kv-row .notsogood {
-	background: @warn;
-}
-
-.fd-key-val-table .fd-kv-row .unknown {
-	background: #000;
+		.good {
+			background: @good;
+		}
+		.bad {
+			background: @bad;
+		}
+		.notsogood {
+			background: @warn;
+		}
+		.unknown {
+			background: #000;
+		}
+	}
 }
 
 .fd-humantime {
@@ -243,24 +260,28 @@ pre > code {
 	padding: 5px 0;
 }
 
-/*Form*/
+/*
+-------------------------------------------------------------------------------
+Form
+-------------------------------------------------------------------------------
+*/
 .fd-form {
 	display: block;
 	margin: 20px 0;
-}
 
-.fd-form .field {
-	display: block;
-	margin: 10px 0 10px;
-}
+	.field {
+		display: block;
+		margin: 10px 0 10px;
 
-.fd-form .field label {
-	display: block;
-	margin: 0 0 5px;
-	font-weight: 700;
+		label {
+			display: block;
+			margin: 0 0 5px;
+			font-weight: 700;
 
-	&.inline-label {
-		display: inline-block;
+			&.inline-label {
+				display: inline-block;
+			}
+		}
 	}
 }
 
@@ -362,10 +383,6 @@ pre > code {
 	border-right-color: transparent;
 	box-shadow: 1px 1px 0px rgb(255, 255, 255);
 	animation: fastdev-loader-animation 690ms infinite linear;
-	-o-animation: fastdev-loader-animation 690ms infinite linear;
-	-ms-animation: fastdev-loader-animation 690ms infinite linear;
-	-webkit-animation: fastdev-loader-animation 690ms infinite linear;
-	-moz-animation: fastdev-loader-animation 690ms infinite linear;
 
 	&.dark {
 		box-shadow: 1px 1px 0px rgb(96, 100, 109);
@@ -376,37 +393,19 @@ pre > code {
 	}
 }
 
+/*
+-------------------------------------------------------------------------------
+Form
+-------------------------------------------------------------------------------
+*/
 @keyframes fastdev-loader-animation {
 	100% {
-		transform: rotate(360deg);
 		transform: rotate(360deg);
 	}
 }
 
 @-o-keyframes fastdev-loader-animation {
 	100% {
-		-o-transform: rotate(360deg);
-		transform: rotate(360deg);
-	}
-}
-
-@-ms-keyframes fastdev-loader-animation {
-	100% {
-		-ms-transform: rotate(360deg);
-		transform: rotate(360deg);
-	}
-}
-
-@-webkit-keyframes fastdev-loader-animation {
-	100% {
-		-webkit-transform: rotate(360deg);
-		transform: rotate(360deg);
-	}
-}
-
-@-moz-keyframes fastdev-loader-animation {
-	100% {
-		-moz-transform: rotate(360deg);
 		transform: rotate(360deg);
 	}
 }
@@ -416,103 +415,104 @@ pre > code {
 	margin: 20px auto;
 	background: #fff;
 	width: 100%;
-}
 
-#phpinfo pre {
-	margin: 0px;
-	font-family: monospace;
-}
+	pre {
+		margin: 0px;
+		font-family: monospace;
+	}
 
-#phpinfo a:link {
-	color: #000099;
-	text-decoration: none;
-	background-color: #ffffff;
-}
+	a:link {
+		color: #000099;
+		text-decoration: none;
+		background-color: #ffffff;
+	}
 
-#phpinfo a:hover {
-	text-decoration: underline;
-}
+	a:hover {
+		text-decoration: underline;
+	}
 
-#phpinfo table {
-	border-collapse: collapse;
-	width: 100%;
-}
+	table {
+		border-collapse: collapse;
+		width: 100%;
+	}
 
-#phpinfo .center {
-	text-align: center;
-}
+	.center {
+		text-align: center;
+	}
 
-#phpinfo .center table {
-	margin-left: auto;
-	margin-right: auto;
-	text-align: left;
-}
+	.center table {
+		margin-left: auto;
+		margin-right: auto;
+		text-align: left;
+	}
 
-#phpinfo .center th {
-	text-align: center !important;
-}
+	.center th {
+		text-align: center !important;
+	}
 
-#phpinfo td, #phpinfo th {
-	border: 1px solid #000000;
-	font-size: 100%;
-	vertical-align: baseline;
-}
+	td, th {
+		border: 1px solid #000000;
+		font-size: 100%;
+		vertical-align: baseline;
+	}
 
-#phpinfo h1 {
-	font-size: 150%;
-}
+	h1 {
+		font-size: 150%;
+	}
 
-#phpinfo h2 {
-	font-size: 125%;
-}
+	h2 {
+		font-size: 125%;
+	}
 
-#phpinfo .p {
-	text-align: left;
-}
+	.p {
+		text-align: left;
+	}
 
-#phpinfo .e {
-	background-color: #ccccff;
-	font-weight: bold;
-	color: #000000;
-}
+	.e {
+		background-color: #ccccff;
+		font-weight: bold;
+		color: #000000;
+	}
 
-#phpinfo .h {
-	background-color: #9999cc;
-	font-weight: bold;
-	color: #000000;
-	vertical-align: top;
-}
+	.h {
+		background-color: #9999cc;
+		font-weight: bold;
+		color: #000000;
+		vertical-align: top;
+	}
 
-#phpinfo .v {
-	background-color: #cccccc;
-	color: #000000;
-	word-wrap: break-word;
-	word-break: break-all;
-}
+	.v {
+		background-color: #cccccc;
+		color: #000000;
+		word-wrap: break-word;
+		word-break: break-all;
+	}
 
-#phpinfo .vr {
-	background-color: #cccccc;
-	text-align: right;
-	color: #000000;
-}
+	.vr {
+		background-color: #cccccc;
+		text-align: right;
+		color: #000000;
+	}
 
-#phpinfo img {
-	float: right;
-	border: 0px;
-}
+	img {
+		float: right;
+		border: 0px;
+	}
 
-#phpinfo hr {
-	width: 600px;
-	background-color: #cccccc;
-	border: 0px;
-	height: 1px;
-	color: #000000;
+	hr {
+		width: 600px;
+		background-color: #cccccc;
+		border: 0px;
+		height: 1px;
+		color: #000000;
+	}
 }
 
 .fd-frontend {
 	margin: 0;
 	padding: 0;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+	"Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 	background: #ffffff;
 	color: #333;
 	line-height: 1.5;
@@ -546,4 +546,57 @@ pre > code {
 	font-weight: 700;
 	font-size: 14px;
 	margin: 5px 0 30px;
+}
+
+/*
+-------------------------------------------------------------------------------
+JSON formatter
+-------------------------------------------------------------------------------
+*/
+.fastdev-json-parser-result {
+	padding: 15px;
+	background: #fff;
+}
+
+.jsontree_child-nodes {
+	margin-bottom: 5px;
+	line-height: 1.4;
+	li {
+		margin: 0;
+		padding: 3px 10px;
+		border-radius: 20px;
+		&:hover {
+			background: rgba(192, 13, 217, 0.06);
+			&:hover li {
+				background: transparent;
+			}
+		}
+	}
+}
+
+.jsontree_node {
+	.jsontree_node_complex {
+		.jsontree_show-more {
+			background: rgba(0, 255, 32, 0.14);
+			padding-left: 10px;
+			padding-right: 10px;
+			border-radius: 20px;
+			&:hover {
+				background: rgba(0, 99, 255, 0.25);
+			}
+		}
+	}
+}
+
+.cursor-position-reveal {
+	text-align: right;
+
+	span {
+		font-weight: 700;
+		color: @info;
+	}
+}
+
+.json-string-needed {
+	border-color: @bad;
 }

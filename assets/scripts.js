@@ -214,7 +214,7 @@
                 complete: function (jqXHR, textStatus) {
                     button.attr('disabled', false);
 
-                    if('error' === textStatus){
+                    if ('error' === textStatus) {
                         $('#js-fastdev-testing-result').html('<div class="notice inline notice-error notice-alt">' +
                             '<h3>Oops! Looks like it\'s a server error there...</h3>' +
                             '</div>');
@@ -243,8 +243,65 @@
                 _main_container.children('.original-string').slideDown(150);
                 _main_container.children('.trimmed-string').slideUp(150);
             }
+        });
+
+        /*
+        -------------------------------------------------------------------------------
+        JSON parser
+        -------------------------------------------------------------------------------
+        */
+        $(document).on('submit', '.js-fastdev-json-parser-form', function (event) {
+            event.preventDefault();
+
+            var wrapper = document.getElementById("js-fastdev-json-parser-result");
+            var json_field =  $('#js-json-string');
+            var json_string = $(this).find('.js-json-string').val();
+
+            // button.attr('disabled', true);
+
+            json_field.removeClass('json-string-needed');
+            if(! have_json_string()){
+                json_field.addClass('json-string-needed');
+                $(wrapper).html('<div class="notice inline notice-error notice-alt">' +
+                    '<h3>Please insert the JSON string in textarea the field.</h3></div>');
+                return;
+            }
+
+            try {
+                json_string = JSON.parse(json_string);
+            } catch (e) {
+                $(wrapper).html('<div class="notice inline notice-error notice-alt">' +
+                    '<h3>Oops! Looks like it\'s an error:</h3><p>' + e + '</p></div>');
+                return;
+            }
+
+            // Clear the wrapper
+            $(wrapper).html('');
+
+            // Create json-tree
+            var tree = jsonTree.create(json_string, wrapper);
+
+            // Expand all (or selected) child nodes of root (optional)
+            tree.expand(function (node) {
+                return node.childNodes.length < 2;
+            });
 
         });
+
+        function reveal_cursor_postion() {
+            var reveal = $('#js-cursor-position-reveal');
+            $('#js-json-string').on('change input keypress keyup click', function (event) {
+                var position = event.target.selectionStart;
+
+                reveal.text(position);
+            });
+        }
+
+        reveal_cursor_postion();
+
+        function have_json_string() {
+            return ($('#js-json-string').val()).replace(/^\s+|\s+$/g, '') !== '';
+        }
 
     });
 
