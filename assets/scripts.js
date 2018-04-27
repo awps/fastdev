@@ -250,17 +250,19 @@
         JSON parser
         -------------------------------------------------------------------------------
         */
+        var json_tree;
+
         $(document).on('submit', '.js-fastdev-json-parser-form', function (event) {
             event.preventDefault();
 
             var wrapper = document.getElementById("js-fastdev-json-parser-result");
-            var json_field =  $('#js-json-string');
+            var json_field = $('#js-json-string');
             var json_string = $(this).find('.js-json-string').val();
 
             // button.attr('disabled', true);
 
             json_field.removeClass('json-string-needed');
-            if(! have_json_string()){
+            if (!have_json_string()) {
                 json_field.addClass('json-string-needed');
                 $(wrapper).html('<div class="notice inline notice-error notice-alt">' +
                     '<h3>Please insert the JSON string in textarea the field.</h3></div>');
@@ -268,7 +270,7 @@
             }
 
             try {
-                json_string = json_string.replace(/\\\\/g, '\\');
+                json_string = json_string.replace(/\\\\/g, '\\').replace(/\r?\n|\r/g, '');
                 json_string = JSON.parse(json_string);
             } catch (e) {
                 $(wrapper).html('<div class="notice inline notice-error notice-alt">' +
@@ -280,10 +282,10 @@
             $(wrapper).html('');
 
             // Create json-tree
-            var tree = jsonTree.create(json_string, wrapper);
+            json_tree = jsonTree.create(json_string, wrapper);
 
             // Expand all (or selected) child nodes of root (optional)
-            tree.expand(function (node) {
+            json_tree.expand(function (node) {
                 return node.childNodes.length < 2;
             });
 
@@ -303,6 +305,22 @@
         function have_json_string() {
             return ($('#js-json-string').val()).replace(/^\s+|\s+$/g, '') !== '';
         }
+
+        $('.js-fastdev-json-parser-expand').on('click', function (event) {
+            event.preventDefault();
+
+            if (json_tree) {
+                json_tree.expand();
+            }
+        });
+
+        $('.js-fastdev-json-parser-collapse').on('click', function (event) {
+            event.preventDefault();
+
+            if (json_tree) {
+                json_tree.collapse();
+            }
+        });
 
     });
 

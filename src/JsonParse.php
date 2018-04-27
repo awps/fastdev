@@ -91,6 +91,15 @@ class JsonParse extends Tab {
 		echo $form;
 
 		echo '<h3>Result:</h3>';
+		echo '<div class="fastdev-json-parser-expanders">';
+		echo '<a href="#" class="js-fastdev-json-parser-expand">
+			' . esc_html__( 'Expand all', 'fastdev' ) . '
+			</a>';
+		echo '<a href="#" class="js-fastdev-json-parser-collapse collapse">
+			' . esc_html__( 'Collapse all', 'fastdev' ) . '
+			</a>';
+		echo '</div>';
+
 		echo '<div id="js-fastdev-json-parser-result" class="fastdev-json-parser-result"></div>';
 	}
 

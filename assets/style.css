@@ -471,9 +471,6 @@ JSON formatter
   padding: 3px 10px;
   border-radius: 20px;
 }
-.jsontree_child-nodes li:hover {
-  background: rgba(192, 13, 217, 0.06);
-}
 .jsontree_child-nodes li:hover:hover li {
   background: transparent;
 }
@@ -486,6 +483,18 @@ JSON formatter
 .jsontree_node .jsontree_node_complex .jsontree_show-more:hover {
   background: rgba(0, 99, 255, 0.25);
 }
+.jsontree_node_expanded {
+  border-left: 1px dotted #bbb;
+}
+.jsontree_child-nodes {
+  margin-left: 20px;
+}
+.jsontree_tree {
+  margin-left: 15px;
+}
+.jsontree_tree > .jsontree_node_expanded {
+  border-left: 0;
+}
 .cursor-position-reveal {
   text-align: right;
 }
@@ -495,4 +504,19 @@ JSON formatter
 }
 .json-string-needed {
   border-color: #EE543A;
+}
+.fastdev-json-parser-expanders {
+  text-align: right;
+}
+.fastdev-json-parser-expanders a {
+  display: inline-block;
+  padding: 1px 9px;
+  margin: 0 0 5px 5px;
+  border-radius: 20px;
+  color: #2C82C9;
+  text-decoration: none;
+}
+.fastdev-json-parser-expanders a:hover {
+  background: #2C82C9;
+  color: #fff;
 }
