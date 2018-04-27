@@ -268,6 +268,7 @@
             }
 
             try {
+                json_string = json_string.replace(/\\\\/g, '\\');
                 json_string = JSON.parse(json_string);
             } catch (e) {
                 $(wrapper).html('<div class="notice inline notice-error notice-alt">' +
