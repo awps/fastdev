@@ -39,8 +39,8 @@ if ( ! defined( 'FASTDEV_URI' ) ) {
  *
  * @return void
  */
-add_action( 'init', 'fastdev_load_translations' );
-function fastdev_load_translations() {
+add_action( 'init', 'fastdev_load_textdomain' );
+function fastdev_load_textdomain() {
 	load_plugin_textdomain(
 		'fastdev',
 		false,
