@@ -22,6 +22,13 @@ textarea {
 	}
 }
 
+input {
+	box-sizing: border-box;
+	&.full-input {
+		width: 100%;
+	}
+}
+
 .fastdev-tab {
 	.dashicons,
 	.dashicons-before:before {
@@ -553,6 +560,14 @@ Form
 JSON formatter
 -------------------------------------------------------------------------------
 */
+.fastdev-json-parser-form{
+	margin: 15px 0 30px;
+	input[type="url"]{
+		padding-top: 7px;
+		padding-bottom: 7px;
+		margin: 0 0 20px;
+	}
+}
 .fastdev-json-parser-result {
 	padding: 15px;
 	background: #fff;
@@ -618,19 +633,39 @@ JSON formatter
 	border-color: @bad;
 }
 
-.fastdev-json-parser-expanders {
+.fastdev-json-parser-expanders,
+.json-parser-tabs{
 	text-align: right;
-	a {
+	a,
+	span{
 		display: inline-block;
-		padding: 1px 9px;
+		padding: 2px 9px 3px;
 		margin: 0 0 5px 5px;
 		border-radius: 20px;
 		color: @info;
 		text-decoration: none;
 
-		&:hover {
+		&:hover,
+		&.active{
 			background: @info;
 			color: #fff;
 		}
+	}
+
+	span{
+		&,
+		&:hover,
+		&active{
+			color: @good;
+			background: transparent;
+		}
+	}
+}
+
+.json-parser-tabs{
+	text-align: left;
+	a{
+		margin-left: 0;
+		margin-right: 5px;
 	}
 }

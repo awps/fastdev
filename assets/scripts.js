@@ -250,46 +250,112 @@
         JSON parser
         -------------------------------------------------------------------------------
         */
-        var json_tree;
+        // Tabs
+        $('#js-json-parser-tabs').on('click', 'a', function (event) {
+            event.preventDefault();
+
+            var _t = $(this),
+                show_url = _t.hasClass('js-jp-url');
+
+            _t.addClass('active');
+
+            if (show_url) {
+                _t.parent().find('.js-jp-string').removeClass('active');
+
+                $('.js-jp-tab-string').hide();
+                $('.js-jp-tab-url').show();
+                $('.cursor-position-reveal').hide();
+            }
+            else {
+                _t.parent().find('.js-jp-url').removeClass('active');
+
+                $('.js-jp-tab-string').show();
+                $('.js-jp-tab-url').hide();
+                $('.cursor-position-reveal').show();
+            }
+        });
+
+        // String parser
+        var json_tree, json_result_wrapper;
 
         $(document).on('submit', '.js-fastdev-json-parser-form', function (event) {
             event.preventDefault();
+            json_result_wrapper = document.getElementById("js-fastdev-json-parser-result");
 
-            var wrapper = document.getElementById("js-fastdev-json-parser-result");
-            var json_field = $('#js-json-string');
-            var json_string = $(this).find('.js-json-string').val();
+            var _form = $(this),
+                _is_url = $('.js-jp-url').hasClass('active'),
+                json_string;
 
-            // button.attr('disabled', true);
-
-            json_field.removeClass('json-string-needed');
-            if (!have_json_string()) {
-                json_field.addClass('json-string-needed');
-                $(wrapper).html('<div class="notice inline notice-error notice-alt">' +
-                    '<h3>Please insert the JSON string in textarea the field.</h3></div>');
-                return;
+            if (_is_url) {
+                if (!have_json_url()) {
+                    return;
+                }
+                var url = _form.find('.js-json-url').val();
+                fastdev_get_json_from_url(url);
+            }
+            else {
+                if (!have_json_string()) {
+                    return;
+                }
+                json_string = _form.find('.js-json-string').val();
+                fastdev_put_json_tree(json_string, true);
             }
 
+        });
+
+        function fastdev_put_json_tree(json_string, clear) {
             try {
-                json_string = json_string.replace(/\\\\/g, '\\').replace(/\r?\n|\r/g, '');
-                json_string = JSON.parse(json_string);
+                if (clear) {
+                    json_string = json_string.replace(/\\\\/g, '\\').replace(/\r?\n|\r/g, '');
+                    json_string = JSON.parse(json_string);
+                }
             } catch (e) {
-                $(wrapper).html('<div class="notice inline notice-error notice-alt">' +
+                $(json_result_wrapper).html('<div class="notice inline notice-error notice-alt">' +
                     '<h3>Oops! Looks like it\'s an error:</h3><p>' + e + '</p></div>');
                 return;
             }
 
-            // Clear the wrapper
-            $(wrapper).html('');
+            // Clear the json_result_wrapper
+            $(json_result_wrapper).html('');
 
             // Create json-tree
-            json_tree = jsonTree.create(json_string, wrapper);
+            json_tree = jsonTree.create(json_string, json_result_wrapper);
 
             // Expand all (or selected) child nodes of root (optional)
             json_tree.expand(function (node) {
                 return node.childNodes.length < 2;
             });
+        }
 
-        });
+        function have_json_string() {
+            var json_field = $('#js-json-string');
+
+            json_field.removeClass('json-string-needed');
+
+            if ((json_field.val()).replace(/^\s+|\s+$/g, '') === '') {
+                json_field.addClass('json-string-needed');
+                $(json_result_wrapper).html('<div class="notice inline notice-error notice-alt">' +
+                    '<h3>Please insert the JSON string.</h3></div>');
+                return false;
+            }
+
+            return true;
+        }
+
+        function have_json_url() {
+            var json_field = $('#js-json-url');
+
+            json_field.removeClass('json-string-needed');
+
+            if ((json_field.val()).replace(/^\s+|\s+$/g, '') === '') {
+                json_field.addClass('json-string-needed');
+                $(json_result_wrapper).html('<div class="notice inline notice-error notice-alt">' +
+                    '<h3>Please insert the JSON URL.</h3></div>');
+                return false;
+            }
+
+            return true;
+        }
 
         function reveal_cursor_postion() {
             var reveal = $('#js-cursor-position-reveal');
@@ -301,10 +367,6 @@
         }
 
         reveal_cursor_postion();
-
-        function have_json_string() {
-            return ($('#js-json-string').val()).replace(/^\s+|\s+$/g, '') !== '';
-        }
 
         $('.js-fastdev-json-parser-expand').on('click', function (event) {
             event.preventDefault();
@@ -322,6 +384,21 @@
             }
         });
 
+        function fastdev_get_json_from_url(url) {
+
+            $.getJSON(url)
+                .done(function (data) {
+                    fastdev_put_json_tree(data, false);
+                })
+                .fail(function (r) {
+                    if (r.statusText) {
+                        $(json_result_wrapper).html('<div class="notice inline notice-error notice-alt">' +
+                            '<h3>' + r.status + ': ' + r.statusText + '</h3>' +
+                            '<p>' + r.responseText + '</p>' +
+                            '</div>');
+                    }
+                });
+        }
     });
 
 })(jQuery);

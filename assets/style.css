@@ -13,6 +13,12 @@ textarea.full-textarea {
   width: 100%;
   min-height: 150px;
 }
+input {
+  box-sizing: border-box;
+}
+input.full-input {
+  width: 100%;
+}
 .fastdev-tab .dashicons,
 .fastdev-tab .dashicons-before:before {
   vertical-align: middle;
@@ -458,6 +464,14 @@ Form
 JSON formatter
 -------------------------------------------------------------------------------
 */
+.fastdev-json-parser-form {
+  margin: 15px 0 30px;
+}
+.fastdev-json-parser-form input[type="url"] {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  margin: 0 0 20px;
+}
 .fastdev-json-parser-result {
   padding: 15px;
   background: #fff;
@@ -505,18 +519,30 @@ JSON formatter
 .json-string-needed {
   border-color: #EE543A;
 }
-.fastdev-json-parser-expanders {
+.fastdev-json-parser-expanders,
+.json-parser-tabs {
   text-align: right;
 }
-.fastdev-json-parser-expanders a {
+.fastdev-json-parser-expanders a,
+.json-parser-tabs a {
   display: inline-block;
-  padding: 1px 9px;
+  padding: 2px 9px 3px;
   margin: 0 0 5px 5px;
   border-radius: 20px;
   color: #2C82C9;
   text-decoration: none;
 }
-.fastdev-json-parser-expanders a:hover {
+.fastdev-json-parser-expanders a:hover,
+.json-parser-tabs a:hover,
+.fastdev-json-parser-expanders a.active,
+.json-parser-tabs a.active {
   background: #2C82C9;
   color: #fff;
+}
+.json-parser-tabs {
+  text-align: left;
+}
+.json-parser-tabs a {
+  margin-left: 0;
+  margin-right: 5px;
 }

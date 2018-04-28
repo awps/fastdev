@@ -67,6 +67,9 @@ class Tab {
 		return '';
 	}
 
+	/**
+	 * The page content. This is the callback that renders the final HTML.
+	 */
 	public function page() {
 		_e( 'Congrats! you\'ve created a new page tab.', 'fastdev' );
 	}
