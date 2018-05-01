@@ -255,22 +255,36 @@
             event.preventDefault();
 
             var _t = $(this),
-                show_url = _t.hasClass('js-jp-url');
+                show_url = _t.hasClass('js-jp-url'),
+                show_post_meta = _t.hasClass('js-jp-post-meta');
 
             _t.addClass('active');
 
             if (show_url) {
                 _t.parent().find('.js-jp-string').removeClass('active');
+                _t.parent().find('.js-jp-post-meta').removeClass('active');
 
                 $('.js-jp-tab-string').hide();
+                $('.js-jp-tab-post-meta').hide();
                 $('.js-jp-tab-url').show();
+                $('.cursor-position-reveal').hide();
+            }
+            else if (show_post_meta) {
+                _t.parent().find('.js-jp-string').removeClass('active');
+                _t.parent().find('.js-jp-url').removeClass('active');
+
+                $('.js-jp-tab-string').hide();
+                $('.js-jp-tab-url').hide();
+                $('.js-jp-tab-post-meta').show();
                 $('.cursor-position-reveal').hide();
             }
             else {
                 _t.parent().find('.js-jp-url').removeClass('active');
+                _t.parent().find('.js-jp-post-meta').removeClass('active');
 
                 $('.js-jp-tab-string').show();
                 $('.js-jp-tab-url').hide();
+                $('.js-jp-tab-post-meta').hide();
                 $('.cursor-position-reveal').show();
             }
         });
@@ -284,6 +298,7 @@
 
             var _form = $(this),
                 _is_url = $('.js-jp-url').hasClass('active'),
+                _is_post_meta = $('.js-jp-post-meta').hasClass('active'),
                 json_string;
 
             if (_is_url) {
@@ -292,6 +307,13 @@
                 }
                 var url = _form.find('.js-json-url').val();
                 fastdev_get_json_from_url(url);
+            }
+            if (_is_post_meta) {
+                if (!have_json_post_meta()) {
+                    return;
+                }
+                var post_meta = _form.find('.js-json-post-meta').val();
+                fastdev_get_json_from_post_meta(post_meta);
             }
             else {
                 if (!have_json_string()) {
@@ -357,6 +379,21 @@
             return true;
         }
 
+        function have_json_post_meta() {
+            var json_field = $('#js-json-post-meta');
+
+            json_field.removeClass('json-string-needed');
+
+            if ((json_field.val()).replace(/^\s+|\s+$/g, '') === '') {
+                json_field.addClass('json-string-needed');
+                $(json_result_wrapper).html('<div class="notice inline notice-error notice-alt">' +
+                    '<h3>Please insert a valid post meta.</h3></div>');
+                return false;
+            }
+
+            return true;
+        }
+
         function reveal_cursor_postion() {
             var reveal = $('#js-cursor-position-reveal');
             $('#js-json-string').on('change input keypress keyup click', function (event) {
@@ -387,6 +424,29 @@
         function fastdev_get_json_from_url(url) {
 
             $.getJSON(url)
+                .done(function (data) {
+                    fastdev_put_json_tree(data, false);
+                })
+                .fail(function (r) {
+                    if (r.statusText) {
+                        $(json_result_wrapper).html('<div class="notice inline notice-error notice-alt">' +
+                            '<h3>' + r.status + ': ' + r.statusText + '</h3>' +
+                            '<p>' + r.responseText + '</p>' +
+                            '</div>');
+                    }
+                });
+        }
+
+        function fastdev_get_json_from_post_meta(post_meta) {
+
+            $.getJSON({
+                dataType: "json",
+                url: ajaxurl,
+                data: {
+                    action: 'fastdev_json_post_meta',
+                    post_meta: post_meta
+                },
+            })
                 .done(function (data) {
                     fastdev_put_json_tree(data, false);
                 })
