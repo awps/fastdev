@@ -21,9 +21,9 @@ class Testing extends Tab {
 
 		$function_name = preg_replace( '/[^a-zA-Z0-9_]/', '', $_POST['function_name'] );
 
-		if ( substr( $function_name, 0, 4 ) !== "test" ) {
-			$function_name = 'test' . $function_name;
-		}
+//		if ( substr( $function_name, 0, 4 ) !== "test" ) {
+//			$function_name = 'test' . $function_name;
+//		}
 
 		if ( ! function_exists( $function_name ) ) {
 			self::stopAjax( "Function '{$function_name}' does not exists." );
@@ -69,7 +69,7 @@ class Testing extends Tab {
 
 	public function tip() {
 		return sprintf(
-			__( 'Execute testing functions. The function name must contain the keyword "%s".',
+			__( 'Test functions. Enter the function name and hit "Execute"',
 				'fastdev' ),
 			'<code>test</code>'
 		);

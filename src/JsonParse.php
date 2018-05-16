@@ -80,7 +80,7 @@ class JsonParse extends Tab {
 					class="js-json-post-meta full-input" 
 					placeholder="' . esc_html__( 'Enter the post ID and meta key here and press "Parse"', 'fastdev' ) . '"/>
 					<p class="description">' . sprintf( esc_html__(
-				'Enter the post ID and meta key separated by a color. Example: %s',
+				'Enter the post ID and meta key separated by a colon. Example: %s',
 				'fastdev' ), '<code>187:my_meta_key</code>' ) . '</p>
 				</div>
 				
