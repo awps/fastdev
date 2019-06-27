@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: FastDev
- * Plugin URI:  http://zerowp.com/fastdev
+ * Plugin URI:  https://zerowp.com/fastdev
  * Description: Helpful information and tools for WordPress developers.
  * Author:      Andrei Surdu
  * Author URI:  http://zerowp.com/
- * Version:     2.0.0
+ * Version:     __STABLE_TAG__
  * License:     GPL-3.0+
  * License URI: http://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain: fastdev
@@ -18,7 +18,7 @@ if ( ! function_exists( 'add_action' ) ) {
 }
 
 function fastdev_version() {
-	return '2.0.0';
+	return '__STABLE_TAG__';
 }
 
 // Constants

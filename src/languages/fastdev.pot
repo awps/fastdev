@@ -24,278 +24,278 @@ msgstr ""
 msgid "Search..."
 msgstr ""
 
-#: src/MainPage.class.php:20
+#: app/MainPage.class.php:20
 msgid "Fastdev"
 msgstr ""
 
-#: src/MainPage.class.php:79
+#: app/MainPage.class.php:79
 msgid "Active theme"
 msgstr ""
 
-#: src/MainPage.class.php:80
+#: app/MainPage.class.php:80
 msgid "Site URL"
 msgstr ""
 
-#: src/MainPage.class.php:81
+#: app/MainPage.class.php:81
 msgid "Home URL"
 msgstr ""
 
-#: src/MainPage.class.php:82
+#: app/MainPage.class.php:82
 msgid "Multisite"
 msgstr ""
 
-#: src/MainPage.class.php:86
+#: app/MainPage.class.php:86
 msgid "WordPress Version"
 msgstr ""
 
-#: src/MainPage.class.php:88
+#: app/MainPage.class.php:88
 msgid "WordPress Language"
 msgstr ""
 
-#: src/MainPage.class.php:89
+#: app/MainPage.class.php:89
 msgid "Permalink Structure"
 msgstr ""
 
-#: src/MainPage.class.php:90
+#: app/MainPage.class.php:90
 msgid "Show On Front"
 msgstr ""
 
-#: src/MainPage.class.php:104
+#: app/MainPage.class.php:104
 msgid "Active plugins"
 msgstr ""
 
-#: src/MainPage.class.php:109
+#: app/MainPage.class.php:109
 msgid "System:"
 msgstr ""
 
-#: src/MainPage.class.php:110
+#: app/MainPage.class.php:110
 msgid "Operating system"
 msgstr ""
 
-#: src/MainPage.class.php:111
+#: app/MainPage.class.php:111
 msgid "Server Software"
 msgstr ""
 
-#: src/MainPage.class.php:112
+#: app/MainPage.class.php:112
 msgid "PHP Version"
 msgstr ""
 
-#: src/MainPage.class.php:112
+#: app/MainPage.class.php:112
 msgid "PHP 5.4+ is recommended."
 msgstr ""
 
-#: src/MainPage.class.php:113
+#: app/MainPage.class.php:113
 msgid "MySQL Version"
 msgstr ""
 
-#: src/MainPage.class.php:114
+#: app/MainPage.class.php:114
 msgid "GD Version"
 msgstr ""
 
-#: src/MainPage.class.php:115
+#: app/MainPage.class.php:115
 msgid "Hostname"
 msgstr ""
 
-#: src/MainPage.class.php:116
+#: app/MainPage.class.php:116
 msgid "Server IP"
 msgstr ""
 
-#: src/MainPage.class.php:117
+#: app/MainPage.class.php:117
 msgid "Server Port"
 msgstr ""
 
-#: src/MainPage.class.php:118
+#: app/MainPage.class.php:118
 msgid "Server Document Root"
 msgstr ""
 
-#: src/MainPage.class.php:119
+#: app/MainPage.class.php:119
 msgid "Server Admin"
 msgstr ""
 
-#: src/MainPage.class.php:120
+#: app/MainPage.class.php:120
 msgid "Server Time"
 msgstr ""
 
-#: src/MainPage.class.php:120
+#: app/MainPage.class.php:120
 #, php-format
 msgid "%s - %s"
 msgstr ""
 
-#: src/MainPage.class.php:141
+#: app/MainPage.class.php:141
 msgid "Unknown"
 msgstr ""
 
-#: src/MySQLInfoPage.class.php:9
+#: app/MySQLInfoPage.class.php:9
 msgid "MySQL"
 msgstr ""
 
-#: src/MySQLInfoPage.class.php:19
+#: app/MySQLInfoPage.class.php:19
 msgid "Variable"
 msgstr ""
 
-#: src/MySQLInfoPage.class.php:20 src/WpConstantsPage.class.php:20
-#: src/WpOptionsPage.class.php:20
+#: app/MySQLInfoPage.class.php:20 app/WpConstantsPage.class.php:20
+#: app/WpOptionsPage.class.php:20
 msgid "Value"
 msgstr ""
 
-#: src/Page.class.php:71
+#: app/Page.class.php:71
 msgid "Congrats! you've created a new page."
 msgstr ""
 
-#: src/Page.class.php:256
+#: app/Page.class.php:256
 msgctxt "Default tab name."
 msgid "General"
 msgstr ""
 
-#: src/PhpInfoPage.class.php:9
+#: app/PhpInfoPage.class.php:9
 msgid "PHP"
 msgstr ""
 
-#: src/Tab.class.php:40
+#: app/Tab.class.php:40
 msgid "Congrats! you've created a new page tab."
 msgstr ""
 
-#: src/WPMimesPage.class.php:9
+#: app/WPMimesPage.class.php:9
 msgid "Mimes"
 msgstr ""
 
-#: src/WPMimesPage.class.php:20
+#: app/WPMimesPage.class.php:20
 msgid "Extension"
 msgstr ""
 
-#: src/WPMimesPage.class.php:21
+#: app/WPMimesPage.class.php:21
 msgid "Mime type"
 msgstr ""
 
-#: src/WPMimesPage.class.php:22
+#: app/WPMimesPage.class.php:22
 msgid "Allowed"
 msgstr ""
 
-#: src/WPMimesPage.class.php:42
+#: app/WPMimesPage.class.php:42
 msgid "Yes"
 msgstr ""
 
-#: src/WPRegisteredWidgetsList.class.php:9
+#: app/WPRegisteredWidgetsList.class.php:9
 msgid "Widgets"
 msgstr ""
 
-#: src/WPRegisteredWidgetsList.class.php:19 src/WpClassesPage.class.php:19
+#: app/WPRegisteredWidgetsList.class.php:19 app/WpClassesPage.class.php:19
 msgid "Class name"
 msgstr ""
 
-#: src/WPRegisteredWidgetsList.class.php:20
+#: app/WPRegisteredWidgetsList.class.php:20
 msgid "Name"
 msgstr ""
 
-#: src/WPRegisteredWidgetsList.class.php:21
+#: app/WPRegisteredWidgetsList.class.php:21
 msgid "ID Base"
 msgstr ""
 
-#: src/WPRegisteredWidgetsList.class.php:53
+#: app/WPRegisteredWidgetsList.class.php:53
 msgid "A list of all registered widgets"
 msgstr ""
 
-#: src/WpClassesPage.class.php:9
+#: app/WpClassesPage.class.php:9
 msgid "Classes"
 msgstr ""
 
-#: src/WpClassesPage.class.php:20 src/WpFunctionsPage.class.php:21
+#: app/WpClassesPage.class.php:20 app/WpFunctionsPage.class.php:21
 msgid "Defined in:"
 msgstr ""
 
-#: src/WpClassesPage.class.php:54
+#: app/WpClassesPage.class.php:54
 msgid "Properties"
 msgstr ""
 
-#: src/WpClassesPage.class.php:57
+#: app/WpClassesPage.class.php:57
 msgid "Methods"
 msgstr ""
 
-#: src/WpClassesPage.class.php:66
+#: app/WpClassesPage.class.php:66
 msgid "Source"
 msgstr ""
 
-#: src/WpConstantsPage.class.php:9
+#: app/WpConstantsPage.class.php:9
 msgid "Constants"
 msgstr ""
 
-#: src/WpConstantsPage.class.php:19
+#: app/WpConstantsPage.class.php:19
 msgid "Constant name"
 msgstr ""
 
-#: src/WpFunctionsPage.class.php:9
+#: app/WpFunctionsPage.class.php:9
 msgid "Functions"
 msgstr ""
 
-#: src/WpFunctionsPage.class.php:20
+#: app/WpFunctionsPage.class.php:20
 msgid "Function"
 msgstr ""
 
-#: src/WpFunctionsPage.class.php:22
+#: app/WpFunctionsPage.class.php:22
 msgid "Codex"
 msgstr ""
 
-#: src/WpFunctionsPage.class.php:23
+#: app/WpFunctionsPage.class.php:23
 msgid "Developer"
 msgstr ""
 
-#: src/WpFunctionsPage.class.php:37 src/WpFunctionsPage.class.php:41
+#: app/WpFunctionsPage.class.php:37 app/WpFunctionsPage.class.php:41
 msgid "View &rarr;"
 msgstr ""
 
-#: src/WpHooksPage.class.php:9
+#: app/WpHooksPage.class.php:9
 msgid "Hooks"
 msgstr ""
 
-#: src/WpOptionsPage.class.php:9
+#: app/WpOptionsPage.class.php:9
 msgid "WP Options"
 msgstr ""
 
-#: src/WpOptionsPage.class.php:19
+#: app/WpOptionsPage.class.php:19
 msgid "Option ID"
 msgstr ""
 
-#: src/WpOptionsPage.class.php:44
+#: app/WpOptionsPage.class.php:44
 msgid "Refresh"
 msgstr ""
 
-#: src/WpOptionsPage.class.php:45
+#: app/WpOptionsPage.class.php:45
 msgid "Auto refresh"
 msgstr ""
 
-#: src/WpOptionsPage.class.php:46
+#: app/WpOptionsPage.class.php:46
 msgid "Delete option"
 msgstr ""
 
-#: src/WpOptionsPage.class.php:80 src/WpOptionsPage.class.php:94
+#: app/WpOptionsPage.class.php:80 app/WpOptionsPage.class.php:94
 msgid "Error. Please refresh the page."
 msgstr ""
 
-#: src/WpOptionsPage.class.php:86
+#: app/WpOptionsPage.class.php:86
 msgid "Option does not exists."
 msgstr ""
 
-#: src/WpOptionsPage.class.php:97
+#: app/WpOptionsPage.class.php:97
 msgid "Option deleted."
 msgstr ""
 
-#: src/WpOptionsPage.class.php:100
+#: app/WpOptionsPage.class.php:100
 msgid "Can't delete this option."
 msgstr ""
 
-#: src/WpUserMetaPage.class.php:9
+#: app/WpUserMetaPage.class.php:9
 msgid "User Meta"
 msgstr ""
 
-#: src/WpUserMetaPage.class.php:37
+#: app/WpUserMetaPage.class.php:37
 msgid "Username"
 msgstr ""
 
-#: src/WpUserMetaPage.class.php:40
+#: app/WpUserMetaPage.class.php:40
 msgid "Get user details"
 msgstr ""
 
-#: src/WpUserMetaPage.class.php:53
+#: app/WpUserMetaPage.class.php:53
 msgid "User not found!"
 msgstr ""
 

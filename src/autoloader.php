@@ -4,7 +4,7 @@ spl_autoload_register( function ( $class ) {
 	$prefix = 'Fastdev\\';
 
 	// base directory for the namespace prefix
-	$base_dir = plugin_dir_path( __FILE__ ) . 'src/';
+	$base_dir = plugin_dir_path( __FILE__ ) . 'app/';
 
 	// does the class use the namespace prefix?
 	$len = strlen( $prefix );
