@@ -3,7 +3,7 @@
 PLUGIN_SLUG="${PWD##*/}"
 
 sed -i -e "s/__STABLE_TAG__/$TRAVIS_TAG/g" ./src/readme.txt
-sed -i -e "s/__STABLE_TAG__/$TRAVIS_TAG/g" ./src/${PWD##*/}.php
+sed -i -e "s/__STABLE_TAG__/$TRAVIS_TAG/g" ./src/plugin-base.php
 svn co --depth immediates "https://plugins.svn.wordpress.org/$PLUGIN_SLUG" ./svn
 
 svn update --set-depth infinity ./svn/trunk
