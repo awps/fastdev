@@ -10,6 +10,8 @@
  * License URI: http://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain: fastdev
  * Domain Path: /languages
+ * Requires PHP: 5.3
+ * Requires at least: 4.4
  */
 
 // Do not allow direct access to this file.
