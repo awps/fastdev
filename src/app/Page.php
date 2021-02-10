@@ -599,7 +599,7 @@ class Page {
 		if ( isset( $all_menus ) ) {
 			foreach ( $all_menus as $key => $par_menu ) {
 				foreach ( $par_menu as $key => $submenu ) {
-					if (isset($submenu[2]) {
+					if (isset($submenu[2])) {
 						$exact_pages[] = $submenu[2];
 					}
 				}
