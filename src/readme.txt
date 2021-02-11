@@ -54,6 +54,12 @@ Icon attribution: http://www.flaticon.com/free-icon/robot_189740
 
 == Changelog ==
 
+= 1.7.0 =
+* Improvement: User meta menu item from admin bar now redirects to the user meta directly if it's accessed from a page which returns true to `is_author()`;
+* New: Added "Post Meta" tab.
+* New: The new post meta menu item from the admin bar now redirects to the post meta directly if it's accessed from a page that returns true to `is_singular()` or `is_page()`;
+* Bug fix: Other bug fixes and minor changes.
+
 = 1.5.0 =
 * Bug fix: Get site language from WPLANG options not from WPLANG constant.
 * Improvement: Better and more info on "Site info" page.
