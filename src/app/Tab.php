@@ -26,6 +26,10 @@ class Tab {
 		}
 	}
 
+	public function adminBarQueryArgs(){
+	    return [];
+    }
+
 	public function adminBar() {
 		global $wp_admin_bar;
 
@@ -33,7 +37,10 @@ class Tab {
 			'id'     => $this->tab_id,
 			'parent' => $this->parent_page_id,
 			'title'  => $this->getSetting( 'label' ),
-			'href'   => admin_url( add_query_arg( 'tab', $this->tab_id, 'admin.php?page=' . $this->parent_page_id ) ),
+			'href'   => admin_url( add_query_arg(
+			    wp_parse_args($this->adminBarQueryArgs(), ['tab' => $this->tab_id]),
+                'admin.php?page=' . $this->parent_page_id )
+            ),
 		) );
 	}
 

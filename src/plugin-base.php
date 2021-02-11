@@ -208,25 +208,17 @@ $fastdev_page->init();
 $wpo = new Fastdev\Options( 'options', 'fd-main' );
 $wpo->registerAjax();
 
-new Fastdev\Hooks( 'hooks', 'fd-main' );
-
-new Fastdev\Classes( 'classes', 'fd-main' );
-
-new Fastdev\Functions( 'functions', 'fd-main' );
-
-new Fastdev\UserMeta( 'fd-user-meta', 'fd-main' );
-
-new Fastdev\PhpInfo( 'fd-phpinfo', 'fd-main' );
-
-new Fastdev\Constants( 'fd-wp-constants', 'fd-main' );
-
-new Fastdev\MySQLInfo( 'fd-mysqlinfo', 'fd-main' );
-
-new Fastdev\RegisteredWidgetsList( 'fd-wpregisteredwidgetslist', 'fd-main' );
-
-new Fastdev\Sidebars( 'fd-sidebars', 'fd-main' );
-
-new Fastdev\Mimes( 'fd-wp-mimes', 'fd-main' );
+(new Fastdev\Hooks( 'hooks', 'fd-main' ));
+(new Fastdev\Classes( 'classes', 'fd-main' ));
+(new Fastdev\Functions( 'functions', 'fd-main' ));
+(new Fastdev\UserMeta( 'fd-user-meta', 'fd-main' ));
+(new Fastdev\PostMeta( 'fd-post-meta', 'fd-main' ));
+(new Fastdev\PhpInfo( 'fd-phpinfo', 'fd-main' ));
+(new Fastdev\Constants( 'fd-wp-constants', 'fd-main' ));
+(new Fastdev\MySQLInfo( 'fd-mysqlinfo', 'fd-main' ));
+(new Fastdev\RegisteredWidgetsList( 'fd-wpregisteredwidgetslist', 'fd-main' ));
+(new Fastdev\Sidebars( 'fd-sidebars', 'fd-main' ));
+(new Fastdev\Mimes( 'fd-wp-mimes', 'fd-main' ));
 
 $testing = new Fastdev\Testing( 'fd-testing', 'fd-main' );
 $testing->registerAjaxHook();
