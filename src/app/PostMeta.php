@@ -9,11 +9,11 @@ class PostMeta extends Tab
         $currentId = '';
 
         if (is_single() || is_page()) {
-            $currentId = ' ('. get_queried_object_id() .')';
+            $currentId = ' (' . get_queried_object_id() . ')';
         }
 
         return [
-            'label' => __('Post Meta'. $currentId, 'fastdev'),
+            'label' => __('Post Meta' . $currentId, 'fastdev'),
         ];
     }
 
