@@ -78,7 +78,7 @@ class PostMeta extends Tab
         echo '<form method="get" class="fd-form">
                 <div class="field">
                 <label>' . __('New Post Meta Query', 'fastdev') . '</label> 
-				<input type="number" value="' . $field_value . '" name="fd-post-id" class="regular-text">
+				<input type="number" value="' . $field_value . '" name="fd-post-id">
 				' . get_submit_button($btn_label, 'primary large', false, false) . '
 				<input type="hidden" value="fd-main" name="page">
 				<input type="hidden" value="' . $this->tab_id . '" name="tab">

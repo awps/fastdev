@@ -54,7 +54,6 @@ class UserMeta extends Tab
     {
         $field_value = !empty($_POST['fd-get-username']) ? $_POST['fd-get-username'] : '';
         $btn_label = !empty($_POST['fd-get-username']) ? __('Refresh user details', 'fastdev') : __('Get user details', 'fastdev');
-        $show_field = !empty($_POST['fd-get-username']) ? ' style="display: none;"' : '';
 
         $userId = null;
 
@@ -97,17 +96,12 @@ class UserMeta extends Tab
             $this->makeTable(get_user_meta($userId));
         }
 
-        $form = '<form method="post" class="fd-form">';
-
-        $form .= '<div class="field"' . $show_field . '><label>' . __('New User Meta Query', 'fastdev') . '
+        echo '<form method="post" class="fd-form">
+                <div class="field"><label>' . __('New User Meta Query', 'fastdev') . '
 				</label> <input type="text" value="' . $field_value . '" name="fd-get-username" class="regular-text">
-			</div>';
-
-        $form .= get_submit_button($btn_label);
-
-        $form .= '</form>';
-
-        echo $form;
+				' . get_submit_button($btn_label, 'primary large', false, false) . '
+			</div>
+			</form>';
     }
 
 }
