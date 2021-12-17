@@ -5,13 +5,13 @@
  * Description: Helpful information and tools for WordPress developers.
  * Author:      Andrei Surdu
  * Author URI:  http://zerowp.com/
- * Version:     __STABLE_TAG__
  * License:     GPL-3.0+
  * License URI: http://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain: fastdev
  * Domain Path: /languages
  * Requires PHP: 5.3
  * Requires at least: 4.4
+ * Version: 1.7.2
  */
 
 // Do not allow direct access to this file.
@@ -19,8 +19,10 @@ if ( ! function_exists( 'add_action' ) ) {
 	die();
 }
 
+define( 'FASTDEV_VERSION', '1.7.2' );
+
 function fastdev_version() {
-	return '__STABLE_TAG__';
+	return FASTDEV_VERSION;
 }
 
 // Constants

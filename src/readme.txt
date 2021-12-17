@@ -3,8 +3,8 @@ Donate link: http://paypal.me/zerowp
 Contributors: _smartik_
 Tags: dev, developers, debug, analyze, inspect, test, security, options
 Requires at least: 4.4
-Tested up to: 5.7.0
-Stable tag: __STABLE_TAG__
+Tested up to: 5.9.0
+Stable tag: 1.7.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -53,6 +53,13 @@ Icon attribution: http://www.flaticon.com/free-icon/robot_189740
 11. Enabled mime types
 
 == Changelog ==
+
+= 1.7.2 =
+* Replace `SCRIPTS_DEBUG` with `SCRIPT_DEBUG` in the main page report
+* WP Compatibility Update
+
+= 1.7.1 =
+* WP Compatibility Update
 
 = 1.7.0 =
 * Improvement: User meta menu item from admin bar now redirects to the user meta directly if it's accessed from a page which returns true to `is_author()`;
