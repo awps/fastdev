@@ -231,7 +231,7 @@ class MainPage extends Page {
 
 		$sys[] = array(
 			'label' => __( 'Scripts debug', 'fastdev' ),
-			'value' => $this->getConstant( 'SCRIPTS_DEBUG' ),
+			'value' => $this->getConstant( 'SCRIPT_DEBUG' ),
 			// translators: Scripts debug.
 			'tip'   => sprintf( __( 'Open %1$s and add this code %2$s. This will enable unminified scripts and styles loading.', 'fastdev' ), '<code>wp-config.php</code>', '<code>define( \'SCRIPT_DEBUG\', true );</code>' ),
 		);
