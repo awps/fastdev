@@ -36,7 +36,7 @@ class Hooks extends Tab {
 				return;
 			}
 
-			echo '<h3>' . $hook . '</h3>';
+			echo '<h3><a href="https://developer.wordpress.org/reference/hooks/" target="_blank">' . $hook . '/</a></h3>';
 			fd_code( $wp_filter[ $hook ] );
 		} else {
 			fd_search();
