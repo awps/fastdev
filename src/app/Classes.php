@@ -44,7 +44,7 @@ class Classes extends Tab {
 
 			$cl = new \ReflectionClass( $class );
 
-			echo '<h3>' . $class . '</h3>';
+			echo '<h3><a href="https://developer.wordpress.org/reference/classes/" target="_blank">' . $class . '/</a></h3>';
 
 			fd_code( $cl->getDocComment() );
 
