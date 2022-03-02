@@ -57,7 +57,7 @@ class Functions extends Tab {
 
 			$func = new \ReflectionFunction( $function );
 
-			echo '<h3>' . $function . '</h3>';
+			echo '<h3><a href="https://developer.wordpress.org/reference/functions/" target="_blank">' . $function . '</a></h3>';
 
 			fd_code( $func->getDocComment() );
 
