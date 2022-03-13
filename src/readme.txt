@@ -3,8 +3,8 @@ Donate link: http://paypal.me/zerowp
 Contributors: _smartik_
 Tags: dev, developers, debug, analyze, inspect, test, security, options
 Requires at least: 4.4
-Tested up to: 5.9.0
-Stable tag: 1.7.3
+Tested up to: 5.9.2
+Stable tag: 1.8.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -53,6 +53,9 @@ Icon attribution: http://www.flaticon.com/free-icon/robot_189740
 11. Enabled mime types
 
 == Changelog ==
+
+= 1.8.2 =
+* Update readme
 
 = 1.8.0 =
 * Update PHP versions, DB explorer, remove Testing and JSON parser
