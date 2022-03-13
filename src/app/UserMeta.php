@@ -97,7 +97,7 @@ class UserMeta extends Tab
         }
 
         echo '<form method="post" class="fd-form">
-                <div class="field"><label>' . __('New User Meta Query', 'fastdev') . '
+                <div class="field"><label>' . __('Username', 'fastdev') . '
 				</label> <input type="text" value="' . $field_value . '" name="fd-get-username" class="regular-text">
 				' . get_submit_button($btn_label, 'primary large', false, false) . '
 			</div>

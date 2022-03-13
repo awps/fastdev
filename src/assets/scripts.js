@@ -112,6 +112,12 @@
                                 Prism.highlightElement(pre_block[0]);
                             }
                         }
+
+                        var cl = _t.closest('.fd-kv-row--deletable');
+
+                        cl.slideUp(300, function() {
+                            cl.remove();
+                        });
                     }
                 },
                 complete: function (jqXHR, textStatus) {

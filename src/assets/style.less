@@ -139,6 +139,14 @@ input {
 	}
 }
 
+.fd-key-val-table .fd-kv-row .fd-button-delete {
+    visibility: hidden;
+    opacity: 0;
+}
+.fd-key-val-table .fd-kv-row:hover .fd-button-delete {
+    visibility: visible;
+    opacity: 1;
+}
 /*
 -------------------------------------------------------------------------------
 Inner styles
@@ -315,6 +323,10 @@ Form
 			height: 20px;
 		}
 	}
+
+    &--inline{
+        padding: 1px 3px;
+    }
 }
 
 .fd-button-refresh {
@@ -668,4 +680,21 @@ JSON formatter
 		margin-left: 0;
 		margin-right: 5px;
 	}
+}
+
+
+// DB: Table
+// ----------------------------------------------------------------------------
+.fd-db-table-view{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 30px;
+}
+
+.fd-db-table{
+    margin-top: 20px;
+}
+
+.fd-db-table-view .selected-table{
+    background: #aaa;
 }

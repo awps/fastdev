@@ -156,7 +156,17 @@ function fd_code( $code, $escape = false, $language = 'php' ) {
 	echo '</code></pre>';
 }
 
-//------------------------------------//--------------------------------------//
+// Add the "Manage" link on plugins page.
+// ----------------------------------------------------------------------------
+add_action( 'plugin_action_links_' . plugin_basename( __FILE__ ),
+function ( $links ): array {
+    $label = esc_html__( 'Manage', 'acd-settings' );
+    $slug  = 'fd-main';
+
+    array_unshift( $links, "<a href='admin.php?page=$slug'>$label</a>" );
+
+    return $links;
+}, 10 );
 
 /**
  * Get all classes from a project.
@@ -221,12 +231,7 @@ $wpo->registerAjax();
 (new Fastdev\RegisteredWidgetsList( 'fd-wpregisteredwidgetslist', 'fd-main' ));
 (new Fastdev\Sidebars( 'fd-sidebars', 'fd-main' ));
 (new Fastdev\Mimes( 'fd-wp-mimes', 'fd-main' ));
-
-$testing = new Fastdev\Testing( 'fd-testing', 'fd-main' );
-$testing->registerAjaxHook();
-
-$json_parser = new Fastdev\JsonParse( 'fd-json-parser', 'fd-main' );
-$json_parser->registerAjaxHook();
+(new Fastdev\DB( 'fd-db', 'fd-main' ));
 
 new Fastdev\AdminBarInfo();
 
