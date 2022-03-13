@@ -54,6 +54,9 @@ Icon attribution: http://www.flaticon.com/free-icon/robot_189740
 
 == Changelog ==
 
+= 1.8.0 =
+* Update PHP versions, DB explorer, remove Testing and JSON parser
+
 = 1.7.2 =
 * Replace `SCRIPTS_DEBUG` with `SCRIPT_DEBUG` in the main page report
 * WP Compatibility Update
