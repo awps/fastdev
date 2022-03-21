@@ -35,7 +35,7 @@ class DB extends Tab
                     $columns     = wp_list_pluck($wpdb->get_results("SHOW COLUMNS FROM $tableName", ARRAY_A), 'Field');
                     $firstColumn = $columns[0];
 
-                    $results = $wpdb->get_results("SELECT * FROM $tableName ORDER BY $firstColumn DESC LIMIT 0, 300",
+                    $results = $wpdb->get_results("SELECT * FROM $tableName ORDER BY $firstColumn DESC LIMIT 0, 100",
                         ARRAY_A);
 
                     $tableWidth = count($columns) / 5 * 100;

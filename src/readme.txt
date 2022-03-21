@@ -1,6 +1,6 @@
 === FastDev ===
 Donate link: http://paypal.me/zerowp
-Contributors: _smartik_
+Contributors: _smartik_, awps
 Tags: dev, developers, debug, analyze, inspect, test, security, options
 Requires at least: 4.4
 Tested up to: 5.9.2
@@ -53,6 +53,9 @@ Icon attribution: http://www.flaticon.com/free-icon/robot_189740
 11. Enabled mime types
 
 == Changelog ==
+
+= 1.8.3 =
+* Limit DB results to 100 for performance reasons.
 
 = 1.8.2 =
 * Update readme
