@@ -1,6 +1,6 @@
 {
   "name": "fastdev",
-  "version": "1.7.3",
+  "version": "1.8.3",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -18,5 +18,8 @@
   "homepage": "https://github.com/awps/fastdev#readme",
   "devDependencies": {
     "replace-in-file": "^6.3.2"
+  },
+  "dependencies": {
+    "tagy": "^1.8.0"
   }
 }

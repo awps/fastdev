@@ -11,7 +11,7 @@
  * Domain Path: /languages
  * Requires PHP: 5.3
  * Requires at least: 4.4
- * Version: 1.8.2
+ * Version: 1.8.3
  */
 
 // Do not allow direct access to this file.
@@ -19,7 +19,7 @@ if ( ! function_exists( 'add_action' ) ) {
 	die();
 }
 
-define( 'FASTDEV_VERSION', '1.8.2' );
+define( 'FASTDEV_VERSION', '1.8.3' );
 
 function fastdev_version() {
 	return FASTDEV_VERSION;
