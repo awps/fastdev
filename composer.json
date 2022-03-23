@@ -1,0 +1,13 @@
+{
+    "name": "awps/fastdev",
+    "description": "fastdev",
+    "type": "wordpress-plugin",
+    "license": "GPLv2 or later",
+    "require": {
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "humanmade/coding-standards": "^1.1",
+        "phpcompatibility/phpcompatibility-wp": "^2.1"
+    }
+}
