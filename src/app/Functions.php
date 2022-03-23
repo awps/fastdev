@@ -33,8 +33,8 @@ class Functions extends Tab {
 				$codex_url_val = trim( $value );
 
 				$output .= '<div class="fd-kv-row">';
-				$output .= '<div class="filter-this" style="width: 30%;"><div class="fd-kv-code"><a href="' . add_query_arg( 'fd-get-function', $value ) . '">' . $value . '</a></div></div>';
-				$output .= '<div style="width: 30%;"><div class="fd-kv-code">' . $filename . '</div></div>';
+				$output .= '<div class="filter-this" style="width: 30%;"><div class="fd-kv-code"><a href="' . add_query_arg( 'fd-get-function', $value ) . '">' . esc_html($value) . '</a></div></div>';
+				$output .= '<div style="width: 30%;"><div class="fd-kv-code">' . esc_html($filename) . '</div></div>';
 				$output .= '<div style="width: 20%;"><div class="fd-kv-code">
 							<a href="https://codex.wordpress.org/Function_Reference/' . ( ( '__' == $codex_url_val ) ? '_2' : $codex_url_val ) . '" target="_blank">' . __( 'View &rarr;', 'fastdev' ) . '</a>
 							</div></div>';
@@ -45,19 +45,23 @@ class Functions extends Tab {
 				$output .= '</div>';
 			}
 			$output .= '</div>';
-			echo $output;
+			echo $output; // phpcs:ignore  -- The table, inner columns are already escaped
 		} else {
 			fd_code( $options );
 		}
 	}
 
 	public function page() {
-		if ( ! empty( $_GET['fd-get-function'] ) ) {
-			$function = $_GET['fd-get-function'];
+        if ( ! wp_verify_nonce(fdGetGlobalNonce(), 'fastdev-admin')) {
+            return;
+        }
+
+        if ( ! empty( $_GET['fd-get-function'] ) ) {
+			$function = wp_kses_data(wp_unslash($_GET['fd-get-function']));
 
 			$func = new \ReflectionFunction( $function );
 
-			echo '<h3>' . $function . '</h3>';
+			echo '<h3>' . esc_html($function) . '</h3>';
 
 			fd_code( $func->getDocComment() );
 

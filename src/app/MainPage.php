@@ -562,7 +562,6 @@ class MainPage extends Page
 
     public function page()
     {
-        fd_create_temp_link($this->id);
         $this->makeTable($this->sysArray());
     }
 

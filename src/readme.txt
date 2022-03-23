@@ -4,7 +4,7 @@ Contributors: _smartik_, awps
 Tags: dev, developers, debug, analyze, inspect, test, security, options
 Requires at least: 4.4
 Tested up to: 5.9.2
-Stable tag: 1.8.3
+Stable tag: 1.9.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -54,7 +54,7 @@ Icon attribution: http://www.flaticon.com/free-icon/robot_189740
 
 == Changelog ==
 
-= 1.8.3 =
+= 1.9.0 =
 * Limit DB results to 100 for performance reasons.
 
 = 1.8.2 =

@@ -22,19 +22,23 @@ class MySQLInfo extends Tab {
 
 			foreach ( $options as $key => $value ) {
 				$output .= '<div class="fd-kv-row">';
-				$output .= '<div class="filter-this"><div class="fd-kv-code"><a href="' . add_query_arg( 'fd-get-option', $key ) . '">' . $key . '</a></div></div>';
+				$output .= '<div class="filter-this"><div class="fd-kv-code"><a href="' . add_query_arg( 'fd-get-option', $key ) . '">' . esc_html($key) . '</a></div></div>';
 				$output .= '<div class="filter-this"><div class="fd-kv-code">' . esc_html( $value ) . '</div></div>';
 				$output .= '</div>';
 			}
 			$output .= '</div>';
-			echo $output;
+			echo $output;  // phpcs:ignore  -- The table, inner columns are already escaped
 		} else {
 			fd_code( $options );
 		}
 	}
 
 	public function page() {
-		global $wpdb;
+        if ( ! wp_verify_nonce(fdGetGlobalNonce(), 'fastdev-admin')) {
+            return;
+        }
+
+        global $wpdb;
 		$mysql   = $wpdb->get_results( "SHOW VARIABLES" );
 		$options = array();
 		if ( $mysql ) {
@@ -44,9 +48,9 @@ class MySQLInfo extends Tab {
 
 			if ( ! empty( $options ) ) :
 				if ( ! empty( $_GET['fd-get-option'] ) ) {
-					$option = sanitize_title( $_GET['fd-get-option'] );
+					$option = sanitize_title( wp_unslash($_GET['fd-get-option']) );
 
-					echo '<h3>' . $option . '</h3>';
+					echo '<h3>' . esc_html($option) . '</h3>';
 					fd_code( $options[ $option ] );
 				} else {
 					fd_search();

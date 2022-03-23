@@ -22,18 +22,21 @@ class Constants extends Tab {
 
 			foreach ( $options as $key => $value ) {
 				$output .= '<div class="fd-kv-row">';
-				$output .= '<div class="filter-this"><div class="fd-kv-code">' . $key . '</div></div>';
+				$output .= '<div class="filter-this"><div class="fd-kv-code">' . esc_html($key) . '</div></div>';
 				$output .= '<div><div class="fd-kv-code">' . esc_html( $value ) . '</div></div>';
 				$output .= '</div>';
 			}
 			$output .= '</div>';
-			echo $output;
+			echo $output;   // phpcs:ignore  -- The table, inner columns are already escaped
 		} else {
 			fd_code( $options );
 		}
 	}
 
 	public function page() {
+        if ( ! wp_verify_nonce(fdGetGlobalNonce(), 'fastdev-admin')) {
+            return;
+        }
 		$all_constants = get_defined_constants( true );
 
 		if ( ! empty( $all_constants['user'] ) ) {

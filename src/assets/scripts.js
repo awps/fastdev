@@ -130,48 +130,6 @@
 
         });
 
-        $('#wp-option-edit-key').on('change', function () {
-            var _t = $(this),
-                _origin = _t.data('original-option-key'),
-                _to = _t.val();
-            if (!window.confirm('Warning: Are you sure that you want to change the key of this option? ')) {
-                return;
-            }
-
-            _t.attr('disabled', 'disabled').css('opacity', 0.4);
-
-            $.ajax({
-                type: "POST",
-                url: ajaxurl,
-                data: {
-                    "action": 'fastdev_edit_option_key',
-                    "option_from": _origin,
-                    "option_to": _to,
-                },
-
-                success: function (response) {
-                    console.log(response);
-
-                    _t.removeAttr('disabled').css('opacity', '');
-
-                    if (response && response === 'success') {
-                        fastdev_url_param('fd-get-option', _to);
-
-                        $('#fd-refresh-option').data('option', _to);
-                        $('#fd-delete-option').data('option', _to);
-                        _t.data('original-option-key', _to);
-                    }
-                },
-                complete: function (jqXHR, textStatus) {
-                    // _t.removeClass('active').children( '.fastdev-loader' ).remove();
-                },
-
-                timeOut: 1000 * 60 //1 minute
-
-            });
-
-        });
-
         $(window).on('focus', function () {
             if ($('#testing-autorefresh').is(':checked')) {
                 $('.js-fastdev-testing-form').trigger('submit');

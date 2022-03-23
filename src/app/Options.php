@@ -43,7 +43,7 @@ class Options extends Tab
 
                 $output .= '<div class="fd-kv-row fd-kv-row--deletable">';
                 $output .= '<div class="filter-this"><div class="fd-kv-code">
-                    <a href="' . add_query_arg('fd-get-option', $key) . '">' . $key . '</a>
+                    <a href="' . esc_url(add_query_arg('fd-get-option', $key)) . '">' . esc_html($key) . '</a>
                     <span id="fd-delete-option" class="fd-button-delete fd-button-delete--inline"' . $data_attr . '>' . __('Delete option',
                         'fastdev') . '</span>
                 </div></div>';
@@ -51,7 +51,7 @@ class Options extends Tab
                 $output .= '</div>';
             }
             $output .= '</div>';
-            echo $output;
+            echo $output; // phpcs:ignore -- Table HTML. Columns are already escaped
         } else {
             fd_code($options);
         }
@@ -59,10 +59,9 @@ class Options extends Tab
 
     public function page()
     {
-        if ( ! empty($_GET['fd-get-option'])) {
-            $option            = sanitize_title($_GET['fd-get-option']);
-            $data_attr         = $this->getDataAtr($option);
-            $data_original_key = ' data-original-option-key="' . $option . '"';
+        if ( ! empty($this->get('fd-get-option'))) {
+            $option    = sanitize_title($this->get('fd-get-option'));
+            $data_attr = $this->getDataAtr($option);
 
             $action_buttons = '<span id="fd-refresh-option" class="fd-button-refresh"' . $data_attr . '>' . __('Refresh',
                     'fastdev') . '</span>';
@@ -71,7 +70,7 @@ class Options extends Tab
             $action_buttons .= '<span id="fd-delete-option" class="fd-button-delete"' . $data_attr . '>' . __('Delete option',
                     'fastdev') . '</span>';
 
-            echo '<h3><input id="wp-option-edit-key" type="text" value="' . esc_attr($option) . '" ' . $data_original_key . ' />' . $action_buttons . '</h3>';
+            echo '<h3><strong>' . esc_html($option) .'</strong>'. $action_buttons. '</h3>'; // phpcs:ignore -- Already done above
             echo '<div id="fd-wpo-code-block">';
             fd_code(get_option($option), true);
             echo '</div>';
@@ -86,18 +85,18 @@ class Options extends Tab
     {
         add_action('wp_ajax_fastdev_delete_option', [$this, 'deleteOption']);
         add_action('wp_ajax_fastdev_refresh_option', [$this, 'refreshOption']);
-        add_action('wp_ajax_fastdev_edit_option_key', [$this, 'editOptionKey']);
     }
 
     public function canProcess()
     {
-        if (empty($_POST['option_id'])) {
+        if (empty($_POST['option_id']) || empty($_POST['nonce'])) {
             return false;
         }
 
-        $option = sanitize_title($_POST['option_id']);
+        $nonce  = wp_kses_data(wp_unslash($_POST['nonce']));
+        $option = sanitize_title(wp_unslash($_POST['option_id']));
 
-        if ( ! wp_verify_nonce($_POST['nonce'], $option)) {
+        if ( ! wp_verify_nonce($nonce, $option)) {
             return false;
         }
 
@@ -134,31 +133,15 @@ class Options extends Tab
         die();
     }
 
-    public function editOptionKey()
-    {
-        $key_from    = $_POST['option_from'];
-        $key_to      = $_POST['option_to'];
-        $option_data = get_option($key_from);
-
-        if (add_option($key_to, $option_data)) {
-            delete_option($key_from);
-            echo 'success';
-        } else {
-            echo 'fail';
-        }
-
-        die();
-    }
-
     public function ajaxMessage($msg, $type = 'error')
     {
-        die('<div class="fastdev-ajax-message is-' . $type . '">' . $msg . '</div>');
+        die('<div class="fastdev-ajax-message is-' . sanitize_html_class($type) . '">' . esc_html($msg) . '</div>');
     }
 
     public function getDataAtr($option)
     {
-        $data_attr = ' data-option="' . $option . '"';
-        $data_attr .= ' data-nonce="' . wp_create_nonce($option) . '"';
+        $data_attr = ' data-option="' . esc_attr($option) . '"';
+        $data_attr .= ' data-nonce="' . esc_attr(wp_create_nonce($option)) . '"';
 
         return $data_attr;
     }

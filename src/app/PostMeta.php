@@ -13,7 +13,7 @@ class PostMeta extends Tab
         }
 
         return [
-            'label' => __('Post Meta' . $currentId, 'fastdev'),
+            'label' => sprintf(esc_html__('Post Meta %s', 'fastdev'), $currentId),
         ];
     }
 
@@ -30,58 +30,64 @@ class PostMeta extends Tab
 
     public function makeTable($options, $single_meta = false)
     {
-        if (is_array($options) && !$single_meta) {
+        if (is_array($options) && ! $single_meta) {
             ksort($options);
             $output = '<div class="fd-key-val-table">';
             foreach ($options as $key => $value) {
                 $output .= '<div class="fd-kv-row cols-30x40x30">';
-                $output .= '<div class="filter-this"><div class="fd-kv-code"><a href="' . add_query_arg([
+                $output .= '<div class="filter-this"><div class="fd-kv-code"><a href="' . fdGlobalNonceUrl(add_query_arg([
                         'fd-get-post-meta' => $key,
-                    ]) . '">' . $key . '</a></div></div>';
+                    ])) . '">' . $key . '</a></div></div>';
                 $output .= '<div><div class="fd-kv-code">' . esc_html($value[0]) . '</div></div>';
                 $output .= '</div>';
             }
             $output .= '</div>';
-            echo $output;
-        }
-        else {
+            echo $output;  // phpcs:ignore  -- The table, inner columns are already escaped
+        } else {
             fd_code($options);
         }
     }
 
     public function page()
     {
-        $field_value = !empty($_GET['fd-post-id']) ? $_GET['fd-post-id'] : '';
-        $btn_label = __('Get post meta', 'fastdev');
+        if ( ! wp_verify_nonce(fdGetGlobalNonce(), 'fastdev-admin')) {
+            return;
+        }
 
-        $postId = !empty($_GET['fd-post-id']) && (int)$_GET['fd-post-id'] > 0 ? (int)$_GET['fd-post-id'] : null;
+        $field_value = $this->get('fd-post-id');
+        $btn_label   = esc_html__('Get post meta', 'fastdev');
+
+        $postId = ! empty($this->get('fd-post-id')) && (int)$this->get('fd-post-id') > 0 ? (int)$this->get('fd-post-id') : null;
 
         if ($postId !== null) {
-            if (!empty($_GET['fd-get-post-meta'])) {
+            if ( ! empty($this->get('fd-get-post-meta'))) {
                 echo '<h3>' . sprintf(
-                        __('Single meta key %s for: %s', 'fastdev'),
-                        '<code>' . sanitize_key($_GET['fd-get-post-meta']) . '</code>',
-                        '<code>' . $postId . '</code>'
+                        esc_html__('Single meta key %s for: %s', 'fastdev'),
+                        '<code>' . sanitize_key($this->get('fd-get-post-meta')) . '</code>',
+                        '<code>' . absint($postId) . '</code>'
                     ) . '</h3>';
 
-                $this->makeTable(get_post_meta($postId, sanitize_key($_GET['fd-get-post-meta'])), true);
+                $this->makeTable(get_post_meta(absint($postId), sanitize_key($this->get('fd-get-post-meta'))), true);
             }
 
             echo '<h3>' . sprintf(
-                    __('Meta data for: %s', 'fastdev'),
-                    '<code>' . $postId . '</code>'
+                    esc_html__('Meta data for: %s', 'fastdev'),
+                    '<code>' . absint($postId) . '</code>'
                 ) . '</h3>';
 
-            $this->makeTable(get_post_meta($postId));
+            $this->makeTable(get_post_meta(absint($postId)));
         }
 
         echo '<form method="get" class="fd-form">
                 <div class="field">
-                <label>' . __('Post ID', 'fastdev') . '</label> 
-				<input type="number" value="' . $field_value . '" name="fd-post-id">
-				' . get_submit_button($btn_label, 'primary large', false, false) . '
+                <label>' . esc_html__('Post ID', 'fastdev') . '</label> 
+				<input type="number" value="' . esc_attr($field_value) . '" name="fd-post-id">
+				' .
+             get_submit_button(esc_html($btn_label), 'primary large', false, false)  // phpcs:ignore -- Not needed
+             . '
 				<input type="hidden" value="fd-main" name="page">
-				<input type="hidden" value="' . $this->tab_id . '" name="tab">
+				<input type="hidden" value="' . esc_attr($this->tab_id) . '" name="tab">
+				<input type="hidden" value="' . esc_attr(fdGetGlobalNonce()) . '" name="gnonce">
 			</div>
 			</form>';
     }

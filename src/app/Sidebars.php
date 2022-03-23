@@ -6,7 +6,7 @@ class Sidebars extends Tab {
 
 	public function settings() {
 		return array(
-			'label' => __( 'Sidebars', 'fastdev' ),
+			'label' => esc_html__( 'Sidebars', 'fastdev' ),
 		);
 	}
 
@@ -16,8 +16,8 @@ class Sidebars extends Tab {
 			$output = '<div class="fd-key-val-table">';
 
 			$output .= '<div class="fd-kv-row fd-kv-head cols-30x40x30">';
-			$output .= '<div><div class="fd-kv-code">' . __( 'Widget', 'fastdev' ) . '</div></div>';
-			$output .= '<div><div class="fd-kv-code">' . __( 'Sidebar', 'fastdev' ) . '</div></div>';
+			$output .= '<div><div class="fd-kv-code">' . esc_html__( 'Widget', 'fastdev' ) . '</div></div>';
+			$output .= '<div><div class="fd-kv-code">' . esc_html__( 'Sidebar', 'fastdev' ) . '</div></div>';
 			$output .= '</div>';
 
 			foreach ( $sidebars as $sidebar_id => $widgets ) {
@@ -33,14 +33,18 @@ class Sidebars extends Tab {
 				}
 			}
 			$output .= '</div>';
-			echo $output;
+			echo $output;  // phpcs:ignore  -- The table, inner columns are already escaped
 		} else {
 			fd_code( $sidebars );
 		}
 	}
 
 	public function page() {
-		if ( empty ( $GLOBALS['wp_widget_factory'] ) ) {
+        if (!wp_verify_nonce(fdGetGlobalNonce(), 'fastdev-admin')){
+            return;
+        }
+
+        if ( empty ( $GLOBALS['wp_widget_factory'] ) ) {
 			return;
 		}
 
@@ -49,7 +53,7 @@ class Sidebars extends Tab {
 		if ( ! empty( $_GET['fd-get-option'] ) ) {
 			$option = sanitize_key( $_GET['fd-get-option'] );
 
-			echo '<h3>' . $option . '</h3>';
+			echo '<h3>' . esc_html($option) . '</h3>';
 
 			preg_match( '/-([0-9]*)$/', $option, $matches );
 			$widget_number = ! empty( $matches[1] ) ? $matches[1] : false;
@@ -60,14 +64,14 @@ class Sidebars extends Tab {
 
 			fd_code( $widget_options );
 		} else {
-			echo '<h3>' . __( 'A list of all widgets and their sidebars', 'fastdev' ) . '</h3>';
+			echo '<h3>' . esc_html__( 'A list of all widgets and their sidebars', 'fastdev' ) . '</h3>';
 			fd_search();
 
 			$sidebars = wp_get_sidebars_widgets();
 
 			if ( empty( $sidebars ) ) {
 				echo '<div class="notice inline notice-warning notice-alt"><p>
-					' . __( 'No sidebars.', 'fastdev' ) . '
+					' . esc_html__( 'No sidebars.', 'fastdev' ) . '
 				</p></div>';
 			}
 
