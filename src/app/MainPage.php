@@ -145,7 +145,7 @@ class MainPage extends Page
 
         $sys[] = [
             'label' => __('System Software', 'fastdev'),
-            'value' => $_SERVER['SERVER_SOFTWARE'],
+            'value' => isset($_SERVER['SERVER_SOFTWARE']) ? wp_kses_post(wp_unslash($_SERVER['SERVER_SOFTWARE'])) : '--',
         ];
 
         $php_version = PHP_VERSION;
@@ -206,27 +206,27 @@ class MainPage extends Page
 
         $sys[] = [
             'label' => __('Hostname', 'fastdev'),
-            'value' => $_SERVER['SERVER_NAME'],
+            'value' => isset($_SERVER['SERVER_NAME']) ? wp_kses_post(wp_unslash($_SERVER['SERVER_NAME'])) : '--',
         ];
 
         $sys[] = [
             'label' => __('Server IP Address', 'fastdev'),
-            'value' => $_SERVER['SERVER_ADDR'],
+            'value' => isset($_SERVER['SERVER_ADDR']) ? wp_kses_post(wp_unslash($_SERVER['SERVER_ADDR'])) : '--',
         ];
 
         $sys[] = [
             'label' => __('Server Port', 'fastdev'),
-            'value' => $_SERVER['SERVER_PORT'],
+            'value' => isset($_SERVER['SERVER_PORT']) ? wp_kses_post(wp_unslash($_SERVER['SERVER_PORT'])) : '--',
         ];
 
         $sys[] = [
             'label' => __('Server Document Root', 'fastdev'),
-            'value' => $_SERVER['DOCUMENT_ROOT'],
+            'value' => isset($_SERVER['DOCUMENT_ROOT']) ? wp_kses_post(wp_unslash($_SERVER['DOCUMENT_ROOT'])) : '--',
         ];
 
         $sys[] = [
             'label' => __('Server Admin', 'fastdev'),
-            'value' => isset($_SERVER['SERVER_ADMIN']) ? $_SERVER['SERVER_ADMIN'] : '',
+            'value' => isset($_SERVER['SERVER_ADMIN']) ? wp_kses_post(wp_unslash($_SERVER['SERVER_ADMIN'])) : '',
         ];
 
         $sys[] = [
@@ -498,7 +498,7 @@ class MainPage extends Page
             }
             $output .= '</div>';
 
-            echo $output;
+            echo $output; // phpcs:ignore -- This is the table generation, columns are escaped already
         } else {
             fd_code($options);
         }
@@ -550,7 +550,7 @@ class MainPage extends Page
     public function activeTheme()
     {
         if (get_bloginfo('version') < '3.4') {
-            $theme_data = get_theme_data(get_stylesheet_directory() . '/style.css');
+            $theme_data = get_theme_data(get_stylesheet_directory() . '/style.css');  // phpcs:ignore -- Checking if is old WP install
             $theme      = $theme_data['Name'] . ' v' . $theme_data['Version'];
         } else {
             $theme_data = wp_get_theme();
