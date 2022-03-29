@@ -45,7 +45,7 @@ class Functions extends Tab {
 				$output .= '</div>';
 			}
 			$output .= '</div>';
-			echo $output; // phpcs:ignore  -- The table, inner columns are already escaped
+			echo wp_kses_post($output);
 		} else {
 			fd_code( $options );
 		}

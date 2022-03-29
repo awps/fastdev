@@ -9,8 +9,8 @@ class MainPage extends Page
     {
         return [
             'menu_type'         => 'menu',
-            'menu_title'        => __('Fastdev', 'fastdev'),
-            'default_tab_label' => __('Site info', 'fastdev'),
+            'menu_title'        => esc_html__('Fastdev', 'fastdev'),
+            'default_tab_label' => esc_html__('Site info', 'fastdev'),
         ];
     }
 
@@ -62,21 +62,21 @@ class MainPage extends Page
 
         // General
         $sys[] = [
-            'label' => __('General', 'fastdev'),
+            'label' => esc_html__('General', 'fastdev'),
             'value' => '{section_title}',
         ];
 
         $sys[] = [
-            'label' => __('Site URL', 'fastdev'),
+            'label' => esc_html__('Site URL', 'fastdev'),
             'value' => site_url(),
         ];
 
         $sys[] = [
-            'label' => __('Home URL', 'fastdev'),
+            'label' => esc_html__('Home URL', 'fastdev'),
             'value' => home_url(),
         ];
         $sys[] = [
-            'label' => __('Multisite enabled', 'fastdev'),
+            'label' => esc_html__('Multisite enabled', 'fastdev'),
             'value' => (is_multisite() ? 'Yes' : 'No'),
         ];
 
@@ -88,63 +88,63 @@ class MainPage extends Page
         $status = (version_compare($core->current, get_bloginfo('version')) > 0) ? 'bad' : 'good';
 
         $sys[] = [
-            'label'  => __('Installed WordPress version', 'fastdev'),
+            'label'  => esc_html__('Installed WordPress version', 'fastdev'),
             'value'  => get_bloginfo('version'),
             'status' => $status,
             // translators: WP version
-            'notice' => sprintf(__('The latest WP version is %1$s', 'fastdev'), $core->current),
+            'notice' => sprintf(esc_html__('The latest WP version is %1$s', 'fastdev'), $core->current),
         ];
 
         $lang  = get_option('WPLANG');
         $sys[] = [
-            'label'  => __('Site language', 'fastdev'),
+            'label'  => esc_html__('Site language', 'fastdev'),
             'value'  => ! empty($lang) ? esc_html($lang) : 'en_US',
-            'notice' => __('The language option is empty and en_US is set as default.', 'fastdev'),
-            'tip'    => __('You can change this from Settings -> General -> Site Language', 'fastdev'),
+            'notice' => esc_html__('The language option is empty and en_US is set as default.', 'fastdev'),
+            'tip'    => esc_html__('You can change this from Settings -> General -> Site Language', 'fastdev'),
         ];
 
         $sys[] = [
-            'label' => __('Permalink structure', 'fastdev'),
-            'value' => get_option('permalink_structure') ? '<code>' . get_option('permalink_structure') . '</code>' : __('Default',
+            'label' => esc_html__('Permalink structure', 'fastdev'),
+            'value' => get_option('permalink_structure') ? '<code>' . get_option('permalink_structure') . '</code>' : esc_html__('Default',
                 'fastdev'),
-            'tip'   => __('You can change this from Settings -> Permalinks', 'fastdev'),
+            'tip'   => esc_html__('You can change this from Settings -> Permalinks', 'fastdev'),
         ];
 
         $sys[] = [
-            'label' => __('What to show on homepage', 'fastdev'),
+            'label' => esc_html__('What to show on homepage', 'fastdev'),
             'value' => get_option('show_on_front'),
-            'tip'   => __('You can change this from Customize -> Homepage Settings', 'fastdev'),
+            'tip'   => esc_html__('You can change this from Customize -> Homepage Settings', 'fastdev'),
         ];
 
         $page_id = absint(get_option('page_on_front'));
         $sys[]   = [
-            'label'  => __('Front page', 'fastdev'),
+            'label'  => esc_html__('Front page', 'fastdev'),
             'value'  => $page_id > 0 ? get_the_title($page_id) : '',
-            'notice' => $page_id > 0 ? ' #' . $page_id : __('Not set', 'fastdev'),
-            'tip'    => __('You can change this from Customize -> Homepage Settings', 'fastdev'),
+            'notice' => $page_id > 0 ? ' #' . $page_id : esc_html__('Not set', 'fastdev'),
+            'tip'    => esc_html__('You can change this from Customize -> Homepage Settings', 'fastdev'),
         ];
 
         $page_id = absint(get_option('page_for_posts'));
         $sys[]   = [
-            'label'  => __('Blog page', 'fastdev'),
+            'label'  => esc_html__('Blog page', 'fastdev'),
             'value'  => $page_id > 0 ? get_the_title($page_id) : '',
-            'notice' => $page_id > 0 ? ' #' . $page_id : __('Not set', 'fastdev'),
-            'tip'    => __('You can change this from Customize -> Homepage Settings', 'fastdev'),
+            'notice' => $page_id > 0 ? ' #' . $page_id : esc_html__('Not set', 'fastdev'),
+            'tip'    => esc_html__('You can change this from Customize -> Homepage Settings', 'fastdev'),
         ];
 
-// System Info
+        // System Info
         $sys[] = [
-            'label' => __('System info', 'fastdev'),
+            'label' => esc_html__('System info', 'fastdev'),
             'value' => '{section_title}',
         ];
 
         $sys[] = [
-            'label' => __('Operating System', 'fastdev'),
+            'label' => esc_html__('Operating System', 'fastdev'),
             'value' => PHP_OS,
         ];
 
         $sys[] = [
-            'label' => __('System Software', 'fastdev'),
+            'label' => esc_html__('System Software', 'fastdev'),
             'value' => isset($_SERVER['SERVER_SOFTWARE']) ? wp_kses_post(wp_unslash($_SERVER['SERVER_SOFTWARE'])) : '--',
         ];
 
@@ -190,50 +190,50 @@ class MainPage extends Page
         }
 
         $sys[] = wp_parse_args($php_status, [
-            'label' => __('PHP version', 'fastdev'),
+            'label' => esc_html__('PHP version', 'fastdev'),
             'value' => $php_version,
         ]);
 
         $sys[] = [
-            'label' => __('MySQL Version', 'fastdev'),
+            'label' => esc_html__('MySQL Version', 'fastdev'),
             'value' => $this->mySQLVersion(),
         ];
 
         $sys[] = [
-            'label' => __('GD Version', 'fastdev'),
+            'label' => esc_html__('GD Version', 'fastdev'),
             'value' => $this->gdVersion(),
         ];
 
         $sys[] = [
-            'label' => __('Hostname', 'fastdev'),
+            'label' => esc_html__('Hostname', 'fastdev'),
             'value' => isset($_SERVER['SERVER_NAME']) ? wp_kses_post(wp_unslash($_SERVER['SERVER_NAME'])) : '--',
         ];
 
         $sys[] = [
-            'label' => __('Server IP Address', 'fastdev'),
+            'label' => esc_html__('Server IP Address', 'fastdev'),
             'value' => isset($_SERVER['SERVER_ADDR']) ? wp_kses_post(wp_unslash($_SERVER['SERVER_ADDR'])) : '--',
         ];
 
         $sys[] = [
-            'label' => __('Server Port', 'fastdev'),
+            'label' => esc_html__('Server Port', 'fastdev'),
             'value' => isset($_SERVER['SERVER_PORT']) ? wp_kses_post(wp_unslash($_SERVER['SERVER_PORT'])) : '--',
         ];
 
         $sys[] = [
-            'label' => __('Server Document Root', 'fastdev'),
+            'label' => esc_html__('Server Document Root', 'fastdev'),
             'value' => isset($_SERVER['DOCUMENT_ROOT']) ? wp_kses_post(wp_unslash($_SERVER['DOCUMENT_ROOT'])) : '--',
         ];
 
         $sys[] = [
-            'label' => __('Server Admin', 'fastdev'),
+            'label' => esc_html__('Server Admin', 'fastdev'),
             'value' => isset($_SERVER['SERVER_ADMIN']) ? wp_kses_post(wp_unslash($_SERVER['SERVER_ADMIN'])) : '',
         ];
 
         $sys[] = [
-            'label' => __('Server Time', 'fastdev'),
+            'label' => esc_html__('Server Time', 'fastdev'),
             'value' => mysql2date(
                 sprintf(
-                    __('%1$s - %2$s', 'fastdev'),
+                    esc_html__('%1$s - %2$s', 'fastdev'),
                     get_option('date_format'), 'H:m:s'
                 ),
                 current_time('mysql')
@@ -241,60 +241,60 @@ class MainPage extends Page
         ];
 
         $sys[] = [
-            'label' => __('Debug', 'fastdev'),
+            'label' => esc_html__('Debug', 'fastdev'),
             'value' => $this->getConstant('WP_DEBUG'),
             // translators: WP debug.
-            'tip'   => sprintf(__('Open %1$s and add this code %2$s. This will enable PHP error printing.', 'fastdev'),
+            'tip'   => sprintf(esc_html__('Open %1$s and add this code %2$s. This will enable PHP error printing.', 'fastdev'),
                 '<code>wp-config.php</code>', '<code>define( \'WP_DEBUG\', true );</code>'),
         ];
 
         $sys[] = [
-            'label' => __('Scripts debug', 'fastdev'),
+            'label' => esc_html__('Scripts debug', 'fastdev'),
             'value' => $this->getConstant('SCRIPT_DEBUG'),
             // translators: Scripts debug.
-            'tip'   => sprintf(__('Open %1$s and add this code %2$s. This will enable unminified scripts and styles loading.',
+            'tip'   => sprintf(esc_html__('Open %1$s and add this code %2$s. This will enable unminified scripts and styles loading.',
                 'fastdev'), '<code>wp-config.php</code>', '<code>define( \'SCRIPT_DEBUG\', true );</code>'),
         ];
 
         $sys[] = [
-            'label' => __('Debug display', 'fastdev'),
+            'label' => esc_html__('Debug display', 'fastdev'),
             'value' => $this->getConstant('WP_DEBUG_DISPLAY'),
             // translators: WP debug.
-            'tip'   => sprintf(__('Open %1$s and add this code %2$s. This will display the PHP errors.', 'fastdev'),
+            'tip'   => sprintf(esc_html__('Open %1$s and add this code %2$s. This will display the PHP errors.', 'fastdev'),
                 '<code>wp-config.php</code>', '<code>define( \'WP_DEBUG_DISPLAY\', true );</code>'),
         ];
 
         $sys[] = [
-            'label' => __('Debug display', 'fastdev'),
+            'label' => esc_html__('Debug display', 'fastdev'),
             'value' => $this->getConstant('WP_DEBUG_LOG'),
             // translators: WP debug.
-            'tip'   => sprintf(__('Open %1$s and add this code %2$s. This will enable Debug logging to the /wp-content/debug.log file.', 'fastdev'),
+            'tip'   => sprintf(esc_html__('Open %1$s and add this code %2$s. This will enable Debug logging to the /wp-content/debug.log file.', 'fastdev'),
                 '<code>wp-config.php</code>', '<code>define( \'WP_DEBUG_LOG\', true );</code>'),
         ];
 
         global $wpdb;
         $sys[] = [
-            'label' => __('WP Table prefix', 'fastdev'),
+            'label' => esc_html__('WP Table prefix', 'fastdev'),
             'value' => $wpdb->prefix,
         ];
 
         $sys[] = [
-            'label' => __('WordPress memory limit', 'fastdev'),
+            'label' => esc_html__('WordPress memory limit', 'fastdev'),
             'value' => $this->getConstant('WP_MEMORY_LIMIT'),
         ];
 
         $sys[] = [
-            'label' => __('PHP Safe Mode', 'fastdev'),
+            'label' => esc_html__('PHP Safe Mode', 'fastdev'),
             'value' => $this->iniGet('safe_mode', 'yn'),
         ];
 
         $inis = [
-            'memory_limit'         => __('PHP Memory Limit', 'fastdev'),
-            'upload_max_filesize'  => __('PHP Upload Max Size', 'fastdev'),
-            'post_max_size'        => __('PHP Post Max Size', 'fastdev'),
-            'max_execution_time'   => __('PHP Time Limit', 'fastdev'),
-            'max_input_vars'       => __('PHP Max Input Vars', 'fastdev'),
-            'arg_separator.output' => __('PHP Arg Separator', 'fastdev'),
+            'memory_limit'         => esc_html__('PHP Memory Limit', 'fastdev'),
+            'upload_max_filesize'  => esc_html__('PHP Upload Max Size', 'fastdev'),
+            'post_max_size'        => esc_html__('PHP Post Max Size', 'fastdev'),
+            'max_execution_time'   => esc_html__('PHP Time Limit', 'fastdev'),
+            'max_input_vars'       => esc_html__('PHP Max Input Vars', 'fastdev'),
+            'arg_separator.output' => esc_html__('PHP Arg Separator', 'fastdev'),
         ];
 
         foreach ($inis as $ini => $label) {
@@ -305,39 +305,39 @@ class MainPage extends Page
         }
 
         $sys[] = [
-            'label' => __('Allow URL File Open', 'fastdev'),
+            'label' => esc_html__('Allow URL File Open', 'fastdev'),
             'value' => $this->iniGet('allow_url_fopen', 'ed'),
         ];
 
         $sys[] = [
-            'label' => __('fsockopen', 'fastdev'),
-            'value' => function_exists('fsockopen') ? __('Supported', 'fastdev') : __('Not supported', 'fastdev'),
+            'label' => esc_html__('fsockopen', 'fastdev'),
+            'value' => function_exists('fsockopen') ? esc_html__('Supported', 'fastdev') : esc_html__('Not supported', 'fastdev'),
         ];
 
         $sys[] = [
-            'label' => __('SOAP Client', 'fastdev'),
-            'value' => class_exists('SoapClient') ? __('Enabled', 'fastdev') : __('Disabled', 'fastdev'),
+            'label' => esc_html__('SOAP Client', 'fastdev'),
+            'value' => class_exists('SoapClient') ? esc_html__('Enabled', 'fastdev') : esc_html__('Disabled', 'fastdev'),
         ];
 
         $sys[] = [
-            'label' => __('Suhosin', 'fastdev'),
-            'value' => extension_loaded('suhosin') ? __('Loaded', 'fastdev') : __('Not loaded', 'fastdev'),
+            'label' => esc_html__('Suhosin', 'fastdev'),
+            'value' => extension_loaded('suhosin') ? esc_html__('Loaded', 'fastdev') : esc_html__('Not loaded', 'fastdev'),
         ];
 
         // Themes
         $sys[] = [
-            'label' => __('Themes', 'fastdev'),
+            'label' => esc_html__('Themes', 'fastdev'),
             'value' => '{section_title}',
         ];
 
         $sys[] = [
-            'label' => __('Active theme', 'fastdev'),
+            'label' => esc_html__('Active theme', 'fastdev'),
             'value' => $this->activeTheme(),
         ];
 
         // Plugins
         $sys[] = [
-            'label' => __('Plugins', 'fastdev'),
+            'label' => esc_html__('Plugins', 'fastdev'),
             'value' => '{section_title}',
         ];
 
@@ -378,7 +378,7 @@ class MainPage extends Page
             }
 
             $sys[] = [
-                'label' => __('Active plugins', 'fastdev'),
+                'label' => esc_html__('Active plugins', 'fastdev'),
                 'value' => $plugins,
             ];
         }
@@ -399,18 +399,18 @@ class MainPage extends Page
         }
 
         // translators: %1$s - end o life date
-        $supported     = __('Great! You are using a version of PHP that is actively supported until %1$s', 'fastdev');
-        $supported_tip = __('You are using a release that is actively supported. Reported bugs and security issues are fixed and regular point releases are made.',
+        $supported     = esc_html__('Great! You are using a version of PHP that is actively supported until %1$s', 'fastdev');
+        $supported_tip = esc_html__('You are using a release that is actively supported. Reported bugs and security issues are fixed and regular point releases are made.',
             'fastdev');
 
         // translators: %1$s - end o life date
-        $not_supported     = __('This release is no longer supported from %1$s', 'fastdev');
-        $not_supported_tip = __('Using a release that is no longer supported is not recommended and you should upgrade as soon as possible, as your sever may be exposed to unpatched security vulnerabilities.',
+        $not_supported     = esc_html__('This release is no longer supported from %1$s', 'fastdev');
+        $not_supported_tip = esc_html__('Using a release that is no longer supported is not recommended and you should upgrade as soon as possible, as your sever may be exposed to unpatched security vulnerabilities.',
             'fastdev');
 
         // translators: %1$s - end o life date
-        $security_supported     = __('This release will get critical updates only until %1$s', 'fastdev');
-        $security_supported_tip = __('This is a release that is supported for critical security issues only. Releases are only made on an as-needed basis.',
+        $security_supported     = esc_html__('This release will get critical updates only until %1$s', 'fastdev');
+        $security_supported_tip = esc_html__('This is a release that is supported for critical security issues only. Releases are only made on an as-needed basis.',
             'fastdev');
 
         $result = [
@@ -478,7 +478,7 @@ class MainPage extends Page
                 $good_or_bad = isset($value['status']) ? $value['status'] : 'neutral';
                 $notice      = isset($value['notice']) ? $value['notice'] : '';
 
-                $tip = isset($value['tip']) ? '<span class="fdtip" title="' . $value['tip'] . '">
+                $tip = isset($value['tip']) ? '<span class="fdtip" title="' . esc_attr($value['tip']) . '">
 					<span class="dashicons dashicons-editor-help"></span>
 				</span>' : '';
 
@@ -498,7 +498,7 @@ class MainPage extends Page
             }
             $output .= '</div>';
 
-            echo $output; // phpcs:ignore -- This is the table generation, columns are escaped already
+            echo wp_kses_post($output);
         } else {
             fd_code($options);
         }
@@ -508,15 +508,15 @@ class MainPage extends Page
     {
         if ( ! defined($const)) {
             // translators: %s - constant name
-            return sprintf(__('%s is not defined', 'fastdev'), '<code>' . $const . '</code>');
+            return sprintf(esc_html__('%s is not defined', 'fastdev'), '<code>' . $const . '</code>');
         }
 
         $val = constant($const);
 
         if (empty($val)) {
-            return '<span class="fd-info-notice">' . __('(empty)', 'fastdev') . '</span>';
+            return '<span class="fd-info-notice">' . esc_html__('(empty)', 'fastdev') . '</span>';
         } elseif (true === $val) {
-            return __('TRUE', 'fastdev');
+            return esc_html__('TRUE', 'fastdev');
         }
 
         return $val;
@@ -528,20 +528,20 @@ class MainPage extends Page
 
         if ($return_mode) {
             if ('yn' === $return_mode) {
-                return ! empty($ini) ? __('Yes', 'fastdev') : __('No', 'fastdev');
+                return ! empty($ini) ? esc_html__('Yes', 'fastdev') : esc_html__('No', 'fastdev');
             }
             if ('ed' === $return_mode) {
-                return ! empty($ini) ? __('Enabled', 'fastdev') : __('Disabled', 'fastdev');
+                return ! empty($ini) ? esc_html__('Enabled', 'fastdev') : esc_html__('Disabled', 'fastdev');
             }
             if ('bool' === $return_mode) {
-                return ! empty($ini) ? __('TRUE', 'fastdev') : __('FALSE', 'fastdev');
+                return ! empty($ini) ? esc_html__('TRUE', 'fastdev') : esc_html__('FALSE', 'fastdev');
             }
         }
 
         if (empty($val)) {
-            return '<span class="fd-info-notice">' . __('(Not set)', 'fastdev') . '</span>';
+            return '<span class="fd-info-notice">' . esc_html__('(Not set)', 'fastdev') . '</span>';
         } elseif (true === $val) {
-            return __('TRUE', 'fastdev');
+            return esc_html__('TRUE', 'fastdev');
         }
 
         return $val;
@@ -550,7 +550,7 @@ class MainPage extends Page
     public function activeTheme()
     {
         if (get_bloginfo('version') < '3.4') {
-            $theme_data = get_theme_data(get_stylesheet_directory() . '/style.css');  // phpcs:ignore -- Checking if is old WP install
+            $theme_data = get_theme_data(get_stylesheet_directory() . '/style.css');  // phpcs: WordPress.WP.DeprecatedFunctions.get_theme_dataFound -- Checking if is old WP install
             $theme      = $theme_data['Name'] . ' v' . $theme_data['Version'];
         } else {
             $theme_data = wp_get_theme();
@@ -580,6 +580,6 @@ class MainPage extends Page
             return $gdex['GD Version'];
         }
 
-        return __('Unknown', 'fastdev');
+        return esc_html__('Unknown', 'fastdev');
     }
 }

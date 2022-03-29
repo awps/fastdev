@@ -101,9 +101,17 @@ class Tab
         return $tabs;
     }
 
-    public function get($key)
+    public function get($key, $sanitizeFn = null)
     {
-        return isset($_GET[$key]) ? wp_kses_data(wp_unslash($_GET[$key])) : null;  // phpcs:ignore -- Nonce not required
+        // phpcs: WordPress.Security.NonceVerification.Recommended -- not needed.
+
+        $data = isset($_GET[$key]) ? wp_kses_data(wp_unslash($_GET[$key])) : null;
+
+        if ($sanitizeFn){
+            return call_user_func($sanitizeFn, $data);
+        }
+
+        return $data;
     }
 
 }

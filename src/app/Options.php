@@ -51,7 +51,7 @@ class Options extends Tab
                 $output .= '</div>';
             }
             $output .= '</div>';
-            echo $output; // phpcs:ignore -- Table HTML. Columns are already escaped
+            echo wp_kses_post($output);
         } else {
             fd_code($options);
         }
@@ -62,18 +62,22 @@ class Options extends Tab
         if ( ! empty($this->get('fd-get-option'))) {
             $option    = sanitize_title($this->get('fd-get-option'));
             $data_attr = $this->getDataAtr($option);
+            ?>
+            <h3>
+                <strong><?php echo wp_kses_post($option); ?></strong>
+                <span id="fd-refresh-option" class="fd-button-refresh" <?php echo wp_kses_post($data_attr) ?>><?php esc_html_e('Refresh', 'fastdev') ?></span>
+                <label class="fd-auto-refresh">
+                    <input type="checkbox" id="fd-auto-refresh">
+                    <?php esc_html_e('Auto refresh', 'fastdev') ?>
+                </label>
+                <span id="fd-delete-option" class="fd-button-delete" <?php echo wp_kses_post($data_attr) ?>><?php esc_html_e('Delete option',
+                    'fastdev'); ?></span>
+            </h3>
 
-            $action_buttons = '<span id="fd-refresh-option" class="fd-button-refresh"' . $data_attr . '>' . __('Refresh',
-                    'fastdev') . '</span>';
-            $action_buttons .= '<label class="fd-auto-refresh"><input type="checkbox" id="fd-auto-refresh"> ' . __('Auto refresh',
-                    'fastdev') . '</label>';
-            $action_buttons .= '<span id="fd-delete-option" class="fd-button-delete"' . $data_attr . '>' . __('Delete option',
-                    'fastdev') . '</span>';
-
-            echo '<h3><strong>' . esc_html($option) .'</strong>'. $action_buttons. '</h3>'; // phpcs:ignore -- Already done above
-            echo '<div id="fd-wpo-code-block">';
-            fd_code(get_option($option), true);
-            echo '</div>';
+            <div id="fd-wpo-code-block">
+                <?php fd_code(get_option($option), true); ?>
+            </div>
+            <?php
         } else {
             fd_search();
             $all_wpo = wp_load_alloptions();

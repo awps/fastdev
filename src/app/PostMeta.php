@@ -42,7 +42,7 @@ class PostMeta extends Tab
                 $output .= '</div>';
             }
             $output .= '</div>';
-            echo $output;  // phpcs:ignore  -- The table, inner columns are already escaped
+            echo wp_kses_post($output);
         } else {
             fd_code($options);
         }
@@ -54,7 +54,7 @@ class PostMeta extends Tab
             return;
         }
 
-        $field_value = $this->get('fd-post-id');
+        $field_value = (int) $this->get('fd-post-id');
         $btn_label   = esc_html__('Get post meta', 'fastdev');
 
         $postId = ! empty($this->get('fd-post-id')) && (int)$this->get('fd-post-id') > 0 ? (int)$this->get('fd-post-id') : null;
@@ -83,7 +83,7 @@ class PostMeta extends Tab
                 <label>' . esc_html__('Post ID', 'fastdev') . '</label> 
 				<input type="number" value="' . esc_attr($field_value) . '" name="fd-post-id">
 				' .
-             get_submit_button(esc_html($btn_label), 'primary large', false, false)  // phpcs:ignore -- Not needed
+             wp_kses_post(get_submit_button(esc_html($btn_label), 'primary large', false, false))
              . '
 				<input type="hidden" value="fd-main" name="page">
 				<input type="hidden" value="' . esc_attr($this->tab_id) . '" name="tab">

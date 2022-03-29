@@ -87,7 +87,8 @@ function fdGlobalNonceUrl($url)
 
 function fdGetGlobalNonce()
 {
-    return isset($_GET['gnonce']) ? wp_kses_data(wp_unslash($_GET['gnonce'])) : null; // phpcs:ignore  -- Used for nonce
+    // phpcs: WordPress.Security.NonceVerification.Recommended -- Used to get the nonce from URL
+    return isset($_GET['gnonce']) ? wp_kses_data(wp_unslash($_GET['gnonce'])) : null;
 }
 
 //------------------------------------//--------------------------------------//
@@ -156,11 +157,11 @@ function fd_code($code, $escape = false, $language = 'php')
 
     echo '<pre class="' . sanitize_html_class($class) . '" data-size="' . esc_attr($size) . '""><code class="' . sanitize_html_class($class) . '">';
     if (is_array($code) && $escape) {
-        print_r(esc_html(var_export($code, true)));  // phpcs:ignore  -- Used to display the code
+        print_r(esc_html(var_export($code, true)));  // phpcs: WordPress.PHP.DevelopmentFunctions.error_log_print_r -- Used to display the code
     } elseif (is_string($code) && $escape) {
-        print_r(esc_html($code));  // phpcs:ignore  -- Used to display the code
+        print_r(esc_html($code));  // phpcs: WordPress.PHP.DevelopmentFunctions.error_log_print_r -- Used to display the code
     } else {
-        print_r($code);  // phpcs:ignore  -- Used to display the code
+        print_r($code);  // phpcs: WordPress.PHP.DevelopmentFunctions.error_log_print_r -- Used to display the code
     }
     echo '</code></pre>';
 }

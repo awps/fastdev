@@ -48,7 +48,7 @@ class UserMeta extends Tab
                 $output .= '</div>';
             }
             $output .= '</div>';
-            echo $output;   // phpcs:ignore  -- The table, inner columns are already escaped
+            echo wp_kses_post($output);
         } else {
             fd_code($options);
         }
@@ -108,7 +108,7 @@ class UserMeta extends Tab
                 <div class="field"><label>' . esc_html__('Username', 'fastdev') . '
 				</label> <input type="text" value="' . esc_attr($field_value) . '" name="fd-get-username" class="regular-text">
 				' .
-             get_submit_button(esc_html($btn_label), 'primary large', false, false) // phpcs:ignore  -- All good here. Already escaped
+             wp_kses_post(get_submit_button(esc_html($btn_label), 'primary large', false, false))
              . '
 			</div>
 				<input type="hidden" value="fd-main" name="page">

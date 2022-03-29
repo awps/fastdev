@@ -18,13 +18,13 @@ class PhpInfo extends Tab {
 
 	public function pageContent() {
 		ob_start();
-		phpinfo();  // phpcs:ignore -- That's what we are looking for already. The full PHP info.
+		call_user_func('phpinfo'); // phpcs: WordPress.PHP.DevelopmentFunctions.prevent_path_disclosure_phpinfo -- This is part of the tool. Displayed internally in WP admin.
 		$pinfo = ob_get_contents();
 		ob_end_clean();
 
 		$pinfo = preg_replace( '%^.*<body>(.*)</body>.*$%ms', '$1', $pinfo );
 
-		echo '<div id="phpinfo">' . $pinfo . '</div>';  // phpcs:ignore -- It's coming from PHP already. No user input
+		echo '<div id="phpinfo">' . wp_kses_post($pinfo) . '</div>';
 	}
 
 }

@@ -20,7 +20,7 @@ class Hooks extends Tab {
 				$output .= '</div>';
 			}
 			$output .= '</div>';
-			echo $output; // phpcs:ignore  -- The table, inner columns are already escaped
+			echo wp_kses_post( $output);
 		} else {
 			fd_code( $options );
 		}
@@ -34,7 +34,7 @@ class Hooks extends Tab {
 		global $wp_filter;
 
 		if ( ! empty( $_GET['fd-get-hook'] ) ) {
-			$hook = esc_html( stripcslashes( urldecode( wp_unslash($_GET['fd-get-hook']) ) ) ); // phpcs:ignore  -- False positive
+			$hook = esc_html( stripcslashes( urldecode( sanitize_text_field(wp_unslash($_GET['fd-get-hook'])) ) ) );
 
 			if ( empty( $hook ) || ! isset( $wp_filter[ $hook ] ) ) {
 				return;
