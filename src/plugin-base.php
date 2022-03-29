@@ -11,7 +11,7 @@
  * Domain Path: /languages
  * Requires PHP: 5.3
  * Requires at least: 4.4
- * Version: 1.9.0
+ * Version: 1.8.4
  */
 
 // Do not allow direct access to this file.
